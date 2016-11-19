@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+//import javafx.beans.property.SimpleIntegerProperty;
+//import javafx.beans.property.SimpleStringProperty;
 import com.grp11.products.*;
 
 @Entity
