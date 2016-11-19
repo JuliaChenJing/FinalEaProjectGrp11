@@ -9,10 +9,16 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.grp11.Consumer.IConsumerService;
+import com.grp11.Domain.ConsumerDomain;
 @Controller
+@RequestMapping("/orders")
 public class OrderCtrl {
 	@Autowired
 	private IOrderService orderService;
+	@Autowired
+	private IConsumerService consumerService;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String getAllOrdersFromAllUser(Model model) {
@@ -20,23 +26,27 @@ public class OrderCtrl {
 		return "home2";
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "/{UserId}/new", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public String addCustomer(@RequestBody OrderDomain order) {
+	public String addConsumer(@RequestBody OrderDomain order, @PathVariable("UserId") long UserId) {
+		ConsumerDomain c = consumerService.getUser(UserId);
+		order.setConsumer(c);
 		orderService.createOrder(order);
 		return "redirect:/home2";
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{UserId}/{OrderId}", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.CREATED)
-	public String updateCustomer(@RequestBody OrderDomain order) {
+	public String updateConsumer(@RequestBody OrderDomain order) {
 		orderService.updateOrder(order);
 		return "redirect:/home2";
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.PUT)
+	@RequestMapping(value = "/", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.CREATED)
-	public String deleteCustomer(@RequestBody OrderDomain order) {
+	public String deleteConsumer(@RequestBody OrderDomain order, @PathVariable("UserId") long UserId) {
+		ConsumerDomain c = consumerService.getUser(UserId);
+		order.setConsumer(c);
 		orderService.deleteOrder(order.getId());
 		return "redirect:/home2";
 	}

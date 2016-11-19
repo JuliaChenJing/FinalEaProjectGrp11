@@ -25,7 +25,15 @@ public class OrderDomain {
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="cust_id")
-	private ConsumerDomain customer;
+	private ConsumerDomain consumer;
+	public ConsumerDomain getConsumer() {
+		return consumer;
+	}
+
+	public void setConsumer(ConsumerDomain consumer) {
+		this.consumer = consumer;
+	}
+
 	//	TODO: unlock them with relationship when other domains are ready
 	//	@OneToMany
 	//	private Product product;
@@ -38,7 +46,7 @@ public class OrderDomain {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
-		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
+		result = prime * result + ((consumer == null) ? 0 : consumer.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + price;
 		result = prime * result + quantity;
@@ -49,7 +57,7 @@ public class OrderDomain {
 	@Override
 	public String toString() {
 		return "OrderDomain [id=" + id + ", quantity=" + quantity + ", price=" + price + ", createdAt=" + createdAt
-				+ ", updatedAt=" + updatedAt + ", customer=" + customer + "]";
+				+ ", updatedAt=" + updatedAt + ", consumer=" + consumer + "]";
 	}
 
 	@Override
@@ -66,10 +74,10 @@ public class OrderDomain {
 				return false;
 		} else if (!createdAt.equals(other.createdAt))
 			return false;
-		if (customer == null) {
-			if (other.customer != null)
+		if (consumer == null) {
+			if (other.consumer != null)
 				return false;
-		} else if (!customer.equals(other.customer))
+		} else if (!consumer.equals(other.consumer))
 			return false;
 		if (id != other.id)
 			return false;

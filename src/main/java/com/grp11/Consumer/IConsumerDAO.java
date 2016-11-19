@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.grp11.Domain.ConsumerDomain;
 
-public interface IConsumerDAO extends CrudRepository<ConsumerDomain, Integer>{
+public interface IConsumerDAO extends CrudRepository<ConsumerDomain, Long>{
 
 }

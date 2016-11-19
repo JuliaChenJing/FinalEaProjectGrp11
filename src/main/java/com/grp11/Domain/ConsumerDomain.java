@@ -22,6 +22,13 @@ public class ConsumerDomain extends UserDomain{
 	public void setOrders(List<OrderDomain> orders) {
 		this.orders = orders;
 	}
+
+	@Override
+	public String toString() {
+		return "ConsumerDomain [orders=" + orders + ", getId()=" + getId() + ", getFirstName()=" + getFirstName()
+				+ ", getLastName()=" + getLastName() + ", getCodeNo()=" + getCodeNo() + ", getConfirmed()="
+				+ getConfirmed() + ", getAddress()=" + getAddress() + "]";
+	}
 	
 	
 	

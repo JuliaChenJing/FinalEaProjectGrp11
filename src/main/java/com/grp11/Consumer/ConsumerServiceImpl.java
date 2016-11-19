@@ -32,7 +32,7 @@ public class ConsumerServiceImpl implements IConsumerService{
 	@Override
 	public ConsumerDomain getUser(Long UserId) {
 		// TODO Auto-generated method stub
-		return null;
+		return consumerDAO.findOne(UserId);
 	}
 
 	@Override
