@@ -1,4 +1,4 @@
-package com.grp11.stores;
+package com.grp11.suppliers;
 
 
 import java.util.Collection;
@@ -10,7 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 @Controller
-public class StoreCtrl {
+public class SupplierCtrl {
 	@RequestMapping(value = "/Stores", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String getAllExamples() {

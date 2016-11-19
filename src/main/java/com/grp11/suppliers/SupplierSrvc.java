@@ -1,4 +1,4 @@
-package com.grp11.stores;
+package com.grp11.suppliers;
 
 
 import java.util.List;
@@ -6,23 +6,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-public class StoreSrvc implements IStoreService {
+public class SupplierSrvc implements ISupplierService {
 	@Autowired
-	private IStoreDao StoreDao;
+	private ISupplierDao StoreDao;
 	@Override
-	public void createStore(StoreDomain o) {
+	public void createStore(SupplierDomain o) {
 		StoreDao.createStore(o);
 	}
 	@Override
-	public StoreDomain updateStore(StoreDomain o) {
+	public SupplierDomain updateStore(SupplierDomain o) {
 		return StoreDao.updateStore(o);
 	}
 	@Override
-	public StoreDomain getStore(Long ordNum) {
+	public SupplierDomain getStore(Long ordNum) {
 		return StoreDao.getStore(ordNum);
 	}
 	@Override
-	public List<StoreDomain> getAllStore() {
+	public List<SupplierDomain> getAllStore() {
 		return StoreDao.getAllStore();
 	}
 	@Override

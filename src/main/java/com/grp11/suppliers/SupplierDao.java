@@ -1,4 +1,4 @@
-package com.grp11.stores;
+package com.grp11.suppliers;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -6,25 +6,25 @@ import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class StoreDao implements IStoreDao {
+public class SupplierDao implements ISupplierDao {
 	@Autowired
-	private IStore Store;
+	private ISupplier Store;
 	@Override
-	public void createStore(StoreDomain o) {
+	public void createStore(SupplierDomain o) {
 		System.out.println(Store.save(o).getClass().getName());
 		Store.save(o);
 	}
 	@Override
-	public StoreDomain updateStore(StoreDomain o) {
+	public SupplierDomain updateStore(SupplierDomain o) {
 		System.out.println(Store.save(o).getClass().getName());
 		return Store.save(o);
 	}
 	@Override
-	public StoreDomain getStore(Long ordNum) {
+	public SupplierDomain getStore(Long ordNum) {
 		return Store.findOne(ordNum);
 	}
 	@Override
-	public List<StoreDomain> getAllStore() {
+	public List<SupplierDomain> getAllStore() {
 		return StreamSupport.stream(Store.findAll().spliterator(), false).collect(Collectors.toList());
 	}
 	@Override

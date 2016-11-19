@@ -1,15 +1,15 @@
-package com.grp11.stores;
+package com.grp11.suppliers;
 import javax.persistence.*;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 @Entity
-public class StoreDomain {
+public class SupplierDomain {
 	private String name;
 	@Id
 	@GeneratedValue
     private long id; 
-	public StoreDomain(String name) {
+	public SupplierDomain(String name) {
 		this.name = name;
 	}
 	public String getName() {
@@ -29,7 +29,7 @@ public class StoreDomain {
 	public boolean equals(Object ob) {
 		if(this == ob) return true;
 		if(getClass() != ob.getClass()) return false;
-		StoreDomain c = (StoreDomain)ob;
+		SupplierDomain c = (SupplierDomain)ob;
 		return name.equals(c.name);
 	}
 }
