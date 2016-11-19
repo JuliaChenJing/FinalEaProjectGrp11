@@ -66,6 +66,11 @@ public abstract class UserDomain {
 	public AddressDomain getAddress() {
 		return address;
 	}
+	@Override
+	public String toString() {
+		return "UserDomain [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", codeNo=" + codeNo
+				+ ", confirmed=" + confirmed + ", address=" + address + ", email=" + email + ", phone=" + phone + "]";
+	}
 	public void setAddress(AddressDomain address) {
 		this.address = address;
 	}

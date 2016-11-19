@@ -47,6 +47,12 @@ public class OrderDomain {
 	}
 
 	@Override
+	public String toString() {
+		return "OrderDomain [id=" + id + ", quantity=" + quantity + ", price=" + price + ", createdAt=" + createdAt
+				+ ", updatedAt=" + updatedAt + ", customer=" + customer + "]";
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
