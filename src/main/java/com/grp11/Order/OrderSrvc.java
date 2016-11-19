@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+@Service
 public class OrderSrvc implements IOrderService {
 	@Autowired
 	private IOrderDao orderDao;
@@ -27,5 +27,9 @@ public class OrderSrvc implements IOrderService {
 	@Override
 	public void deleteOrder(Long ordNum) {
 		orderDao.deleteOrder(ordNum);
+	}
+	@Override
+	public List<OrderDomain> getAllOrderForUser(long consumerId){
+		return orderDao.getAllOrderForUser(consumerId);
 	}
 }

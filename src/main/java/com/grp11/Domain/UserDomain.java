@@ -19,7 +19,7 @@ public abstract class UserDomain {
 	
 	@Id
 	@GeneratedValue
-	private Long id;
+	private long id;
 	private String firstName;
 	private String lastName;
 	private String codeNo;
@@ -29,10 +29,10 @@ public abstract class UserDomain {
 	private Address address;
 	private String email;
 	private String phone;
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	

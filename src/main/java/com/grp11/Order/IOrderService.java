@@ -8,4 +8,5 @@ public interface IOrderService {
 	public OrderDomain getOrder(Long ordNum);
 	public List<OrderDomain> getAllOrder();
 	public void deleteOrder(Long ordNum);
+	public List<OrderDomain> getAllOrderForUser(long consumerId);
 }
