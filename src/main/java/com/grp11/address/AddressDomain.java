@@ -3,14 +3,15 @@ import java.io.Serializable;
 import javax.persistence.*;
 /* Immutable */
 @Embeddable
-final public class Address implements Serializable {
+final public class AddressDomain implements Serializable {
 	
 	private static final long serialVersionUID = -891229800414574888L;
 	private String street;
 	private String city;
 	private String state;
 	private String zip;
-	public Address(String street, String city, String state, String zip) {
+	// comment example	
+	public AddressDomain(String street, String city, String state, String zip) {
 		this.street = street;
 		this.city = city;
 		this.state = state;

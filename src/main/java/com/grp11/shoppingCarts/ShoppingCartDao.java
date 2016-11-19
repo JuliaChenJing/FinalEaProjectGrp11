@@ -1,47 +1,34 @@
-/*package com.grp11.shoppingCarts;
+package com.grp11.shoppingCarts;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
-import org.hibernate.SessionFactory;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import com.grp11.address.*;
-*//**
- * @author suman
- * Description: ShoppingCartDao. Only crud operations to be added here. {May be validations as well}
- *//*
 public class ShoppingCartDao implements IShoppingCartDao {
-	private SessionFactory sf;
-
-	public SessionFactory getSf() {
-		return sf;
-	}
-
-	public void setSf(SessionFactory sf) {
-		this.sf = sf;
+	@Autowired
+	private IShoppingCart ShoppingCart;
+	@Override
+	public void createShoppingCart(ShoppingCartDomain o) {
+		System.out.println(ShoppingCart.save(o).getClass().getName());
+		ShoppingCart.save(o);
 	}
 	@Override
-	@Transactional
-	public void saveShoppingCart(ShoppingCart e) {
-		sf.getCurrentSession().persist(e);
+	public ShoppingCartDomain updateShoppingCart(ShoppingCartDomain o) {
+		System.out.println(ShoppingCart.save(o).getClass().getName());
+		return ShoppingCart.save(o);
 	}
 	@Override
-	@Transactional
-	public void updateShoppingCart(ShoppingCart e) {
-		sf.getCurrentSession().saveOrUpdate(e);
+	public ShoppingCartDomain getShoppingCart(Long ordNum) {
+		return ShoppingCart.findOne(ordNum);
 	}
 	@Override
-	@Transactional
-	public ShoppingCart loadShoppingCart(int eNo) {
-		return (ShoppingCart) sf.getCurrentSession().get(ShoppingCart.class, eNo);
+	public List<ShoppingCartDomain> getAllShoppingCart() {
+		return StreamSupport.stream(ShoppingCart.findAll().spliterator(), false).collect(Collectors.toList());
 	}
 	@Override
-	@SuppressWarnings("unchecked")
-	public Collection<ShoppingCart> getShoppingCart() {
-		// To prevent our Lazy Initialization problems
-		// we don't have open session in view, so instead we have to eagerly load!
-		//	TODO: check why getCurrentSession throws error here
-		return sf.openSession().createQuery("select distinct e from ShoppingCartDomain e").list();
+	public void deleteShoppingCart(Long ordNum) {
+		ShoppingCart.delete(ordNum);
 	}
-
-}*/
+}

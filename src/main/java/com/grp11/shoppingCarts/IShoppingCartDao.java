@@ -1,11 +1,12 @@
 package com.grp11.shoppingCarts;
 
-import java.util.Collection;
+import java.util.List;
 
-import com.grp11.address.*;
+
 public interface IShoppingCartDao {
-		public void saveShoppingCart(ShoppingCart e);
-		public void updateShoppingCart(ShoppingCart e);
-		public ShoppingCart loadShoppingCart(int e);
-		public Collection<ShoppingCart> getShoppingCart();
+	public void createShoppingCart(ShoppingCartDomain o);
+	public ShoppingCartDomain updateShoppingCart(ShoppingCartDomain o);
+	public ShoppingCartDomain getShoppingCart(Long ordNum);
+	public List<ShoppingCartDomain> getAllShoppingCart();
+	public void deleteShoppingCart(Long ordNum);
 }

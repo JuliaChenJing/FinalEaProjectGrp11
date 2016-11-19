@@ -1,7 +1,7 @@
 package com.grp11.shoppingCarts;
 import javax.persistence.*;
 @Entity
-public class ShoppingCart {
+public class ShoppingCartDomain {
 	@Id
 	@GeneratedValue
 	private long id;
@@ -9,7 +9,7 @@ public class ShoppingCart {
 	private String quantity;
 	private String price;
 	//private String totalPrice;
-	public ShoppingCart() {
+	public ShoppingCartDomain() {
 		//do nothing
 	}
 	public String getItemName() {
