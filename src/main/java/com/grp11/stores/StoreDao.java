@@ -1,4 +1,4 @@
-package com.grp11.stores;
+/*package com.grp11.stores;
 
 import java.util.Collection;
 
@@ -6,10 +6,10 @@ import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.grp11.address.*;
-/**
+*//**
  * @author suman Description: StoreDao. Only crud operations to be added here.
  *         {May be validations as well}
- */
+ *//*
 public class StoreDao implements IStoreDao {
 	private SessionFactory sf;
 
@@ -49,4 +49,4 @@ public class StoreDao implements IStoreDao {
 		return sf.openSession().createQuery("select distinct e from StoreDomain e").list();
 	}
 
-}
+}*/

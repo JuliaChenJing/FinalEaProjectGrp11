@@ -1,4 +1,4 @@
-package com.grp11.customers;
+/*package com.grp11.customers;
 
 import java.text.DateFormat;
 import java.util.Collection;
@@ -48,12 +48,12 @@ public class CustomerCtrl {
 		CustomerService.updateCustomer(e);
 	}
 	
-	/*@RequestMapping(value = "/customer/{customerNumber}", method =	 RequestMethod.DELETE)
+	@RequestMapping(value = "/customer/{customerNumber}", method =	 RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
 	public RedirectView deleteCustomer(@PathVariable("CustomerNumber") String CustomerNumber) {
 		CustomerService.deleteCustomer(CustomerNumber);
 		return new RedirectView("/customer", true);
-	}*/
+	}
 	
 	
-}
+}*/

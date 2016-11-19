@@ -1,4 +1,4 @@
-package com.grp11.stores;
+/*package com.grp11.stores;
 
 import java.util.Collection;
 
@@ -6,10 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.grp11.address.*;
 import com.grp11.customers.*;
-/**
+*//**
  * @author suman
  * Description: StoreService. Call crud operations from here. Add other related methods. Remember SOC and DRY
- */
+ *//*
 public class StoreService implements IStoreService {
 	private IStoreDao StoreDao;
 	public IStoreDao getStoreDao() {
@@ -39,4 +39,4 @@ public class StoreService implements IStoreService {
 		// we don't have open session in view, so instead we have to eagerly load!
 		return StoreDao.getStore();
 	}
-}
+}*/

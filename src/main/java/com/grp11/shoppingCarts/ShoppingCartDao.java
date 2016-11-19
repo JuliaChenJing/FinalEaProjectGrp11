@@ -1,4 +1,4 @@
-package com.grp11.shoppingCarts;
+/*package com.grp11.shoppingCarts;
 
 import java.util.Collection;
 
@@ -6,10 +6,10 @@ import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.grp11.address.*;
-/**
+*//**
  * @author suman
  * Description: ShoppingCartDao. Only crud operations to be added here. {May be validations as well}
- */
+ *//*
 public class ShoppingCartDao implements IShoppingCartDao {
 	private SessionFactory sf;
 
@@ -44,4 +44,4 @@ public class ShoppingCartDao implements IShoppingCartDao {
 		return sf.openSession().createQuery("select distinct e from ShoppingCartDomain e").list();
 	}
 
-}
+}*/

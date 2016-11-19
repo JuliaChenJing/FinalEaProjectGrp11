@@ -5,25 +5,25 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 @Entity
 public class Store {
-	private final SimpleStringProperty name;
+	private String name;
 	@Id
 	@GeneratedValue
-    private SimpleIntegerProperty id; 
+    private Long id; 
 	public Store(String name) {
-		this.name = new SimpleStringProperty(name);
+		this.name = name;
 	}
 	public String getName() {
-		return name.get();
+		return name;
 	}
 	public void setName(String n) {
-		name.set(n);
+		this.name = n;
 	}
 	
-	public int getId() {
-		return id.get();
+	public Long getId() {
+		return id;
 	}
-	public void setId(int id) {
-		this.id.set(id);
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	public boolean equals(Object ob) {
