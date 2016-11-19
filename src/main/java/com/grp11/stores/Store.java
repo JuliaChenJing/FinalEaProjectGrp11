@@ -8,7 +8,7 @@ public class Store {
 	private String name;
 	@Id
 	@GeneratedValue
-    private Long id; 
+    private long id; 
 	public Store(String name) {
 		this.name = name;
 	}

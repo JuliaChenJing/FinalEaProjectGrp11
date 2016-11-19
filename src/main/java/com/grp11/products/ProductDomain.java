@@ -27,7 +27,7 @@ public class ProductDomain implements Serializable {
 	@Pattern(regexp="P[1-9]+", message="{Pattern.Product.productId.validation}")
 	@Id
 	@GeneratedValue
-	private String productId;
+	private long productId;
 	
 	@Size(min=4, max=50, message="{Size.Product.name.validation}")
 	private String name;
@@ -42,33 +42,27 @@ public class ProductDomain implements Serializable {
 	private String category;
 	private long unitsInStock;
 	private long unitsInOrder;
-	private boolean discontinued;
-	private String condition;
-	@JsonIgnore 
-	private MultipartFile  productImage;
+	
+	@Lob
+	private Byte[] productImage;
 
-//    @DateTimeFormat(pattern = "MM-dd-yyyy")
-//  @DateTimeFormat(iso = ISO.DATE) // yyyy-MM-dd
-  @DateTimeFormat(style = "S-") // July 12, 2001
-//   @DateTimeFormat(pattern="hh:mm:ss")  
 
-	private Date activeDate;
 	
 	public ProductDomain() {
 		super();
 }
 
-	public ProductDomain(String productId, String name, BigDecimal unitPrice) {
+	public ProductDomain(long productId, String name, BigDecimal unitPrice) {
 		this.productId = productId;
 		this.name = name;
 		this.unitPrice = unitPrice;
 	}
 
-	public String getProductId() {
+	public long getProductId() {
 		return productId;
 	}
 
-	public void setProductId(String productId) {
+	public void setProductId(long productId) {
 		this.productId = productId;
 	}
 
@@ -92,14 +86,7 @@ public class ProductDomain implements Serializable {
 		return description;
 	}
 
-	@XmlTransient  
-	public MultipartFile getProductImage() {
-		return productImage;
-	}
-
-	public void setProductImage(MultipartFile productImage) {
-		this.productImage = productImage;
-	}
+	
 
 	public void setDescription(String description) {
 		this.description = description;
@@ -137,58 +124,12 @@ public class ProductDomain implements Serializable {
 		this.unitsInOrder = unitsInOrder;
 	}
 
-	public boolean isDiscontinued() {
-		return discontinued;
-	}
 
-	public void setDiscontinued(boolean discontinued) {
-		this.discontinued = discontinued;
-	}
 	
-	public String getCondition() {
-		return condition;
-	}
-
-	public void setCondition(String condition) {
-		this.condition = condition;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ProductDomain other = (ProductDomain) obj;
-		if (productId == null) {
-			if (other.productId != null)
-				return false;
-		} else if (!productId.equals(other.productId))
-			return false;
-		return true;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((productId == null) ? 0 : productId.hashCode());
-		return result;
-	}
-
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", name=" + name + "]";
 	}
 
-	public Date getActiveDate() {
-		return activeDate;
-	}
-
-	public void setActiveDate(Date activeDate) {
-		this.activeDate = activeDate;
-	}
+	
 }
