@@ -19,11 +19,11 @@ public abstract class UserDomain {
 	private Long id;
 	private String firstName;
 	private String lastName;
-	/*private String password;
+	private String codeNo;
 	private String confirmed;
 	private String address;
 	private String email;
-	private String phone;*/
+	private String phone;
 	public Long getId() {
 		return id;
 	}
@@ -42,14 +42,15 @@ public abstract class UserDomain {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	public String getCodeNo() {
+		return codeNo;
+	}
+	public void setCodeNo(String codeNo) {
+		this.codeNo = codeNo;
 	}	
 		
-	/*public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	
 	public String getConfirmed() {
 		return confirmed;
 	}
@@ -62,17 +63,17 @@ public abstract class UserDomain {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}	
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-*/	
+	
 }
