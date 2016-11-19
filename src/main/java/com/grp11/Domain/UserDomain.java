@@ -9,7 +9,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-import com.grp11.address.Address;
+import com.grp11.address.AddressDomain;
+
 
 @Entity
 @Table(name="Users")
@@ -26,7 +27,7 @@ public abstract class UserDomain {
 	private String confirmed;
 	
 	@Embedded
-	private Address address;
+	private AddressDomain address;
 	private String email;
 	private String phone;
 	public long getId() {
@@ -62,10 +63,10 @@ public abstract class UserDomain {
 	public void setConfirmed(String confirmed) {
 		this.confirmed = confirmed;
 	}
-	public Address getAddress() {
+	public AddressDomain getAddress() {
 		return address;
 	}
-	public void setAddress(Address address) {
+	public void setAddress(AddressDomain address) {
 		this.address = address;
 	}
 	public String getPhone() {
