@@ -1,8 +1,13 @@
 package com.grp11.suppliers;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import com.grp11.products.*;
+
 @Entity
 public class SupplierDomain {
 	private String name;
@@ -12,6 +17,8 @@ public class SupplierDomain {
 	public SupplierDomain(String name) {
 		this.name = name;
 	}
+	@OneToMany(mappedBy="supplier")
+	private List <ProductDomain> products=new ArrayList<ProductDomain>();
 	public String getName() {
 		return name;
 	}

@@ -18,7 +18,7 @@ import org.springframework.format.annotation.NumberFormat.Style;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.grp11.suppliers.*;
 
 @Entity
 public class ProductDomain implements Serializable {
@@ -47,7 +47,9 @@ public class ProductDomain implements Serializable {
 	private Byte[] productImage;
 
 
-	
+	@ManyToOne
+	@JoinColumn(name="supplierId")
+	private SupplierDomain supplier;
 	public ProductDomain() {
 		super();
 }
