@@ -1,4 +1,4 @@
-package com.grp11.customers;
+/*package com.grp11.customers;
 
 import java.util.Collection;
 
@@ -6,10 +6,10 @@ import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.grp11.address.*;
-/**
+*//**
  * @author suman
  * Description: CustomerDao. Only crud operations to be added here. {May be validations as well}
- */
+ *//*
 public class CustomerDao implements ICustomerDao {
 	private SessionFactory sf;
 
@@ -45,3 +45,4 @@ public class CustomerDao implements ICustomerDao {
 	}
 }
 
+*/

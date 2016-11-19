@@ -1,4 +1,4 @@
-package com.grp11.stores;
+/*package com.grp11.stores;
 
 
 import java.util.Collection;
@@ -44,12 +44,13 @@ public class StoreCtrl {
 		StoreService.updateStore(e);
 	}
 	
-	/*@RequestMapping(value = "/customer/{customerNumber}", method =	 RequestMethod.DELETE)
+	@RequestMapping(value = "/customer/{customerNumber}", method =	 RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
 	public RedirectView deleteCustomer(@PathVariable("StoreNumber") String StoreNumber) {
 		StoreService.deleteStore(StoreNumber);
 		return new RedirectView("/customer", true);
-	}*/
+	}
 	
 	
 }
+*/

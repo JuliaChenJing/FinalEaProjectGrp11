@@ -4,6 +4,7 @@ import javax.persistence.*;
 public class ShoppingCart {
 	@Id
 	@GeneratedValue
+	private long id;
 	private String itemName;
 	private String quantity;
 	private String price;

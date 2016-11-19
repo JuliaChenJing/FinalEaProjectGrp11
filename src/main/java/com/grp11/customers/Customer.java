@@ -6,8 +6,17 @@ import com.grp11.address.Address;
 public class Customer{
 	@Id
 	@GeneratedValue
-
+	private Long id;
+	// email may be?
 	private String customerID;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	private String name;
 	

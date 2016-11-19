@@ -1,15 +1,17 @@
-package com.grp11.address;
+/*package com.grp11.address;
 
 import java.util.Collection;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.grp11.address.*;
 import com.grp11.customers.*;
-/**
+*//**
  * @author suman
  * Description: AddressService. Call crud operations from here. Add other related methods. Remember SOC and DRY
- */
+ *//*
+@Service
 public class AddressService implements IAddressService {
 	private IAddressDao AddressDao;
 	public IAddressDao getAddressDao() {
@@ -39,4 +41,4 @@ public class AddressService implements IAddressService {
 		// we don't have open session in view, so instead we have to eagerly load!
 		return AddressDao.getAddress();
 	}
-}
+}*/

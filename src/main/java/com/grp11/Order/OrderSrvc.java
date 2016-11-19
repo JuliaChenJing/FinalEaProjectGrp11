@@ -3,28 +3,29 @@ package com.grp11.Order;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 public class OrderSrvc implements IOrderService {
 	@Autowired
-	private IOrderDao OrderDao;
+	private IOrderDao orderDao;
 	@Override
 	public void createOrder(OrderDomain o) {
-		OrderDao.createOrder(o);
+		orderDao.createOrder(o);
 	}
 	@Override
 	public OrderDomain updateOrder(OrderDomain o) {
-		return OrderDao.updateOrder(o);
+		return orderDao.updateOrder(o);
 	}
 	@Override
 	public OrderDomain getOrder(Long ordNum) {
-		return OrderDao.getOrder(ordNum);
+		return orderDao.getOrder(ordNum);
 	}
 	@Override
 	public List<OrderDomain> getAllOrder() {
-		return OrderDao.getAllOrder();
+		return orderDao.getAllOrder();
 	}
 	@Override
 	public void deleteOrder(Long ordNum) {
-		OrderDao.deleteOrder(ordNum);
+		orderDao.deleteOrder(ordNum);
 	}
 }

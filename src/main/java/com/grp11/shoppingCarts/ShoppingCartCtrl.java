@@ -1,4 +1,4 @@
-package com.grp11.shoppingCarts;
+/*package com.grp11.shoppingCarts;
 
 
 import java.util.Collection;
@@ -43,12 +43,12 @@ public class ShoppingCartCtrl {
 		ShoppingCartService.updateShoppingCart(e);
 	}
 	
-	/*@RequestMapping(value = "/customer/{customerNumber}", method =	 RequestMethod.DELETE)
+	@RequestMapping(value = "/customer/{customerNumber}", method =	 RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
 	public RedirectView deleteCustomer(@PathVariable("ShoppingCartNumber") String ShoppingCartNumber) {
 		ShoppingCartService.deleteShoppingCart(ShoppingCartNumber);
 		return new RedirectView("/customer", true);
-	}*/
+	}
 	
 	
-}
+}*/
