@@ -1,11 +1,18 @@
 package com.grp11.User;
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 @Entity
-public class User {
+@Table(name="Users")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="userRole")
+public abstract class UserDomain {
 	
 	@Id
 	@GeneratedValue
@@ -14,6 +21,8 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String address;
+	private String email;
+	private String phone;
 	public Long getId() {
 		return id;
 	}
@@ -44,4 +53,17 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
 }
