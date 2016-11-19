@@ -5,7 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public class OrderDao implements IOrderDao {
 	@Autowired
 	private IOrder Order;
@@ -30,5 +31,9 @@ public class OrderDao implements IOrderDao {
 	@Override
 	public void deleteOrder(Long ordNum) {
 		Order.delete(ordNum);
+	}
+	@Override 
+	public List<OrderDomain> getAllOrderForUser(long consumerId) {
+		return Order.getAllOrderForUser(consumerId);
 	}
 }

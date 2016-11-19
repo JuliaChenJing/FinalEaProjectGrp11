@@ -1,12 +1,16 @@
-package com.grp11.User;
+package com.grp11.Domain;
 
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+
+import com.grp11.address.AddressDomain;
+
 
 @Entity
 @Table(name="Users")
@@ -16,18 +20,20 @@ public abstract class UserDomain {
 	
 	@Id
 	@GeneratedValue
-	private Long id;
+	private long id;
 	private String firstName;
 	private String lastName;
 	private String codeNo;
 	private String confirmed;
-	private String address;
+	
+	@Embedded
+	private AddressDomain address;
 	private String email;
 	private String phone;
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	
@@ -57,10 +63,15 @@ public abstract class UserDomain {
 	public void setConfirmed(String confirmed) {
 		this.confirmed = confirmed;
 	}
-	public String getAddress() {
+	public AddressDomain getAddress() {
 		return address;
 	}
-	public void setAddress(String address) {
+	@Override
+	public String toString() {
+		return "UserDomain [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", codeNo=" + codeNo
+				+ ", confirmed=" + confirmed + ", address=" + address + ", email=" + email + ", phone=" + phone + "]";
+	}
+	public void setAddress(AddressDomain address) {
 		this.address = address;
 	}
 	public String getPhone() {
