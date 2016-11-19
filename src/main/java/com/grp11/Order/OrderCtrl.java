@@ -36,14 +36,14 @@ public class OrderCtrl {
 	}
 	
 	@RequestMapping(value = "/{UserId}/{OrderId}", method = RequestMethod.PUT)
-	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseStatus(HttpStatus.OK)
 	public String updateConsumer(@RequestBody OrderDomain order) {
 		orderService.updateOrder(order);
 		return "redirect:/home2";
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.DELETE)
-	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseStatus(HttpStatus.OK)
 	public String deleteConsumer(@RequestBody OrderDomain order, @PathVariable("UserId") long UserId) {
 		ConsumerDomain c = consumerService.getUser(UserId);
 		order.setConsumer(c);
