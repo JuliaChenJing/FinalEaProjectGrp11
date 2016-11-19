@@ -2,8 +2,6 @@ package com.grp11.Order;
 
 import javax.persistence.*;
 
-import com.grp11.User.UserDomain;
-
 @Entity
 @Table(name="Orders")
 public class OrderDomain {

@@ -1,12 +1,15 @@
-package com.grp11.User;
+package com.grp11.Domain;
 
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+
+import com.grp11.address.Address;
 
 @Entity
 @Table(name="Users")
@@ -21,7 +24,9 @@ public abstract class UserDomain {
 	private String lastName;
 	private String codeNo;
 	private String confirmed;
-	private String address;
+	
+	@Embedded
+	private Address address;
 	private String email;
 	private String phone;
 	public Long getId() {
@@ -57,10 +62,10 @@ public abstract class UserDomain {
 	public void setConfirmed(String confirmed) {
 		this.confirmed = confirmed;
 	}
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 	public String getPhone() {

@@ -1,4 +1,4 @@
-package com.grp11.User;
+package com.grp11.Domain;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

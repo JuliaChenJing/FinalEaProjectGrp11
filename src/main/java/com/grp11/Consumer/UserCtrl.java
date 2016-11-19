@@ -1,14 +1,20 @@
-package com.grp11.User;
+package com.grp11.Consumer;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.grp11.Domain.ConsumerDomain;
+
 @Controller
 @RequestMapping("/user")
 public class UserCtrl {
+	
+	@Autowired
+	private IConsumerService userService;
 	
 	@RequestMapping(value= "/login",method = RequestMethod.GET)
 	public String loginForm(){
@@ -27,8 +33,10 @@ public class UserCtrl {
 			return "addConsumerForm";
 		}
 		System.out.println("Database Save");
+		userService.addConsumer(consumer);
 		return "successAdd";
 	}
+	
 	
 
 }
