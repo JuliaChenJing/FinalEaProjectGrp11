@@ -4,12 +4,12 @@ import javax.persistence.*;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 @Entity
-public class Store {
+public class StoreDomain {
 	private String name;
 	@Id
 	@GeneratedValue
     private long id; 
-	public Store(String name) {
+	public StoreDomain(String name) {
 		this.name = name;
 	}
 	public String getName() {
@@ -29,7 +29,7 @@ public class Store {
 	public boolean equals(Object ob) {
 		if(this == ob) return true;
 		if(getClass() != ob.getClass()) return false;
-		Store c = (Store)ob;
+		StoreDomain c = (StoreDomain)ob;
 		return name.equals(c.name);
 	}
 }
