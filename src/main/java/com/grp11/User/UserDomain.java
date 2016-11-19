@@ -19,11 +19,11 @@ public abstract class UserDomain {
 	private Long id;
 	private String firstName;
 	private String lastName;
-	private String password;
+	/*private String password;
 	private String confirmed;
 	private String address;
 	private String email;
-	private String phone;
+	private String phone;*/
 	public Long getId() {
 		return id;
 	}
@@ -44,7 +44,7 @@ public abstract class UserDomain {
 		this.lastName = lastName;
 	}	
 		
-	public String getPassword() {
+	/*public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
@@ -74,5 +74,5 @@ public abstract class UserDomain {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
+*/	
 }
