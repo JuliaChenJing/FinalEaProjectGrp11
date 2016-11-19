@@ -14,12 +14,12 @@
 	 <form:form  modelAttribute="newConsumer">
 	 First Name: <form:input id="firstName" path="firstName" type="text"/><br>
 	 Last Name: <form:input id="lastName" path="lastName" type="text"/><br>
-	 <%-- Password: <form:input id="password" path="password" type="text"/><br>
+	 Password: <form:input id="codeNo" path="codeNo" type="text"/><br> 
 	 Confirmed Password: <form:input id="confirmed" path="confirmed" type="text"/><br>
 	 Address: <form:input id="address" path="address" type="text"/><br>
-	 Email:<form:input id="email" path="email" type="text"/><br>
 	 Phone:<form:input id="phone" path="phone" type="text"/><br>	 
-	  --%>
+	 Email:<form:input id="email" path="email" type="text"/><br>  <br>
+	
 	 <input type="submit" id="btnAdd" value ="AddProduct"/>
 	 
 	 </form:form>
