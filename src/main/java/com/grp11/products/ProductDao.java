@@ -6,7 +6,8 @@ import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public class ProductDao implements IProductDao {
 	@Autowired
 	private IProduct Product;

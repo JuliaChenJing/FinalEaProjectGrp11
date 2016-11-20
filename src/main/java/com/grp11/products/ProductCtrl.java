@@ -15,8 +15,8 @@ import com.grp11.suppliers.SupplierDomain;
 public class ProductCtrl {
 	@Autowired
 	private IProductService productService;
-	@Autowired
-	private ISupplierService supplierService;
+	/*@Autowired
+	private ISupplierService supplierService;*/
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String getAllProductsFromAllUser(Model model) {
@@ -27,8 +27,9 @@ public class ProductCtrl {
 	@RequestMapping(value = "/{SupplierId}/new", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public String addConsumer(@RequestBody ProductDomain Product, @PathVariable("SupplierId") long SupplierId) {
-		SupplierDomain s = supplierService.getStore(SupplierId);
-		Product.setSupplier(s);
+		//	TODO: add it after Supplier is complete
+		/*SupplierDomain s = supplierService.getStore(SupplierId);
+		Product.setSupplier(s);*/
 		productService.createProduct(Product);
 		return "redirect:/home2";
 	}
@@ -36,8 +37,9 @@ public class ProductCtrl {
 	@RequestMapping(value = "/{SupplierId}/{ProductId}", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
 	public String updateConsumer(@RequestBody ProductDomain Product, @PathVariable("SupplierId") long SupplierId) {
-		SupplierDomain s = supplierService.getStore(SupplierId);
-		Product.setSupplier(s);
+//		TODO: add it after Supplier is complete
+		/*SupplierDomain s = supplierService.getStore(SupplierId);
+		Product.setSupplier(s);*/
 		productService.updateProduct(Product);
 		return "redirect:/home2";
 	}
