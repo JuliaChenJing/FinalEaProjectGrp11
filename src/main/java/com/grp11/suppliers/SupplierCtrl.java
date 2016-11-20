@@ -56,9 +56,10 @@ public class SupplierCtrl {
 	
 	@RequestMapping(value = "/{supplierId}/delete", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
 	public String deleteSupplier(@PathVariable("supplierId") long supplierId) {
 		SupplierService.deleteSupplier(supplierId);
-		return "redirect:/orders";
+		return "true";
 	}
 
 }
