@@ -19,6 +19,11 @@ public class PaymentDomain {
 	@GeneratedValue
 	private long id;
 	private String cardType;
+	@Override
+	public String toString() {
+		return "PaymentDomain [id=" + id + ", cardType=" + cardType + ", cardNumber=" + cardNumber + ", CVV=" + CVV
+				+ ", nameOnCard=" + nameOnCard + ", expiryDate=" + expiryDate + "]";
+	}
 	private String cardNumber;
 	private String CVV;
 	private String nameOnCard;

@@ -26,10 +26,11 @@ public class ProductCtrl {
 
 	@RequestMapping(value = "/{SupplierId}/new", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public String addConsumer(@RequestBody ProductDomain Product, @PathVariable("SupplierId") long SupplierId) {
+	public String addConsumer(@ModelAttribute ProductDomain Product, @PathVariable("SupplierId") long SupplierId) {
 		//	TODO: add it after Supplier is complete
 		/*SupplierDomain s = supplierService.getStore(SupplierId);
 		Product.setSupplier(s);*/
+		System.out.println(Product.toString());
 		productService.createProduct(Product);
 		return "redirect:/home2";
 	}

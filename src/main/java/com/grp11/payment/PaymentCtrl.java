@@ -26,11 +26,11 @@ public class PaymentCtrl {
 	}
 	@RequestMapping(value = "/{UserId}/new", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public String addConsumer(@RequestBody PaymentDomain Payment, @PathVariable("UserId") long UserId) {
+	public String addConsumer(PaymentDomain Payment, @PathVariable("UserId") long UserId) {
 		ConsumerDomain c = consumerService.getUser(UserId);
 		Payment.setConsumer(c);
 		paymentService.createPayment(Payment);
-		return "redirect:/home2";
+		return "redirect:/payments";
 	}
 	
 	@RequestMapping(value = "/{UserId}/{PaymentId}", method = RequestMethod.PUT)
