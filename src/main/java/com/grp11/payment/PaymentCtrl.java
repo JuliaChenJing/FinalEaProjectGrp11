@@ -19,41 +19,42 @@ public class PaymentCtrl {
 	@Autowired
 	private IConsumerService consumerService;
 
-	@RequestMapping(value={"/", ""}, method=RequestMethod.GET)
+	/*@RequestMapping(value={"/", ""}, method=RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String addPaymentPage() {
 		return "paymentForm";
-	}
+	}*/
 	@RequestMapping(value = "/{UserId}/new", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public String addConsumer(PaymentDomain Payment, @PathVariable("UserId") long UserId) {
 		ConsumerDomain c = consumerService.getUser(UserId);
 		Payment.setConsumer(c);
 		paymentService.createPayment(Payment);
-		return "redirect:/payments";
+		return "redirect:/payments/" + UserId;
 	}
 	
-	@RequestMapping(value = "/{UserId}/{PaymentId}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{UserId}/{PaymentId}", method = RequestMethod.POST)//Browser doesn't supprot put method
 	@ResponseStatus(HttpStatus.OK)
-	public String updateConsumer(@RequestBody PaymentDomain Payment, @PathVariable("UserId") long UserId) {
+	public String updateConsumer(PaymentDomain Payment, @PathVariable("UserId") long UserId) {
 		ConsumerDomain c = consumerService.getUser(UserId);
 		Payment.setConsumer(c);
 		paymentService.updatePayment(Payment);
-		return "redirect:/home2";
+		return "redirect:/payments/" + UserId;
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
 	public String deleteConsumer(@RequestBody PaymentDomain Payment) {
 		paymentService.deletePayment(Payment.getId());
-		return "redirect:/home2";
+		return "redirect:/payments";
 	}
 	
 	@RequestMapping(value = "/{UserId}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String getAllPaymentsForSpecificUser(@PathVariable("UserId") long UserId, Model model) {
-		model.addAttribute("allPayments", paymentService.getAllPaymentForUser(UserId));
-		return "home2";
+		if(paymentService.getAllPaymentForUser(UserId).size()==0) return "paymentForm";
+		model.addAttribute("allPayments", paymentService.getAllPaymentForUser(UserId).get(0));
+		return "paymentFormEdit";
 	}
 
 }
