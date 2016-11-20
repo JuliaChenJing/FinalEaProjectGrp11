@@ -178,10 +178,10 @@
 
 	<script type="text/javascript">
 		$( document ).ready(function() {
-		    console.log( "ready!" );
+		    var a = $("#ExpirtyDate").val();
+		    a = a.split('-').join("/");
+		    $("#ExpirtyDate").val(a)
 		    $("#deleteCard").click(function() {
-		    	console.log("deleted");
-		    	console.log("${allPayments.id}");
 		    	
 		    	var deleteBtn = confirm("Do you want to delete this card?");
 				if(deleteBtn) {
