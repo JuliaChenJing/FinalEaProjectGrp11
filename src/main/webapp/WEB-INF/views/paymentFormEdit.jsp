@@ -147,7 +147,7 @@
                                     <label for="nameOnCard">Name on your card</label>
                                 </div>
                                 <button class="btn btn-primary">Submit</button>
-
+								<button type="button" class="btn btn-primary" id="deleteCard">Delete</button>
                             </div>
                         </form>
                     </div>
@@ -176,7 +176,26 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="/js/mdb.min.js"></script>
 
-
+	<script type="text/javascript">
+		$( document ).ready(function() {
+		    console.log( "ready!" );
+		    $("#deleteCard").click(function() {
+		    	console.log("deleted");
+		    	console.log("${allPayments.id}");
+		    	
+		    	var deleteBtn = confirm("Do you want to delete this card?");
+				if(deleteBtn) {
+					$.ajax({
+					    url: '/payments/${allPayments.id}',
+					    type: 'DELETE',
+					    success: function(result) {
+					    	window.location.href = "/payments/${allPayments.consumer.id}";
+					    }
+					});
+				}
+		    });
+		});
+	</script>
 </body>
 
 </html>

@@ -12,12 +12,10 @@ public class PaymentDao implements IPaymentDao {
 	private IPayment Payment;
 	@Override
 	public void createPayment(PaymentDomain o) {
-		System.out.println(Payment.save(o).getClass().getName());
 		Payment.save(o);
 	}
 	@Override
 	public PaymentDomain updatePayment(PaymentDomain o) {
-		System.out.println(Payment.save(o).getClass().getName());
 		return Payment.save(o);
 	}
 	@Override

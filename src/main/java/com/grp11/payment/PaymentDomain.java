@@ -28,6 +28,54 @@ public class PaymentDomain {
 	private String cardNumber;
 	private String CVV;
 	private String nameOnCard;
+	
+	public String getCVV() {
+		return CVV;
+	}
+	public void setCVV(String cVV) {
+		CVV = cVV;
+	}
+	public String getNameOnCard() {
+		return nameOnCard;
+	}
+	public void setNameOnCard(String nameOnCard) {
+		this.nameOnCard = nameOnCard;
+	}
+	public long getId() {
+		return id;
+	}
+	@ManyToOne
+	@JoinColumn(name="cust_id")
+	public ConsumerDomain consumer;
+	public ConsumerDomain getConsumer() {
+		return consumer;
+	}
+	public void setConsumer(ConsumerDomain consumer) {
+		this.consumer = consumer;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	@Temporal(TemporalType.DATE)
+	private Date expiryDate;
+	public String getCardType() {
+		return cardType;
+	}
+	public void setCardType(String cardType) {
+		this.cardType = cardType;
+	}
+	public String getCardNumber() {
+		return cardNumber;
+	}
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+	public Date getExpiryDate() {
+		return expiryDate;
+	}
+	public void setExpiryDate(Date expiryDate) {
+		this.expiryDate = expiryDate;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -84,51 +132,5 @@ public class PaymentDomain {
 			return false;
 		return true;
 	}
-	public String getCVV() {
-		return CVV;
-	}
-	public void setCVV(String cVV) {
-		CVV = cVV;
-	}
-	public String getNameOnCard() {
-		return nameOnCard;
-	}
-	public void setNameOnCard(String nameOnCard) {
-		this.nameOnCard = nameOnCard;
-	}
-	public long getId() {
-		return id;
-	}
-	@ManyToOne
-	@JoinColumn(name="cust_id")
-	public ConsumerDomain consumer;
-	public ConsumerDomain getConsumer() {
-		return consumer;
-	}
-	public void setConsumer(ConsumerDomain consumer) {
-		this.consumer = consumer;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	@Temporal(TemporalType.DATE)
-	private Date expiryDate;
-	public String getCardType() {
-		return cardType;
-	}
-	public void setCardType(String cardType) {
-		this.cardType = cardType;
-	}
-	public String getCardNumber() {
-		return cardNumber;
-	}
-	public void setCardNumber(String cardNumber) {
-		this.cardNumber = cardNumber;
-	}
-	public Date getExpiryDate() {
-		return expiryDate;
-	}
-	public void setExpiryDate(Date expiryDate) {
-		this.expiryDate = expiryDate;
-	}
+	
 }

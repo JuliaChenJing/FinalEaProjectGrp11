@@ -19,11 +19,6 @@ public class PaymentCtrl {
 	@Autowired
 	private IConsumerService consumerService;
 
-	/*@RequestMapping(value={"/", ""}, method=RequestMethod.GET)
-	@ResponseStatus(HttpStatus.OK)
-	public String addPaymentPage() {
-		return "paymentForm";
-	}*/
 	@RequestMapping(value = "/{UserId}/new", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public String addConsumer(PaymentDomain Payment, @PathVariable("UserId") long UserId) {
@@ -35,18 +30,20 @@ public class PaymentCtrl {
 	
 	@RequestMapping(value = "/{UserId}/{PaymentId}", method = RequestMethod.POST)//Browser doesn't supprot put method
 	@ResponseStatus(HttpStatus.OK)
-	public String updateConsumer(PaymentDomain Payment, @PathVariable("UserId") long UserId) {
+	public String updateConsumer(PaymentDomain Payment, @PathVariable("UserId") long UserId, @PathVariable("PaymentId") long PaymentId) {
 		ConsumerDomain c = consumerService.getUser(UserId);
 		Payment.setConsumer(c);
+		Payment.setId(PaymentId);
+		System.out.println(Payment.toString());
 		paymentService.updatePayment(Payment);
 		return "redirect:/payments/" + UserId;
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{paymentId}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
-	public String deleteConsumer(@RequestBody PaymentDomain Payment) {
-		paymentService.deletePayment(Payment.getId());
-		return "redirect:/payments";
+	public void deleteConsumer(@PathVariable("paymentId") long paymentId) {
+		paymentService.deletePayment(paymentId);
+		
 	}
 	
 	@RequestMapping(value = "/{UserId}", method = RequestMethod.GET)
