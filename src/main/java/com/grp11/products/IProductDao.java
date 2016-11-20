@@ -8,4 +8,5 @@ public interface IProductDao {
 	public ProductDomain getProduct(Long ordNum);
 	public List<ProductDomain> getAllProduct();
 	public void deleteProduct(Long ordNum);
+	public List<ProductDomain> getAllProductForSupplier(long supplierId);
 }

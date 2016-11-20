@@ -37,16 +37,16 @@ public class OrderCtrl {
 	
 	@RequestMapping(value = "/{UserId}/{OrderId}", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
-	public String updateConsumer(@RequestBody OrderDomain order) {
+	public String updateConsumer(@RequestBody OrderDomain order, @PathVariable("UserId") long UserId) {
+		ConsumerDomain c = consumerService.getUser(UserId);
+		order.setConsumer(c);
 		orderService.updateOrder(order);
 		return "redirect:/home2";
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
-	public String deleteConsumer(@RequestBody OrderDomain order, @PathVariable("UserId") long UserId) {
-		ConsumerDomain c = consumerService.getUser(UserId);
-		order.setConsumer(c);
+	public String deleteConsumer(@RequestBody OrderDomain order) {
 		orderService.deleteOrder(order.getId());
 		return "redirect:/home2";
 	}

@@ -24,16 +24,14 @@ import com.grp11.suppliers.*;
 public class ProductDomain implements Serializable {
     private static final long serialVersionUID = 1L;
 
-	@Pattern(regexp="P[1-9]+", message="{Pattern.Product.productId.validation}")
 	@Id
 	@GeneratedValue
-	private long productId;
+	private long id;
 	
 	@Size(min=4, max=50, message="{Size.Product.name.validation}")
 	private String name;
 	
 	@Min(value=0, message="Min.Product.unitPrice.validation}")
-	@Digits(integer=8, fraction=2, message="{Digits.Product.unitPrice.validation}")
 	@NotNull(message= "{NotNull.Product.unitPrice.validation}")
 	@NumberFormat(style=Style.CURRENCY)
 	private BigDecimal unitPrice;
@@ -47,25 +45,49 @@ public class ProductDomain implements Serializable {
 	private Byte[] productImage;
 
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="supplierId")
 	private SupplierDomain supplier;
 	public ProductDomain() {
 		super();
-}
+	}
 
-	public ProductDomain(long productId, String name, BigDecimal unitPrice) {
-		this.productId = productId;
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Byte[] getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(Byte[] productImage) {
+		this.productImage = productImage;
+	}
+
+	public SupplierDomain getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(SupplierDomain supplier) {
+		this.supplier = supplier;
+	}
+
+	public ProductDomain(long id, String name, BigDecimal unitPrice) {
+		this.id = id;
 		this.name = name;
 		this.unitPrice = unitPrice;
 	}
 
-	public long getProductId() {
-		return productId;
+	public long getid() {
+		return id;
 	}
 
-	public void setProductId(long productId) {
-		this.productId = productId;
+	public void setid(long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -130,7 +152,7 @@ public class ProductDomain implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Product [productId=" + productId + ", name=" + name + "]";
+		return "Product [id=" + id + ", name=" + name + "]";
 	}
 
 	

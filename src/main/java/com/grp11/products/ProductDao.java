@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 
 public class ProductDao implements IProductDao {
 	@Autowired
@@ -30,5 +31,9 @@ public class ProductDao implements IProductDao {
 	@Override
 	public void deleteProduct(Long ordNum) {
 		Product.delete(ordNum);
+	}
+	@Override
+	public List<ProductDomain> getAllProductForSupplier(long supplierId){
+		return Product.getAllProductForSupplier(supplierId);
 	}
 }

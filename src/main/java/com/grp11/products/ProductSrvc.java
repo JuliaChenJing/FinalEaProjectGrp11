@@ -29,4 +29,8 @@ public class ProductSrvc implements IProductService {
 	public void deleteProduct(Long ordNum) {
 		ProductDao.deleteProduct(ordNum);
 	}
+	@Override
+	public List<ProductDomain> getAllProductForSupplier(long supplierId) {
+		return ProductDao.getAllProductForSupplier(supplierId);
+	}
 }

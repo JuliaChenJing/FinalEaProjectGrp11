@@ -1,5 +1,4 @@
 package com.grp11.suppliers;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -13,12 +12,28 @@ public class SupplierDomain {
 	private String name;
 	@Id
 	@GeneratedValue
-    private long id; 
+    private long id;
+	private String description;
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public List<ProductDomain> getProducts() {
+		return products;
+	}
+	public void setProducts(List<ProductDomain> products) {
+		this.products = products;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public SupplierDomain(String name) {
 		this.name = name;
 	}
 	@OneToMany(mappedBy="supplier")
-	private List <ProductDomain> products=new ArrayList<ProductDomain>();
+	private List <ProductDomain> products;
 	public String getName() {
 		return name;
 	}
