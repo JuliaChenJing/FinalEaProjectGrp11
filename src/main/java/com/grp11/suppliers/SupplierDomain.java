@@ -9,11 +9,40 @@ import com.grp11.products.*;
 
 @Entity
 public class SupplierDomain {
-	private String name;
 	@Id
 	@GeneratedValue
     private long id;
 	private String description;
+	private String name;
+	@Lob
+	private byte[] logo;
+	public byte[] getLogo() {
+		return logo;
+	}
+
+	public void setLogo(byte[] logo) {
+		this.logo = logo;
+	}
+	@OneToMany(mappedBy="supplier")
+	private List <ProductDomain> products;
+	
+	public SupplierDomain() {
+		
+	}
+
+	public String getName() {
+		return name;
+	}
+	public void setName(String n) {
+		this.name = n;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getDescription() {
 		return description;
 	}
@@ -32,22 +61,6 @@ public class SupplierDomain {
 	public SupplierDomain(String name) {
 		this.name = name;
 	}
-	@OneToMany(mappedBy="supplier")
-	private List <ProductDomain> products;
-	public String getName() {
-		return name;
-	}
-	public void setName(String n) {
-		this.name = n;
-	}
-	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
 	public boolean equals(Object ob) {
 		if(this == ob) return true;
 		if(getClass() != ob.getClass()) return false;

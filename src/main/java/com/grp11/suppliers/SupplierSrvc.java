@@ -5,28 +5,29 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+@Service
 public class SupplierSrvc implements ISupplierService {
 	@Autowired
-	private ISupplierDao StoreDao;
+	private ISupplierDao SupplierDao;
 	@Override
-	public void createStore(SupplierDomain o) {
-		StoreDao.createStore(o);
+	public void createSupplier(SupplierDomain o) {
+		System.out.println("inside supplier service");
+		SupplierDao.createSupplier(o);
 	}
 	@Override
-	public SupplierDomain updateStore(SupplierDomain o) {
-		return StoreDao.updateStore(o);
+	public SupplierDomain updateSupplier(SupplierDomain o) {
+		return SupplierDao.updateSupplier(o);
 	}
 	@Override
-	public SupplierDomain getStore(Long ordNum) {
-		return StoreDao.getStore(ordNum);
+	public SupplierDomain getSupplier(Long ordNum) {
+		return SupplierDao.getSupplier(ordNum);
 	}
 	@Override
-	public List<SupplierDomain> getAllStore() {
-		return StoreDao.getAllStore();
+	public List<SupplierDomain> getAllSupplier() {
+		return SupplierDao.getAllSupplier();
 	}
 	@Override
-	public void deleteStore(Long ordNum) {
-		StoreDao.deleteStore(ordNum);
+	public void deleteSupplier(Long ordNum) {
+		SupplierDao.deleteSupplier(ordNum);
 	}
 }
