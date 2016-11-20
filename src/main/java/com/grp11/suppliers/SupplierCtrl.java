@@ -36,22 +36,29 @@ public class SupplierCtrl {
 	public String addSupplier(@ModelAttribute SupplierDomain Supplier) {
 		System.out.println("inside supplier add");
 		SupplierService.createSupplier(Supplier);
-		return "redirect:/home2";
+		return "redirect:/orders";
 	}
 	
-	@RequestMapping(value = "/{SupplierId}/update", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{supplierId}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public String updateSupplier(@RequestBody SupplierDomain Supplier, @PathVariable("SupplierId") long SupplierId) {
+	public String getSupplier(Model model, @PathVariable("supplierId") long supplierId) {
+		model.addAttribute("supplier", SupplierService.getSupplier(supplierId));
+		return "updateSupplier";
+	}
+	
+	@RequestMapping(value = "/{supplierId}/update", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public String updateSupplier(SupplierDomain Supplier, @PathVariable("supplierId") long supplierId) {
+		Supplier.setId(supplierId);
 		SupplierService.updateSupplier(Supplier);
-		return "redirect:/home2";
+		return "redirect:/orders";
 	}
 	
-	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{supplierId}/delete", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
-	public String deleteSupplier(@RequestBody SupplierDomain Supplier) {
-		
-		SupplierService.deleteSupplier(Supplier.getId());
-		return "redirect:/home2";
+	public String deleteSupplier(@PathVariable("supplierId") long supplierId) {
+		SupplierService.deleteSupplier(supplierId);
+		return "redirect:/orders";
 	}
 
 }
