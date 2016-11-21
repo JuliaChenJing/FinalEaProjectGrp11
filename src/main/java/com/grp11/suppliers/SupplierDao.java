@@ -5,30 +5,31 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public class SupplierDao implements ISupplierDao {
 	@Autowired
-	private ISupplier Store;
+	private ISupplier Supplier;
 	@Override
-	public void createStore(SupplierDomain o) {
-		System.out.println(Store.save(o).getClass().getName());
-		Store.save(o);
+	public void createSupplier(SupplierDomain o) {
+		System.out.println("creating supplier");
+		Supplier.save(o);
 	}
 	@Override
-	public SupplierDomain updateStore(SupplierDomain o) {
-		System.out.println(Store.save(o).getClass().getName());
-		return Store.save(o);
+	public SupplierDomain updateSupplier(SupplierDomain o) {
+		System.out.println(Supplier.save(o).getClass().getName());
+		return Supplier.save(o);
 	}
 	@Override
-	public SupplierDomain getStore(Long ordNum) {
-		return Store.findOne(ordNum);
+	public SupplierDomain getSupplier(Long ordNum) {
+		return Supplier.findOne(ordNum);
 	}
 	@Override
-	public List<SupplierDomain> getAllStore() {
-		return StreamSupport.stream(Store.findAll().spliterator(), false).collect(Collectors.toList());
+	public List<SupplierDomain> getAllSupplier() {
+		return StreamSupport.stream(Supplier.findAll().spliterator(), false).collect(Collectors.toList());
 	}
 	@Override
-	public void deleteStore(Long ordNum) {
-		Store.delete(ordNum);
+	public void deleteSupplier(Long ordNum) {
+		Supplier.delete(ordNum);
 	}
 }

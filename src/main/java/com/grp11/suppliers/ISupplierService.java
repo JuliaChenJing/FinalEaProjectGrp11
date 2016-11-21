@@ -4,9 +4,9 @@ import java.util.List;
 
 
 public interface ISupplierService {
-	public void createStore(SupplierDomain o);
-	public SupplierDomain updateStore(SupplierDomain o);
-	public SupplierDomain getStore(Long ordNum);
-	public List<SupplierDomain> getAllStore();
-	public void deleteStore(Long ordNum);
+	public void createSupplier(SupplierDomain o);
+	public SupplierDomain updateSupplier(SupplierDomain o);
+	public SupplierDomain getSupplier(Long ordNum);
+	public List<SupplierDomain> getAllSupplier();
+	public void deleteSupplier(Long ordNum);
 }

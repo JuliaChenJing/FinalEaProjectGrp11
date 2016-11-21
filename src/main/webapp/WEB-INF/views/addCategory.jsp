@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <html>
@@ -116,23 +115,15 @@
                     <!--First row-->
                     <div class="row col-md-8 col-md-offset-4">
                         <div class="widget-wrapper">
-                        <h4>Credit Info:</h4>
+                        <h4>Category Info:</h4>
                         <br>
-                        <form class="card" method="post" action="/suppliers/add" enctype="multipart/form-data">
+                        <form class="card" method="post" action="/category/add">
                             <div class="card-block">
-                                <p><strong>Add a Supplier</strong></p>
+                                <p><strong>Add a Category</strong></p>
                                 <div class="md-form">
                                     <i class="fa fa-credit-card prefix"></i>
                                     <input type="text" id="name" class="form-control" name="name">
-                                    <label for="name">Supplier Name</label>
-                                </div>
-                                <div class="md-form">
-                                        <i class="fa fa-credit-card prefix"></i>
-                                        <input type="text" id="description" class="form-control" name="description">
-                                        <label for="description">Supplier Description</label>
-                                </div>
-                                <div class="md-form clearfix">
-                                    Select a file: <input type="file" name="logo"/>
+                                    <label for="name">Category</label>
                                 </div>
                                 <button class="btn btn-primary">Submit</button>
 

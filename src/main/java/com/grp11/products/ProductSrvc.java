@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+@Service
 public class ProductSrvc implements IProductService {
 	@Autowired
 	private IProductDao ProductDao;
@@ -29,4 +29,13 @@ public class ProductSrvc implements IProductService {
 	public void deleteProduct(Long ordNum) {
 		ProductDao.deleteProduct(ordNum);
 	}
+	@Override
+	public List<ProductDomain> getAllProductForSupplier(long supplierId) {
+		return ProductDao.getAllProductForSupplier(supplierId);
+	}
+	
+	@Override
+	public List<ProductDomain> getAllProductForCategory(long categoryId) {
+		return ProductDao.getAllProductForCategory(categoryId);
+	};
 }

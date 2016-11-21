@@ -13,7 +13,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.grp11.address.AddressDomain;
 
 @Entity
 
@@ -48,6 +47,7 @@ public class UserDomain {
 	private String zip;
 	
 	@NotEmpty(message="Please enter email")
+
 	private String email;
 	
 	@NotEmpty(message="Please enter phone")
@@ -58,7 +58,7 @@ public class UserDomain {
 	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	
@@ -80,6 +80,7 @@ public class UserDomain {
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -95,6 +96,68 @@ public class UserDomain {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((codeNo == null) ? 0 : codeNo.hashCode());
+		result = prime * result + ((confirmed == null) ? 0 : confirmed.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserDomain other = (UserDomain) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (codeNo == null) {
+			if (other.codeNo != null)
+				return false;
+		} else if (!codeNo.equals(other.codeNo))
+			return false;
+		if (confirmed == null) {
+			if (other.confirmed != null)
+				return false;
+		} else if (!confirmed.equals(other.confirmed))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (id != other.id)
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (phone == null) {
+			if (other.phone != null)
+				return false;
+		} else if (!phone.equals(other.phone))
+			return false;
+		return true;
 	}
 	
 	public String getPassword() {
@@ -128,7 +191,5 @@ public class UserDomain {
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
-	
-	
 	
 }

@@ -2,6 +2,7 @@ package com.grp11.products;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
@@ -18,54 +19,81 @@ import org.springframework.format.annotation.NumberFormat.Style;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.grp11.category.CategoryDomain;
 import com.grp11.suppliers.*;
 
 @Entity
 public class ProductDomain implements Serializable {
     private static final long serialVersionUID = 1L;
 
-	@Pattern(regexp="P[1-9]+", message="{Pattern.Product.productId.validation}")
 	@Id
 	@GeneratedValue
-	private long productId;
+	private long id;
 	
-	@Size(min=4, max=50, message="{Size.Product.name.validation}")
 	private String name;
-	
-	@Min(value=0, message="Min.Product.unitPrice.validation}")
-	@Digits(integer=8, fraction=2, message="{Digits.Product.unitPrice.validation}")
-	@NotNull(message= "{NotNull.Product.unitPrice.validation}")
-	@NumberFormat(style=Style.CURRENCY)
-	private BigDecimal unitPrice;
+
+	private int unitPrice;
 	private String description;
 	private String manufacturer;
-	private String category;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="cat_id")
+	private CategoryDomain category;
 	private long unitsInStock;
-	private long unitsInOrder;
-	
-	@Lob
-	private Byte[] productImage;
-
-
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="supplierId")
 	private SupplierDomain supplier;
+	@Lob
+	private byte[] productImage;
+	@Transient
+	private String base64Image;
+	public String getBase64Image() {
+		return base64Image;
+	}
+
+	public void setBase64Image(String base64Image) {
+		this.base64Image = base64Image;
+	}
+
 	public ProductDomain() {
 		super();
-}
+	}
 
-	public ProductDomain(long productId, String name, BigDecimal unitPrice) {
-		this.productId = productId;
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public byte[] getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(byte[] productImage) {
+		this.productImage = productImage;
+	}
+
+	public SupplierDomain getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(SupplierDomain supplier) {
+		this.supplier = supplier;
+	}
+
+	public ProductDomain(long id, String name, int unitPrice) {
+		this.id = id;
 		this.name = name;
 		this.unitPrice = unitPrice;
 	}
 
-	public long getProductId() {
-		return productId;
+	public long getid() {
+		return id;
 	}
 
-	public void setProductId(long productId) {
-		this.productId = productId;
+	public void setid(long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -76,11 +104,11 @@ public class ProductDomain implements Serializable {
 		this.name = name;
 	}
 
-	public BigDecimal getUnitPrice() {
+	public int getUnitPrice() {
 		return unitPrice;
 	}
 
-	public void setUnitPrice(BigDecimal unitPrice) {
+	public void setUnitPrice(int unitPrice) {
 		this.unitPrice = unitPrice;
 	}
 
@@ -102,11 +130,11 @@ public class ProductDomain implements Serializable {
 		this.manufacturer = manufacturer;
 	}
 
-	public String getCategory() {
+	public CategoryDomain getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(CategoryDomain category) {
 		this.category = category;
 	}
 
@@ -118,20 +146,13 @@ public class ProductDomain implements Serializable {
 		this.unitsInStock = unitsInStock;
 	}
 
-	public long getUnitsInOrder() {
-		return unitsInOrder;
-	}
-
-	public void setUnitsInOrder(long unitsInOrder) {
-		this.unitsInOrder = unitsInOrder;
-	}
-
-
-	
-	@Override
+	/*@Override
 	public String toString() {
-		return "Product [productId=" + productId + ", name=" + name + "]";
-	}
-
+		return "ProductDomain [id=" + id + ", name=" + name + ", unitPrice=" + unitPrice + ", description="
+				+ description + ", manufacturer=" + manufacturer + ", category=" + category + ", unitsInStock="
+				+ unitsInStock + ", supplier=" + supplier + ", productImage=" + Arrays.toString(productImage) + "]";
+	}*/
+	
+	
 	
 }

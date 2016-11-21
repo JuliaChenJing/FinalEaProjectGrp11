@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <html>
@@ -118,21 +117,47 @@
                         <div class="widget-wrapper">
                         <h4>Credit Info:</h4>
                         <br>
-                        <form class="card" method="post" action="/suppliers/add" enctype="multipart/form-data">
+                        <form class="card" method="post" action="/products/add" enctype="multipart/form-data">
                             <div class="card-block">
-                                <p><strong>Add a Supplier</strong></p>
+                                <p><strong>Add a Product</strong></p>
                                 <div class="md-form">
                                     <i class="fa fa-credit-card prefix"></i>
                                     <input type="text" id="name" class="form-control" name="name">
-                                    <label for="name">Supplier Name</label>
+                                    <label for="name">Product Name</label>
                                 </div>
                                 <div class="md-form">
                                         <i class="fa fa-credit-card prefix"></i>
                                         <input type="text" id="description" class="form-control" name="description">
-                                        <label for="description">Supplier Description</label>
+                                        <label for="description">Product Description</label>
+                                </div>
+                                <div class="md-form">
+                                        <i class="fa fa-credit-card prefix"></i>
+                                        <input type="text" id="unitPrice" class="form-control" name="unitPrice">
+                                        <label for="unitPrice">Unit Price</label>
+                                </div>
+                                <div class="md-form">
+                                        <i class="fa fa-credit-card prefix"></i>
+                                        <input type="text" id="manufacturer" class="form-control" name="manufacturer">
+                                        <label for="manufacturer">Manufacturer</label>
+                                </div>
+                                <div class="md-form">
+                                  <select name="categoryId">
+                                    <option value="" disabled selected>Choose your category</option>
+                                    <c:forEach var="category" items="${categories}">
+                                        <option value="${category.id}">${category.name}</option>
+                                    </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="md-form">
+                                  <select name="supplierId">
+                                    <option value="" disabled selected>Choose your Supplier</option>
+                                    <c:forEach var="supplier" items="${suppliers}">
+                                        <option value="${supplier.id}">${supplier.name}</option>
+                                    </c:forEach>
+                                    </select>
                                 </div>
                                 <div class="md-form clearfix">
-                                    Select a file: <input type="file" name="logo"/>
+                                    Select a file: <input type="file" name="productImage">
                                 </div>
                                 <button class="btn btn-primary">Submit</button>
 
