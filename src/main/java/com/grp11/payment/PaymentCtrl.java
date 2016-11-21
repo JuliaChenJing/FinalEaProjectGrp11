@@ -12,6 +12,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.grp11.Consumer.IConsumerService;
 import com.grp11.Domain.ConsumerDomain;
+import com.grp11.Domain.UserDomain;
 import com.grp11.util.ResponseObj;
 @Controller
 @RequestMapping("/payments")
@@ -33,7 +34,7 @@ public class PaymentCtrl {
 	@ResponseStatus(HttpStatus.CREATED)
 	public String addPayment(PaymentDomain payment, @PathVariable("UserId") long UserId) {
 		if(checkValidation(payment)) {
-			ConsumerDomain c = consumerService.getUser(UserId);
+			UserDomain c = consumerService.getUser(UserId);
 			payment.setConsumer(c);
 			paymentService.createPayment(payment);
 			return "redirect:/payments/" + UserId;
@@ -46,7 +47,7 @@ public class PaymentCtrl {
 	@ResponseStatus(HttpStatus.CREATED)
 	public String updatePayment(PaymentDomain payment, @PathVariable("UserId") long UserId, @PathVariable("PaymentId") long PaymentId) {
 		if(checkValidation(payment)) {
-			ConsumerDomain c = consumerService.getUser(UserId);
+			UserDomain c = consumerService.getUser(UserId);
 			payment.setConsumer(c);
 			payment.setId(PaymentId);
 			paymentService.updatePayment(payment);

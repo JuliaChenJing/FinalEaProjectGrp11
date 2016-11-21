@@ -97,18 +97,23 @@ public class UserDomain {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((codeNo == null) ? 0 : codeNo.hashCode());
-		result = prime * result + ((confirmed == null) ? 0 : confirmed.hashCode());
+		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		result = prime * result + ((street == null) ? 0 : street.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		result = prime * result + ((zip == null) ? 0 : zip.hashCode());
 		return result;
 	}
 	@Override
@@ -120,20 +125,10 @@ public class UserDomain {
 		if (getClass() != obj.getClass())
 			return false;
 		UserDomain other = (UserDomain) obj;
-		if (address == null) {
-			if (other.address != null)
+		if (city == null) {
+			if (other.city != null)
 				return false;
-		} else if (!address.equals(other.address))
-			return false;
-		if (codeNo == null) {
-			if (other.codeNo != null)
-				return false;
-		} else if (!codeNo.equals(other.codeNo))
-			return false;
-		if (confirmed == null) {
-			if (other.confirmed != null)
-				return false;
-		} else if (!confirmed.equals(other.confirmed))
+		} else if (!city.equals(other.city))
 			return false;
 		if (email == null) {
 			if (other.email != null)
@@ -145,21 +140,51 @@ public class UserDomain {
 				return false;
 		} else if (!firstName.equals(other.firstName))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
 				return false;
 		} else if (!lastName.equals(other.lastName))
 			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
 		if (phone == null) {
 			if (other.phone != null)
 				return false;
 		} else if (!phone.equals(other.phone))
 			return false;
+		if (role == null) {
+			if (other.role != null)
+				return false;
+		} else if (!role.equals(other.role))
+			return false;
+		if (street == null) {
+			if (other.street != null)
+				return false;
+		} else if (!street.equals(other.street))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		if (zip == null) {
+			if (other.zip != null)
+				return false;
+		} else if (!zip.equals(other.zip))
+			return false;
 		return true;
 	}
-	
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getPassword() {
 		return password;
 	}

@@ -1,4 +1,4 @@
-package com.grp11.Order;
+/*package com.grp11.Order;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.grp11.Consumer.IConsumerService;
 import com.grp11.Domain.ConsumerDomain;
+import com.grp11.Domain.UserDomain;
 @Controller
 @RequestMapping("/orders")
 public class OrderCtrl {
@@ -27,7 +28,7 @@ public class OrderCtrl {
 	@RequestMapping(value = "/{UserId}/new", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public String addConsumer(@RequestBody OrderDomain order, @PathVariable("UserId") long UserId) {
-		ConsumerDomain c = consumerService.getUser(UserId);
+		UserDomain c = consumerService.getUser(UserId);
 		order.setConsumer(c);
 		orderService.createOrder(order);
 		return "redirect:/home2";
@@ -56,4 +57,4 @@ public class OrderCtrl {
 		return "home2";
 	}
 
-}
+}*/

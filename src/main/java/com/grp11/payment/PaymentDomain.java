@@ -14,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.grp11.Domain.ConsumerDomain;
+import com.grp11.Domain.UserDomain;
 @Entity
 public class PaymentDomain {
 	@Id
@@ -46,11 +47,11 @@ public class PaymentDomain {
 	}
 	@ManyToOne
 	@JoinColumn(name="cust_id")
-	public ConsumerDomain consumer;
-	public ConsumerDomain getConsumer() {
+	public UserDomain consumer;
+	public UserDomain getConsumer() {
 		return consumer;
 	}
-	public void setConsumer(ConsumerDomain consumer) {
+	public void setConsumer(UserDomain consumer) {
 		this.consumer = consumer;
 	}
 	public void setId(long id) {
