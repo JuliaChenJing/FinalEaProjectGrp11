@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 import com.grp11.Domain.ConsumerDomain;
+import com.grp11.products.ProductDomain;
 
 
 
@@ -35,8 +36,32 @@ public class OrderDomain {
 	}
 
 	//	TODO: unlock them with relationship when other domains are ready
-	//	@OneToMany
-	//	private Product product;
+	@ManyToOne
+	private ProductDomain product;
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public ProductDomain getProduct() {
+		return product;
+	}
+
+	public void setProduct(ProductDomain product) {
+		this.product = product;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -52,12 +77,6 @@ public class OrderDomain {
 		result = prime * result + quantity;
 		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
 		return result;
-	}
-
-	@Override
-	public String toString() {
-		return "OrderDomain [id=" + id + ", quantity=" + quantity + ", price=" + price + ", createdAt=" + createdAt
-				+ ", updatedAt=" + updatedAt + ", consumer=" + consumer + "]";
 	}
 
 	@Override
