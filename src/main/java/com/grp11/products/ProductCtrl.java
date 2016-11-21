@@ -1,5 +1,15 @@
 package com.grp11.products;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -7,6 +17,8 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.grp11.category.ICategoryService;
@@ -23,10 +35,35 @@ public class ProductCtrl {
 	private ICategoryService categoryService;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public String getAllProducts(Model model) {
+	public String getAllProducts(Model model) throws UnsupportedEncodingException {
 		model.addAttribute("allProducts", productService.getAllProduct());
-		return "home2";
+		model.addAttribute("categories", categoryService.getAllCategory());
+		model.addAttribute("requestedCategory", 0);
+		return "displayProducts";
 	}
+	
+	@RequestMapping(value = "/category/{categoryId}", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public String getAllProductsForCategory(Model model, @PathVariable("categoryId") long categoryId) {
+		model.addAttribute("allProducts", productService.getAllProductForCategory(categoryId));
+		model.addAttribute("categories", categoryService.getAllCategory());
+		model.addAttribute("requestedCategory", categoryId);
+		return "displayProducts";
+	}
+	
+	@RequestMapping(value = "/image/{productId}", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public void getImageForProduct(Model model, @PathVariable("productId") long productId, HttpServletResponse response,HttpServletRequest request) 
+	          throws ServletException, IOException {
+		System.out.println("getting image");
+		ProductDomain item = productService.getProduct(productId);
+	    response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+	    ServletOutputStream out = response.getOutputStream();
+	    out.write(item.getProductImage());
+	    out.close();
+	}
+	
+	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String addNewProduct(Model model) {
@@ -36,10 +73,14 @@ public class ProductCtrl {
 	}
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public String addProduct(ProductDomain Product, BindingResult result, Long supplierId, Long categoryId) {
+	public String addProduct(ProductDomain Product, BindingResult result, Long supplierId, Long categoryId, @RequestParam MultipartFile productImage) throws IOException {
+		if (productImage != null) {
+			Product.setProductImage(productImage.getBytes());
+        }
 		Product.setCategory(categoryService.getCategory(categoryId));
 		Product.setSupplier(supplierService.getSupplier(supplierId));
 		productService.createProduct(Product);
+		System.out.println(Product.getProductImage());
 		return "redirect:/orders/";
 	}
 	

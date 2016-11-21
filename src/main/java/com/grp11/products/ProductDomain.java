@@ -43,7 +43,16 @@ public class ProductDomain implements Serializable {
 	@JoinColumn(name="supplierId")
 	private SupplierDomain supplier;
 	@Lob
-	private Byte[] productImage;
+	private byte[] productImage;
+	@Transient
+	private String base64Image;
+	public String getBase64Image() {
+		return base64Image;
+	}
+
+	public void setBase64Image(String base64Image) {
+		this.base64Image = base64Image;
+	}
 
 	public ProductDomain() {
 		super();
@@ -57,11 +66,11 @@ public class ProductDomain implements Serializable {
 		this.id = id;
 	}
 
-	public Byte[] getProductImage() {
+	public byte[] getProductImage() {
 		return productImage;
 	}
 
-	public void setProductImage(Byte[] productImage) {
+	public void setProductImage(byte[] productImage) {
 		this.productImage = productImage;
 	}
 

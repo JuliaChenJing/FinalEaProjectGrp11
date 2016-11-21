@@ -117,7 +117,7 @@
                         <div class="widget-wrapper">
                         <h4>Credit Info:</h4>
                         <br>
-                        <form class="card" method="post" action="/products/add">
+                        <form class="card" method="post" action="/products/add" enctype="multipart/form-data">
                             <div class="card-block">
                                 <p><strong>Add a Product</strong></p>
                                 <div class="md-form">

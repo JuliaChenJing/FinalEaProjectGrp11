@@ -33,4 +33,9 @@ public class ProductSrvc implements IProductService {
 	public List<ProductDomain> getAllProductForSupplier(long supplierId) {
 		return ProductDao.getAllProductForSupplier(supplierId);
 	}
+	
+	@Override
+	public List<ProductDomain> getAllProductForCategory(long categoryId) {
+		return ProductDao.getAllProductForCategory(categoryId);
+	};
 }

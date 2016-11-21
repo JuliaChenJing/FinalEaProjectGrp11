@@ -1,6 +1,8 @@
 package com.grp11.products;
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+
 
 public interface IProductDao {
 	public void createProduct(ProductDomain o);
@@ -9,4 +11,5 @@ public interface IProductDao {
 	public List<ProductDomain> getAllProduct();
 	public void deleteProduct(Long ordNum);
 	public List<ProductDomain> getAllProductForSupplier(long supplierId);
+	public List<ProductDomain> getAllProductForCategory(long categoryId);
 }

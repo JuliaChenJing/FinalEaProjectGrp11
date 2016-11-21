@@ -37,4 +37,8 @@ public class ProductDao implements IProductDao {
 	public List<ProductDomain> getAllProductForSupplier(long supplierId){
 		return Product.getAllProductForSupplier(supplierId);
 	}
+	@Override
+	public List<ProductDomain> getAllProductForCategory(long categoryId){
+		return Product.getAllProductForCategory(categoryId);
+	};
 }
