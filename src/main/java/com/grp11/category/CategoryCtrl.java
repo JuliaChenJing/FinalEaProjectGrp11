@@ -25,10 +25,9 @@ public class CategoryCtrl {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.CREATED)
 	public String addCategory(@ModelAttribute CategoryDomain Category) {
 		CategoryService.createCategory(Category);
-		return "redirect:/orders";
+		return "redirect:/orders/";
 	}
 	
 	@RequestMapping(value = "/{categoryId}", method = RequestMethod.GET)

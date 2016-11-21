@@ -110,22 +110,6 @@
         <div class="container">
             <div class="row">
 
-                <!--Sidebar-->
-                <div class="col-md-4">
-
-                    <div class="widget-wrapper">
-                        <h4>Categories:</h4>
-                        <br>
-                        <div class="list-group">
-                            <c:forEach var="category" items="${categories}">
-                                <a href="/products/category/${category.id}" <c:if test="${requestedCategory == category.id}">class="list-group-item active"</c:if> <c:if test="${requestedCategory != category.id}">class="list-group-item"</c:if>>${category.name}</a>
-                            </c:forEach>
-                        </div>
-                    </div>
-
-                </div>
-                <!--/.Sidebar-->
-
                 <!--Main column-->
                 <div class="col-md-8">
 
@@ -133,13 +117,12 @@
 
                         <!--Heading-->
                         <div class="Products">
-                            <h2 class="h2-responsive">Products</h2>
+                            <h2 class="h2-responsive">Order</h2>
                         </div>
 
                         <!--First review-->
-                        <c:forEach var="product" items="${allProducts}">
                             <div class="media">
-                                <a class="media-left" href="/orders/1/${product.id}/new">
+                                <a class="media-left" href="#">
                                     <img class="img-circle" src="/products/image/${product.id}" alt="Generic placeholder image" width="50px">
                                 </a>
                                 <div class="media-body">
@@ -158,9 +141,24 @@
                                     <img class="img-circle" src="/suppliers/image/${product.supplier.id}" alt="Generic placeholder image" width="50px">
                                 </a>
                             </div>
+                            <form class="card" method="post" action="/orders/${userId}/${product.id}/new">
+                                <div class="card-block">
+                                    <p><strong>Add your order</strong></p>
+                                    <div class="md-form">
+                                        <i class="fa fa-credit-card prefix"></i>
+                                        <input type="number" id="quantity" class="form-control" name="quantity">
+                                        <label for="quantity">Quantity</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="fa fa-credit-card prefix"></i>
+                                        <input type="text" id="price" class="form-control" name="none" readonly>
+                                        <label for="price">Price</label>
+                                    </div>
+                                    <button class="btn btn-primary">Submit</button>
 
+                                </div>
+                            </form>
                         </div>
-                    </c:forEach>
                     <!--/.Second row-->
 
                 </div>
@@ -175,20 +173,28 @@
     <!-- SCRIPTS -->
 
     <!-- JQuery -->
-    <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-2.2.3.min.js"></script>
 
     <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="js/tether.min.js"></script>
+    <script type="text/javascript" src="/js/tether.min.js"></script>
 
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
     <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
 
     <script type="text/javascript">
         $( document ).ready(function() {
-            
+            $('#quantity').change(function() {
+                console.log("changing");
+                var unitPrice = ${product.unitPrice};
+                var quantity = $('#quantity').val();
+                $("#price").val(unitPrice * quantity);
+                $("#price").addClass("active");
+                console.log($("#price").closest("i"));
+                $("#price").closest("i").addClass("active");
+            });
         });
     </script>
 </body>
