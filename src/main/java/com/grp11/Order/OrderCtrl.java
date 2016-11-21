@@ -1,4 +1,4 @@
-/*package com.grp11.Order;
+package com.grp11.Order;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.grp11.Consumer.IConsumerService;
 import com.grp11.Domain.ConsumerDomain;
-import com.grp11.Domain.UserDomain;
+import com.grp11.products.IProductService;
+import com.grp11.products.ProductDomain;
 @Controller
 @RequestMapping("/orders")
 public class OrderCtrl {
@@ -18,29 +19,42 @@ public class OrderCtrl {
 	private IOrderService orderService;
 	@Autowired
 	private IConsumerService consumerService;
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@Autowired
+	private IProductService productService;
+	@RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String getAllOrdersFromAllUser(Model model) {
 		model.addAttribute("allOrders", orderService.getAllOrder());
 		return "home2";
 	}
-
-	@RequestMapping(value = "/{UserId}/new", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.CREATED)
-	public String addConsumer(@RequestBody OrderDomain order, @PathVariable("UserId") long UserId) {
-		UserDomain c = consumerService.getUser(UserId);
-		order.setConsumer(c);
-		orderService.createOrder(order);
-		return "redirect:/home2";
+	
+	@RequestMapping(value = {"/{UserId}/{productId}/new", "/{UserId}/{productId}/new/"}, method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public String startOrdering(Model model, @PathVariable("productId") long productId, @PathVariable("UserId") long UserId) {
+		model.addAttribute("userId", UserId);
+		model.addAttribute("product", productService.getProduct(productId));
+		return "addOrder";
 	}
 	
-	@RequestMapping(value = "/{UserId}/{OrderId}", method = RequestMethod.PUT)
-	@ResponseStatus(HttpStatus.OK)
-	public String updateConsumer(@RequestBody OrderDomain order, @PathVariable("UserId") long UserId) {
+	@RequestMapping(value = "/{UserId}/{ProductId}/new", method = RequestMethod.POST)
+	public String addConsumer(OrderDomain order, @PathVariable("UserId") long UserId, @PathVariable("ProductId") long ProductId) {
 		ConsumerDomain c = consumerService.getUser(UserId);
+		ProductDomain p = productService.getProduct(ProductId);
+		System.out.println("some one is not here");
+		order.setProduct(p);
+		order.setConsumer(c);
+		orderService.createOrder(order);
+		return "redirect:/orders/";
+	}
+	
+	@RequestMapping(value = "/{UserId}/{ProductId}/{OrderId}", method = RequestMethod.POST)
+	public String updateConsumer(@RequestBody OrderDomain order, @PathVariable("UserId") long UserId, @PathVariable("UserId") long ProductId) {
+		ConsumerDomain c = consumerService.getUser(UserId);
+		ProductDomain p = productService.getProduct(ProductId);
+		order.setProduct(p);
 		order.setConsumer(c);
 		orderService.updateOrder(order);
-		return "redirect:/home2";
+		return "redirect:/orders/";
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.DELETE)
@@ -57,4 +71,4 @@ public class OrderCtrl {
 		return "home2";
 	}
 
-}*/
+}
