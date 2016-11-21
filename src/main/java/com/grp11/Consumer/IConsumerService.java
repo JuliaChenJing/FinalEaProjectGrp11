@@ -2,15 +2,16 @@ package com.grp11.Consumer;
 
 import java.util.List;
 
-import com.grp11.Domain.ConsumerDomain;
+
+import com.grp11.Domain.UserDomain;
 
 public interface IConsumerService {
 	
-	public void addConsumer(ConsumerDomain user);
-	public ConsumerDomain update(ConsumerDomain user);
-	public ConsumerDomain getUser(Long UserId);
+	public void addConsumer(UserDomain user);
+	public UserDomain update(UserDomain user);
+	public UserDomain getUser(Long UserId);
 	public void deleteUser(Long id);
-	public List<ConsumerDomain> getAllUser();
+	public List<UserDomain> getAllUser();
 	
 	
 }

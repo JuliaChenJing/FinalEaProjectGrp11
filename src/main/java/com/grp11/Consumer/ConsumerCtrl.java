@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.grp11.Domain.ConsumerDomain;
+import com.grp11.Domain.UserDomain;
 
 @Controller
 @RequestMapping("/consumer")
@@ -31,20 +31,21 @@ public class ConsumerCtrl {
 	}*/
 	
 	@RequestMapping(value= "/signUp", method = RequestMethod.GET)
-	public String addConsumerForm(@ModelAttribute("newConsumer")ConsumerDomain consumer){
+	public String addConsumerForm(@ModelAttribute("newConsumer")UserDomain consumer){
 		
 		//System.out.println("Pramita");
 		return "addConsumerForm";
 	}
 	
 	@RequestMapping(value= "/signUp", method = RequestMethod.POST)
-	public String saveConsumerProfile(@Valid @ModelAttribute("newConsumer")ConsumerDomain consumer,BindingResult result){
+	public String saveConsumerProfile(@Valid @ModelAttribute("newConsumer")UserDomain consumer,BindingResult result){
 		if(result.hasErrors()){
 			return "addConsumerForm";
 		}
 		
 		System.out.println("Database Save");
 		System.out.println(consumer.getFirstName());
+		
 		userService.addConsumer(consumer);		
 		return "successAdd";
 	}

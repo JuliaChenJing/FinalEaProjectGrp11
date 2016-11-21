@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.grp11.Domain.ConsumerDomain;
+import com.grp11.Domain.UserDomain;
 
 @Service
 @Transactional
@@ -18,20 +18,20 @@ public class ConsumerServiceImpl implements IConsumerService{
 
 
 	@Override
-	public void addConsumer(ConsumerDomain user) {
+	public void addConsumer(UserDomain user) {
 		consumerDAO.save(user);	
 		
 	}
 
 	@Override
-	public ConsumerDomain update(ConsumerDomain user) {
+	public UserDomain update(UserDomain user) {
 		consumerDAO.save(user);	
 		return user;
 	}
 
 	@Override
-	public ConsumerDomain getUser(Long UserId) {
-		ConsumerDomain consumer = consumerDAO.findOne(UserId);
+	public UserDomain getUser(Long UserId) {
+		UserDomain consumer = consumerDAO.findOne(UserId);
 		return consumer;
 	}
 
@@ -43,8 +43,8 @@ public class ConsumerServiceImpl implements IConsumerService{
 	}
 
 	@Override
-	public List<ConsumerDomain> getAllUser() {
-		List<ConsumerDomain> listofConsumer = (List<ConsumerDomain>) consumerDAO.findAll();
+	public List<UserDomain> getAllUser() {
+		List<UserDomain> listofConsumer = (List<UserDomain>) consumerDAO.findAll();
 		return listofConsumer;
 	}
 	

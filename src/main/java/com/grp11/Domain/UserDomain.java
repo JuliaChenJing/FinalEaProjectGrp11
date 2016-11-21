@@ -16,10 +16,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 import com.grp11.address.AddressDomain;
 
 @Entity
-@Table(name="UserDomain")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="userRole")
-public abstract class UserDomain {
+
+public class UserDomain {
 	
 	@Id
 	@GeneratedValue
