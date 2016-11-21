@@ -7,12 +7,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> bdbcd3447c28111e4381b1c25be97cd0c2ac004e
 @Entity
-
 public class UserDomain {
 	
 	@Id
@@ -43,12 +38,7 @@ public class UserDomain {
 	//@NotEmpty(message="Please enter zip")
 	private String zip;
 	
-<<<<<<< HEAD
-	//@NotEmpty(message="Please enter email")
-=======
 	@NotEmpty(message="Please enter email")
-
->>>>>>> bdbcd3447c28111e4381b1c25be97cd0c2ac004e
 	private String email;
 	
 	//@NotEmpty(message="Please enter phone")

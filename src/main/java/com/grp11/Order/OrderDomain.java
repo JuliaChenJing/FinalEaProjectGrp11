@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 import com.grp11.Domain.ConsumerDomain;
+import com.grp11.Domain.UserDomain;
 
 
 
@@ -25,12 +26,12 @@ public class OrderDomain {
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="cust_id")
-	private ConsumerDomain consumer;
-	public ConsumerDomain getConsumer() {
+	private UserDomain consumer;
+	public UserDomain getConsumer() {
 		return consumer;
 	}
 
-	public void setConsumer(ConsumerDomain consumer) {
+	public void setConsumer(UserDomain consumer) {
 		this.consumer = consumer;
 	}
 

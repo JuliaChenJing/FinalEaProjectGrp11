@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.grp11.Consumer.IConsumerService;
 import com.grp11.Domain.ConsumerDomain;
+import com.grp11.Domain.UserDomain;
 import com.grp11.products.IProductService;
 import com.grp11.products.ProductDomain;
 @Controller
@@ -38,10 +39,10 @@ public class OrderCtrl {
 	
 	@RequestMapping(value = "/{UserId}/{ProductId}/new", method = RequestMethod.POST)
 	public String addConsumer(OrderDomain order, @PathVariable("UserId") long UserId, @PathVariable("ProductId") long ProductId) {
-		ConsumerDomain c = consumerService.getUser(UserId);
+		UserDomain c = consumerService.getUser(UserId);
 		ProductDomain p = productService.getProduct(ProductId);
 		System.out.println("some one is not here");
-		order.setProduct(p);
+//		order.setProduct(p);
 		order.setConsumer(c);
 		orderService.createOrder(order);
 		return "redirect:/orders/";
@@ -49,9 +50,9 @@ public class OrderCtrl {
 	
 	@RequestMapping(value = "/{UserId}/{ProductId}/{OrderId}", method = RequestMethod.POST)
 	public String updateConsumer(@RequestBody OrderDomain order, @PathVariable("UserId") long UserId, @PathVariable("UserId") long ProductId) {
-		ConsumerDomain c = consumerService.getUser(UserId);
+		UserDomain c = consumerService.getUser(UserId);
 		ProductDomain p = productService.getProduct(ProductId);
-		order.setProduct(p);
+//		order.setProduct(p);
 		order.setConsumer(c);
 		orderService.updateOrder(order);
 		return "redirect:/orders/";
