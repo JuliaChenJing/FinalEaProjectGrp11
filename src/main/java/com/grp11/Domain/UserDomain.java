@@ -1,19 +1,11 @@
 package com.grp11.Domain;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
-
-import com.grp11.address.AddressDomain;
 
 @Entity
 
@@ -23,37 +15,37 @@ public class UserDomain {
 	@GeneratedValue
 	private Long id;
 	
-	@NotEmpty(message="Please enter Your Firstname")
-	@Size(min=2, max=30,message="Please enter name with length min 2 and max 30")
+	/*@NotEmpty(message="Please enter Your Firstname")
+	@Size(min=2, max=30,message="Please enter name with length min 2 and max 30")*/
 	private String firstName;
 	
-	@NotEmpty(message="Please enter Your Lastname")
-	@Size(min=2, max=30,message="Please enter name with length min 2 and max 30")	
+	/*@NotEmpty(message="Please enter Your Lastname")
+	@Size(min=2, max=30,message="Please enter name with length min 2 and max 30")*/	
 	private String lastName;
 	
-	@NotEmpty(message="Please enter Your Username")
-	@Size(min=2, max=30,message="Please enter name with length min 2 and max 30")		
+	/*@NotEmpty(message="Please enter Your Username")
+	@Size(min=2, max=30,message="Please enter name with length min 2 and max 30")	*/	
 	private String username;
 	
-	@NotEmpty(message="Please enter Your Password")
+	/*@NotEmpty(message="Please enter Your Password")*/
 	private String password;
 	
-	@NotEmpty(message="Please enter street")
+	/*@NotEmpty(message="Please enter street")*/
 	private String street;
 	
-	@NotEmpty(message="Please enter city")
+	//@NotEmpty(message="Please enter city")
 	private String city;
 	
-	@NotEmpty(message="Please enter zip")
+	//@NotEmpty(message="Please enter zip")
 	private String zip;
 	
-	@NotEmpty(message="Please enter email")
+	//@NotEmpty(message="Please enter email")
 	private String email;
 	
-	@NotEmpty(message="Please enter phone")
+	//@NotEmpty(message="Please enter phone")
 	private String phone;
 	
-	private String role;
+	private String role = "USER";
 	
 	public Long getId() {
 		return id;

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.grp11.Domain.UserDomain;
 
@@ -38,10 +39,10 @@ public class ConsumerCtrl {
 	}
 	
 	@RequestMapping(value= "/signUp", method = RequestMethod.POST)
-	public String saveConsumerProfile(@Valid @ModelAttribute("newConsumer")UserDomain consumer,BindingResult result){
-		if(result.hasErrors()){
+	public String saveConsumerProfile(/*@Valid*/ @ModelAttribute("newConsumer")UserDomain consumer/*,BindingResult result*/){
+		/*if(result.hasErrors()){
 			return "addConsumerForm";
-		}
+		}*/
 		
 		System.out.println("Database Save");
 		System.out.println(consumer.getFirstName());
@@ -56,7 +57,21 @@ public class ConsumerCtrl {
 		
 	}
 	
+	/*@RequestMapping(value={"","/showProduct"}, method = RequestMethod.GET)
+	public ModelAndView  showWelcomeProduct(){
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.addObject("products",productService.getallProducts());
+		modelAndView.setViewName("welcomeProduct");
+		return modelAndView;
+	}*/
 	
+	public ModelAndView showAllUser(){
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("users",userService.getAllUser());
+		modelAndView.setViewName("customerList");
+		return modelAndView;
+	}
 	
 	
 

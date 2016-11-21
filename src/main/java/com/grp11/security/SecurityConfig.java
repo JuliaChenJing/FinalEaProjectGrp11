@@ -16,11 +16,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
-	@Autowired
-	DataSource dataSource;
+	/*@Autowired
+	DataSource dataSource;*/
 	
 	protected void configure(HttpSecurity http) throws Exception {
-		http 
+		/*http 
 			.authorizeRequests()
 			.antMatchers("/supplier/addsupplier").hasAuthority("USER")
 			.antMatchers("/consumer/signUp").hasAuthority("ADMIN")
@@ -30,25 +30,36 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.loginPage("/login")
 			.successForwardUrl("/consumer/welcome")
 			.permitAll();
-
+*/
+		
+		http 
+		.authorizeRequests()
+		.antMatchers("/**").hasRole("ADMIN")
+		.antMatchers("/consumer/signUp").hasRole("USER")
+		.anyRequest().authenticated()
+		.and()
+		.formLogin()
+		.loginPage("/login")
+		.successForwardUrl("/consumer/welcome")
+		.permitAll();
 	}
 	
 	@Autowired
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
              .inMemoryAuthentication()
-                  .withUser("user1")
-                       .password("user1")
+                  .withUser("user")
+                       .password("user")
                        .roles("USER")
                   .and()
-                  .withUser("admin2")
-                  	.password("admin2")
+                  .withUser("admin")
+                  	.password("admin")
                   	.roles("ADMIN");
-		auth.jdbcAuthentication().dataSource(dataSource)
+		/*auth.jdbcAuthentication().dataSource(dataSource)
 		.usersByUsernameQuery(
 				"select user_domain.username,user_domain.password,1 from finalproject.user_domain where user_domain.username=?")
 		.authoritiesByUsernameQuery(
-				"select user_domain.username,user_domain.role from finalproject.user_domain where user_domain.username=?");
+				"select user_domain.username,user_domain.role from finalproject.user_domain where user_domain.username=?");*/
 		/*auth.jdbcAuthentication().dataSource(dataSource)
 		.usersByUsernameQuery(
 				"select user.name,user.password,1 from finalproject.user where user.name=?")

@@ -19,6 +19,8 @@
 	 Last Name: <form:input id="lastName" path="lastName" type="text" />
 	 <form:errors path="lastName" cssStyle="color : red;" />
 		<br>
+	 User Name: <form:input id="username" path="username" type="text" /><br>
+	 
 	 Password: <form:input id="password" path="password" type="password" />
 	 <form:errors path="password" cssStyle="color : red;" />
 		<br> 
