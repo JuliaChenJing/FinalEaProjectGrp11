@@ -10,11 +10,11 @@ import com.grp11.products.*;
 
 @Entity
 public class SupplierDomain {
-	@Override
+	/*@Override
 	public String toString() {
 		return "SupplierDomain [id=" + id + ", description=" + description + ", name=" + name + ", logo="
 				+ Arrays.toString(logo) + ", products=" + products + "]";
-	}
+	}*/
 	@Id
 	@GeneratedValue
     private long id;
@@ -67,10 +67,48 @@ public class SupplierDomain {
 	public SupplierDomain(String name) {
 		this.name = name;
 	}
-	public boolean equals(Object ob) {
-		if(this == ob) return true;
-		if(getClass() != ob.getClass()) return false;
-		SupplierDomain c = (SupplierDomain)ob;
-		return name.equals(c.name);
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + Arrays.hashCode(logo);
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((products == null) ? 0 : products.hashCode());
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SupplierDomain other = (SupplierDomain) obj;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (id != other.id)
+			return false;
+		if (!Arrays.equals(logo, other.logo))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (products == null) {
+			if (other.products != null)
+				return false;
+		} else if (!products.equals(other.products))
+			return false;
+		return true;
+	}
+	
 }

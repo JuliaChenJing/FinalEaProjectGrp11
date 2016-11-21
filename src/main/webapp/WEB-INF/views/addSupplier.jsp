@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Material Design Bootstrap</title>
+    <title>Food Delivery System</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
@@ -15,7 +15,7 @@
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Material Design Bootstrap -->
+    <!-- Food Delivery System -->
     <link href="/css/mdb.min.css" rel="stylesheet">
 
     <!-- Template styles -->
@@ -78,7 +78,7 @@
                     <!--Links-->
                     <ul class="nav navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/products">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Features</a>
@@ -117,7 +117,7 @@
                         <div class="widget-wrapper">
                         <h4>Credit Info:</h4>
                         <br>
-                        <form class="card" method="post" action="/suppliers/add">
+                        <form class="card" method="post" action="/suppliers/add" enctype="multipart/form-data">
                             <div class="card-block">
                                 <p><strong>Add a Supplier</strong></p>
                                 <div class="md-form">
@@ -131,7 +131,7 @@
                                         <label for="description">Supplier Description</label>
                                 </div>
                                 <div class="md-form clearfix">
-                                    Select a file: <input type="file" name="logo">
+                                    Select a file: <input type="file" name="logo"/>
                                 </div>
                                 <button class="btn btn-primary">Submit</button>
 

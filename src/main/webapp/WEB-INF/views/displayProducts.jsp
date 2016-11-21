@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Material Design Bootstrap</title>
+    <title>Food Delivery System</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
@@ -15,7 +15,7 @@
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Material Design Bootstrap -->
+    <!-- Food Delivery System -->
     <link href="/css/mdb.min.css" rel="stylesheet">
 
     <!-- Template styles -->
@@ -78,7 +78,7 @@
                     <!--Links-->
                     <ul class="nav navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/products">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Features</a>
@@ -153,8 +153,11 @@
                                         <li><i class="fa fa-star"></i></li>
                                     </ul>
                                     <p>Price: ${product.unitPrice}</p>
-                                    <p>${product.description}</p>
+                                    <p>Description: ${product.description}</p>
                                 </div>
+                                <a class="media-right" href="#">
+                                    <img class="img-circle" src="/suppliers/image/${product.supplier.id}" alt="Generic placeholder image" width="50px">
+                                </a>
                             </div>
 
                         </div>
