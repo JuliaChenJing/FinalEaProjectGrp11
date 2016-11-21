@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <html>
@@ -118,24 +117,24 @@
                         <div class="widget-wrapper">
                         <h4>Credit Info:</h4>
                         <br>
-                        <form class="card" method="post" action="/suppliers/add" enctype="multipart/form-data">
+                        <form class="card" method="post" action="/suppliers/${supplier.id}/update">
                             <div class="card-block">
-                                <p><strong>Add a Supplier</strong></p>
+                                <p><strong>Update this Supplier</strong></p>
                                 <div class="md-form">
                                     <i class="fa fa-credit-card prefix"></i>
-                                    <input type="text" id="name" class="form-control" name="name">
+                                    <input type="text" id="name" class="form-control" name="name" value="${supplier.name}">
                                     <label for="name">Supplier Name</label>
                                 </div>
                                 <div class="md-form">
                                         <i class="fa fa-credit-card prefix"></i>
-                                        <input type="text" id="description" class="form-control" name="description">
+                                        <input type="text" id="description" class="form-control" name="description" value="${supplier.description}">
                                         <label for="description">Supplier Description</label>
                                 </div>
                                 <div class="md-form clearfix">
-                                    Select a file: <input type="file" name="logo"/>
+                                    Select a file: <input type="file" name="logo" value="${supplier.logo}">
                                 </div>
                                 <button class="btn btn-primary">Submit</button>
-
+                                <button type="button" id="deleteSupplier" class="btn btn-primary">Delete</button>
                             </div>
                         </form>
                     </div>
@@ -163,7 +162,23 @@
 
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="/js/mdb.min.js"></script>
-
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            $("#deleteSupplier").click(function() {
+                
+                var deleteBtn = confirm("Do you want to delete this Supplier?");
+                if(deleteBtn) {
+                    $.ajax({
+                        url: '/suppliers/${supplier.id}/delete',
+                        type: 'DELETE',
+                        success: function(result) {
+                            window.location.href = "/orders";
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 
 </body>
 

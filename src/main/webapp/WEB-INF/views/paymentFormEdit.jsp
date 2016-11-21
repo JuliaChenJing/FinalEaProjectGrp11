@@ -1,4 +1,4 @@
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <html>
@@ -58,7 +58,7 @@
 </head>
 
 <body>
-
+	
 
     <header>
 
@@ -118,24 +118,36 @@
                         <div class="widget-wrapper">
                         <h4>Credit Info:</h4>
                         <br>
-                        <form class="card" method="post" action="/suppliers/add" enctype="multipart/form-data">
+                        <form class="card" method="post" action="/payments/${allPayments.consumer.id}/${allPayments.id}">
                             <div class="card-block">
-                                <p><strong>Add a Supplier</strong></p>
+                                <p><strong>Add your card detail</strong></p>
                                 <div class="md-form">
                                     <i class="fa fa-credit-card prefix"></i>
-                                    <input type="text" id="name" class="form-control" name="name">
-                                    <label for="name">Supplier Name</label>
+                                    <input type="text" id="cardType" class="form-control" name="cardType" value="Credit" readonly="readonly" />
+                                    <label for="cardType">Card Type {Currently only credit card is supported}</label>
+                                </div>
+                                <div class="md-form">
+                                    <i class="fa fa-credit-card prefix"></i>
+                                    <input type="text" id="cardNumber" class="form-control" name="cardNumber" value="${allPayments.cardNumber}">
+                                    <label for="cardNumber">Card Number</label>
                                 </div>
                                 <div class="md-form">
                                         <i class="fa fa-credit-card prefix"></i>
-                                        <input type="text" id="description" class="form-control" name="description">
-                                        <label for="description">Supplier Description</label>
+                                        <input type="text" id="CVV" class="form-control" name="CVV" value="${allPayments.CVV}">
+                                        <label for="CVV">CVV</label>
+                                </div>
+                                <div class="md-form">
+                                    <i class="fa fa-credit-card prefix"></i>
+                                    <input type="text" id="ExpirtyDate" class="form-control" name="expiryDate" value="${allPayments.expiryDate}">
+                                    <label for="ExpirtyDate">DD/MM/YYYY</label>
                                 </div>
                                 <div class="md-form clearfix">
-                                    Select a file: <input type="file" name="logo"/>
+                                    <i class="fa fa-credit-card prefix"></i>
+                                    <input type="text" id="nameOnCard" class="form-control" name="nameOnCard" value="${allPayments.nameOnCard}">
+                                    <label for="nameOnCard">Name on your card</label>
                                 </div>
                                 <button class="btn btn-primary">Submit</button>
-
+								<button type="button" class="btn btn-primary" id="deleteCard">Delete</button>
                             </div>
                         </form>
                     </div>
@@ -164,7 +176,26 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="/js/mdb.min.js"></script>
 
-
+	<script type="text/javascript">
+		$( document ).ready(function() {
+		    var a = $("#ExpirtyDate").val();
+		    a = a.split('-').join("/");
+		    $("#ExpirtyDate").val(a)
+		    $("#deleteCard").click(function() {
+		    	
+		    	var deleteBtn = confirm("Do you want to delete this card?");
+				if(deleteBtn) {
+					$.ajax({
+					    url: '/payments/${allPayments.id}',
+					    type: 'DELETE',
+					    success: function(result) {
+					    	window.location.href = "/payments/${allPayments.consumer.id}";
+					    }
+					});
+				}
+		    });
+		});
+	</script>
 </body>
 
 </html>

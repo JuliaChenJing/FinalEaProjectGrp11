@@ -1,6 +1,13 @@
 package com.grp11.Order;
 
+import java.util.Date;
+
 import javax.persistence.*;
+
+import com.grp11.Domain.ConsumerDomain;
+
+
+
 
 @Entity
 @Table(name="Orders")
@@ -10,23 +17,49 @@ public class OrderDomain {
 	private long id;
 	private int quantity;
 	private int price;
-//	TODO: unlock them with relationship when other domains are ready
-//	@OneToMany
-//	private User user;
-//	@OneToMany
-//	private Product product;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdAt;
+	@Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", name="`updatedAt`")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updatedAt;
+
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="cust_id")
+	private ConsumerDomain consumer;
+	public ConsumerDomain getConsumer() {
+		return consumer;
+	}
+
+	public void setConsumer(ConsumerDomain consumer) {
+		this.consumer = consumer;
+	}
+
+	//	TODO: unlock them with relationship when other domains are ready
+	//	@OneToMany
+	//	private Product product;
 	public long getId() {
 		return id;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
+		result = prime * result + ((consumer == null) ? 0 : consumer.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + price;
 		result = prime * result + quantity;
+		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
 		return result;
 	}
+
+	@Override
+	public String toString() {
+		return "OrderDomain [id=" + id + ", quantity=" + quantity + ", price=" + price + ", createdAt=" + createdAt
+				+ ", updatedAt=" + updatedAt + ", consumer=" + consumer + "]";
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -36,14 +69,30 @@ public class OrderDomain {
 		if (getClass() != obj.getClass())
 			return false;
 		OrderDomain other = (OrderDomain) obj;
+		if (createdAt == null) {
+			if (other.createdAt != null)
+				return false;
+		} else if (!createdAt.equals(other.createdAt))
+			return false;
+		if (consumer == null) {
+			if (other.consumer != null)
+				return false;
+		} else if (!consumer.equals(other.consumer))
+			return false;
 		if (id != other.id)
 			return false;
 		if (price != other.price)
 			return false;
 		if (quantity != other.quantity)
 			return false;
+		if (updatedAt == null) {
+			if (other.updatedAt != null)
+				return false;
+		} else if (!updatedAt.equals(other.updatedAt))
+			return false;
 		return true;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}

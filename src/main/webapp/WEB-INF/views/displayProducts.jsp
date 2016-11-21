@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <html>
@@ -110,37 +109,61 @@
         <!--Main layout-->
         <div class="container">
             <div class="row">
-                <!--Main column-->
-                <div class="col-md-12">
 
-                    <!--First row-->
-                    <div class="row col-md-8 col-md-offset-4">
-                        <div class="widget-wrapper">
-                        <h4>Credit Info:</h4>
+                <!--Sidebar-->
+                <div class="col-md-4">
+
+                    <div class="widget-wrapper">
+                        <h4>Categories:</h4>
                         <br>
-                        <form class="card" method="post" action="/suppliers/add" enctype="multipart/form-data">
-                            <div class="card-block">
-                                <p><strong>Add a Supplier</strong></p>
-                                <div class="md-form">
-                                    <i class="fa fa-credit-card prefix"></i>
-                                    <input type="text" id="name" class="form-control" name="name">
-                                    <label for="name">Supplier Name</label>
-                                </div>
-                                <div class="md-form">
-                                        <i class="fa fa-credit-card prefix"></i>
-                                        <input type="text" id="description" class="form-control" name="description">
-                                        <label for="description">Supplier Description</label>
-                                </div>
-                                <div class="md-form clearfix">
-                                    Select a file: <input type="file" name="logo"/>
-                                </div>
-                                <button class="btn btn-primary">Submit</button>
+                        <div class="list-group">
+                            <c:forEach var="category" items="${categories}">
+                                <a href="/products/category/${category.id}" <c:if test="${requestedCategory == category.id}">class="list-group-item active"</c:if> <c:if test="${requestedCategory != category.id}">class="list-group-item"</c:if>>${category.name}</a>
+                            </c:forEach>
+                        </div>
+                    </div>
 
+                </div>
+                <!--/.Sidebar-->
+
+                <!--Main column-->
+                <div class="col-md-8">
+
+                    <div class="row">
+
+                        <!--Heading-->
+                        <div class="Products">
+                            <h2 class="h2-responsive">Products</h2>
+                        </div>
+
+                        <!--First review-->
+                        <c:forEach var="product" items="${allProducts}">
+                            <div class="media">
+                                ${product.base64Image}
+                                <a class="media-left" href="#">
+                                    <img class="img-circle" src="/products/image/${product.id}" alt="Generic placeholder image" width="50px">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">${product.name}</h4>
+                                    <ul class="rating inline-ul">
+                                        <li><i class="fa fa-star amber-text"></i></li>
+                                        <li><i class="fa fa-star amber-text"></i></li>
+                                        <li><i class="fa fa-star amber-text"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                    </ul>
+                                    <p>Price: ${product.unitPrice}</p>
+                                    <p>Description: ${product.description}</p>
+                                </div>
+                                <a class="media-right" href="#">
+                                    <img class="img-circle" src="/suppliers/image/${product.supplier.id}" alt="Generic placeholder image" width="50px">
+                                </a>
                             </div>
-                        </form>
-                    </div>
-                    </div>
-                    <!--/.First row-->
+
+                        </div>
+                    </c:forEach>
+                    <!--/.Second row-->
+
                 </div>
                 <!--/.Main column-->
 
@@ -153,18 +176,22 @@
     <!-- SCRIPTS -->
 
     <!-- JQuery -->
-    <script type="text/javascript" src="/js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
 
     <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="/js/tether.min.js"></script>
+    <script type="text/javascript" src="js/tether.min.js"></script>
 
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
     <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="/js/mdb.min.js"></script>
+    <script type="text/javascript" src="js/mdb.min.js"></script>
 
-
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            
+        });
+    </script>
 </body>
 
 </html>
