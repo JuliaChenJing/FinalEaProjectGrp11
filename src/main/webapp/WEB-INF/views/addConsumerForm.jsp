@@ -10,20 +10,40 @@
 </head>
 <body>
 	<h1>Sign Up Form</h1>
+
+	<form:form action="/consumer/signUp" method="post"
+		modelAttribute="newConsumer">
+	 First Name: <form:input id="firstName" path="firstName" type="text" />
+	 <form:errors path="firstName" cssStyle="color : red;" />
+		<br>
+	 Last Name: <form:input id="lastName" path="lastName" type="text" />
+	 <form:errors path="lastName" cssStyle="color : red;" />
+		<br>
+	 Password: <form:input id="password" path="password" type="password" />
+	 <form:errors path="password" cssStyle="color : red;" />
+		<br> 
+	 Street: <form:input id="street" path="street" type="text" />
+	 <form:errors path="street" cssStyle="color : red;" />
+		<br> 
+	City:  <form:input id="city" path="city" type="text" />
+	 <form:errors path="city" cssStyle="color : red;" />
+		<br> 
+	Zip:  <form:input id="zip" path="zip" type="text" />
+	<form:errors path="zip" cssStyle="color : red;" />
+		<br> 
 	
-	 <form:form  modelAttribute="newConsumer">
-	 First Name: <form:input id="firstName" path="firstName" type="text"/><br>
-	 Last Name: <form:input id="lastName" path="lastName" type="text"/><br>
-	 Password: <form:input id="codeNo" path="codeNo" type="text"/><br> 
-	 Confirmed Password: <form:input id="confirmed" path="confirmed" type="text"/><br>
-	 Address: <form:input id="address" path="address" type="text"/><br>
-	 Phone:<form:input id="phone" path="phone" type="text"/><br>	 
-	 Email:<form:input id="email" path="email" type="text"/><br>  <br>
-	
-	 <input type="submit" id="btnAdd" value ="AddProduct"/>
-	 
-	 </form:form>
-	
+	 Phone:<form:input id="phone" path="phone" type="text" />
+	 <form:errors path="phone" cssStyle="color : red;" />
+		<br>	 
+	 Email:<form:input id="email" path="email" type="text" />
+	 <form:errors path="email" cssStyle="color : red;" />
+		<br>
+		<br>
+
+		<input type="submit" id="btnAdd" value=" Sign Up" />
+
+	</form:form>
+
 
 </body>
 </html>

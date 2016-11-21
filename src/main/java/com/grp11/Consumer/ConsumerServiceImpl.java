@@ -25,26 +25,27 @@ public class ConsumerServiceImpl implements IConsumerService{
 
 	@Override
 	public ConsumerDomain update(ConsumerDomain user) {
-		// TODO Auto-generated method stub
-		return null;
+		consumerDAO.save(user);	
+		return user;
 	}
 
 	@Override
 	public ConsumerDomain getUser(Long UserId) {
-		// TODO Auto-generated method stub
-		return null;
+		ConsumerDomain consumer = consumerDAO.findOne(UserId);
+		return consumer;
 	}
 
 	@Override
 	public void deleteUser(Long UserId) {
-		// TODO Auto-generated method stub
+		
+		consumerDAO.delete(UserId);
 		
 	}
 
 	@Override
 	public List<ConsumerDomain> getAllUser() {
-		// TODO Auto-generated method stub
-		return null;
+		List<ConsumerDomain> listofConsumer = (List<ConsumerDomain>) consumerDAO.findAll();
+		return listofConsumer;
 	}
 	
 	

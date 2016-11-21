@@ -8,11 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import com.grp11.address.Address;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.grp11.address.AddressDomain;
 
 @Entity
-@Table(name="Users")
+@Table(name="UserDomain")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="userRole")
 public abstract class UserDomain {
@@ -20,15 +24,39 @@ public abstract class UserDomain {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String firstName;
-	private String lastName;
-	private String codeNo;
-	private String confirmed;
 	
-	@Embedded
-	private Address address;
+	@NotEmpty(message="Please enter Your Firstname")
+	@Size(min=2, max=30,message="Please enter name with length min 2 and max 30")
+	private String firstName;
+	
+	@NotEmpty(message="Please enter Your Lastname")
+	@Size(min=2, max=30,message="Please enter name with length min 2 and max 30")	
+	private String lastName;
+	
+	@NotEmpty(message="Please enter Your Username")
+	@Size(min=2, max=30,message="Please enter name with length min 2 and max 30")		
+	private String username;
+	
+	@NotEmpty(message="Please enter Your Password")
+	private String password;
+	
+	@NotEmpty(message="Please enter street")
+	private String street;
+	
+	@NotEmpty(message="Please enter city")
+	private String city;
+	
+	@NotEmpty(message="Please enter zip")
+	private String zip;
+	
+	@NotEmpty(message="Please enter email")
 	private String email;
+	
+	@NotEmpty(message="Please enter phone")
 	private String phone;
+	
+	private String role;
+	
 	public Long getId() {
 		return id;
 	}
@@ -48,26 +76,16 @@ public abstract class UserDomain {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getCodeNo() {
-		return codeNo;
-	}
-	public void setCodeNo(String codeNo) {
-		this.codeNo = codeNo;
-	}	
+	
 		
 	
-	public String getConfirmed() {
-		return confirmed;
+	public String getUsername() {
+		return username;
 	}
-	public void setConfirmed(String confirmed) {
-		this.confirmed = confirmed;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public Address getAddress() {
-		return address;
-	}
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+	
 	public String getPhone() {
 		return phone;
 	}
@@ -80,5 +98,39 @@ public abstract class UserDomain {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public String getStreet() {
+		return street;
+	}
+	public void setStreet(String street) {
+		this.street = street;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getZip() {
+		return zip;
+	}
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+	
+	
 	
 }

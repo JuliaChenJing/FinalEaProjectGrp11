@@ -9,7 +9,7 @@ public interface IConsumerService {
 	public void addConsumer(ConsumerDomain user);
 	public ConsumerDomain update(ConsumerDomain user);
 	public ConsumerDomain getUser(Long UserId);
-	public void deleteUser(Long UserId);
+	public void deleteUser(Long id);
 	public List<ConsumerDomain> getAllUser();
 	
 	
