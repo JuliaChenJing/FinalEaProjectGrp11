@@ -1,4 +1,5 @@
 package com.grp11.suppliers;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.*;
@@ -9,6 +10,11 @@ import com.grp11.products.*;
 
 @Entity
 public class SupplierDomain {
+	@Override
+	public String toString() {
+		return "SupplierDomain [id=" + id + ", description=" + description + ", name=" + name + ", logo="
+				+ Arrays.toString(logo) + ", products=" + products + "]";
+	}
 	@Id
 	@GeneratedValue
     private long id;
