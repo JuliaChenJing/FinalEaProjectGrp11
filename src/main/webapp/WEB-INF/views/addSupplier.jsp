@@ -115,7 +115,7 @@
                     <!--First row-->
                     <div class="row col-md-8 col-md-offset-4">
                         <div class="widget-wrapper">
-                        <h4>Credit Info:</h4>
+                        <h4>Supplier Info:</h4>
                         <br>
                         <form class="card" method="post" action="/suppliers/add" enctype="multipart/form-data">
                             <div class="card-block">
