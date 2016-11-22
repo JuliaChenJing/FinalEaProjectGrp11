@@ -84,8 +84,6 @@ public class ConsumerCtrl {
 		return "customerList";
 	}
 	
-<<<<<<< HEAD
-=======
 	@RequestMapping(value= "/{id}/updateaddress", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public void updateCustomerAddress(@PathVariable("id") Long id, String street, String city, String zip){
@@ -104,7 +102,6 @@ public class ConsumerCtrl {
 		modelAndView.setViewName("welcomeProduct");
 		return modelAndView;
 	}*/
->>>>>>> 6f9b56950f71bb2dcbf32cb4faa5a3103020f818
 	
 	
 	
