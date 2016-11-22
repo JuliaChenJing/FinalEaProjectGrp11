@@ -42,6 +42,13 @@ public class ProductCtrl {
 		return "displayProducts";
 	}
 	
+	@RequestMapping(value = "/list/all", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public String getProducts(Model model) throws UnsupportedEncodingException {
+		model.addAttribute("allProducts", productService.getAllProduct());
+		return "listProducts";
+	}
+	
 	@RequestMapping(value = "/category/{categoryId}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String getAllProductsForCategory(Model model, @PathVariable("categoryId") long categoryId) {
@@ -72,7 +79,6 @@ public class ProductCtrl {
 		return "addProduct";
 	}
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.CREATED)
 	public String addProduct(ProductDomain Product, BindingResult result, Long supplierId, Long categoryId, @RequestParam MultipartFile productImage) throws IOException {
 		if (productImage != null) {
 			Product.setProductImage(productImage.getBytes());
@@ -81,7 +87,7 @@ public class ProductCtrl {
 		Product.setSupplier(supplierService.getSupplier(supplierId));
 		productService.createProduct(Product);
 		System.out.println(Product.getProductImage());
-		return "redirect:/orders/";
+		return "redirect:/products/list/all";
 	}
 	
 	@RequestMapping(value = "/{productId}", method = RequestMethod.GET)
@@ -94,7 +100,6 @@ public class ProductCtrl {
 	}
 	
 	@RequestMapping(value = "/{ProductId}/update", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.OK)
 	public String updateProduct(ProductDomain Product, BindingResult result, @PathVariable("ProductId") long ProductId, Long supplierId, Long categoryId) {
 		Product.setCategory(categoryService.getCategory(categoryId));
 		Product.setSupplier(supplierService.getSupplier(supplierId));
@@ -108,7 +113,7 @@ public class ProductCtrl {
 	public String deleteProduct(@PathVariable("ProductId") long ProductId) {
 		
 		productService.deleteProduct(ProductId);
-		return "redirect:/orders";
+		return "redirect:/products/list/all";
 	}
 
 }

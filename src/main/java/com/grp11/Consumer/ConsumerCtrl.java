@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+=======
+>>>>>>> 6f9b56950f71bb2dcbf32cb4faa5a3103020f818
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -81,6 +84,27 @@ public class ConsumerCtrl {
 		return "customerList";
 	}
 	
+<<<<<<< HEAD
+=======
+	@RequestMapping(value= "/{id}/updateaddress", method=RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public void updateCustomerAddress(@PathVariable("id") Long id, String street, String city, String zip){
+		UserDomain user = userService.getUser(id);
+		user.setCity(city);
+		user.setZip(zip);
+		user.setStreet(street);
+		userService.update(user);
+	}
+	
+	/*@RequestMapping(value={"","/showProduct"}, method = RequestMethod.GET)
+	public ModelAndView  showWelcomeProduct(){
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.addObject("products",productService.getallProducts());
+		modelAndView.setViewName("welcomeProduct");
+		return modelAndView;
+	}*/
+>>>>>>> 6f9b56950f71bb2dcbf32cb4faa5a3103020f818
 	
 	
 	

@@ -1,11 +1,18 @@
 package com.grp11.Domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.grp11.Order.OrderDomain;
+import com.grp11.payment.PaymentDomain;
 
 @Entity
 
@@ -45,6 +52,25 @@ public class UserDomain {
 	//@NotEmpty(message="Please enter phone")
 	private String phone;
 	
+	@OneToMany(mappedBy="consumer")
+	private List<OrderDomain> orders;
+	@OneToOne(mappedBy="consumer")
+	private PaymentDomain payment;
+	public PaymentDomain getPayment() {
+		return payment;
+	}
+
+	public void setPayment(PaymentDomain p) {
+		this.payment = p;
+	}
+
+	public List<OrderDomain> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<OrderDomain> orders) {
+		this.orders = orders;
+	}
 	private String role = "USER";
 	
 	public Long getId() {

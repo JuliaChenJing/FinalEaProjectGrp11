@@ -2,6 +2,7 @@ package com.grp11.suppliers;
 
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -37,16 +38,20 @@ public class SupplierCtrl {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.CREATED)
 	public String addSupplier(SupplierDomain Supplier, BindingResult bindingResult, @RequestParam MultipartFile logo) throws IOException {
 		if (logo != null) {
 			Supplier.setLogo(logo.getBytes());
         }
 		System.out.println("inside supplier add");
 		SupplierService.createSupplier(Supplier);
-		return "redirect:/orders";
+		return "redirect:/suppliers/list/all";
 	}
-	
+	@RequestMapping(value = "/list/all", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public String getProducts(Model model) throws UnsupportedEncodingException {
+		model.addAttribute("allSuppliers", SupplierService.getAllSupplier());
+		return "listSuppliers";
+	}
 	@RequestMapping(value = "/{supplierId}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String getSupplier(Model model, @PathVariable("supplierId") long supplierId) {
@@ -55,14 +60,13 @@ public class SupplierCtrl {
 	}
 	
 	@RequestMapping(value = "/{supplierId}/update", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.OK)
 	public String updateSupplier(SupplierDomain Supplier, @PathVariable("supplierId") long supplierId, @RequestParam MultipartFile logo) throws IOException {
 		if (logo != null) {
 			Supplier.setLogo(logo.getBytes());
         }
 		Supplier.setId(supplierId);
 		SupplierService.updateSupplier(Supplier);
-		return "redirect:/orders";
+		return "redirect:/suppliers/list/all";
 	}
 	
 	@RequestMapping(value = "/image/{supplierId}", method = RequestMethod.GET)

@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 
@@ -109,49 +108,48 @@
         <!--Main layout-->
         <div class="container">
             <div class="row">
-                <!--Main column-->
-                <div class="col-md-12">
 
-                    <!--First row-->
-                    <div class="row col-md-8 col-md-offset-4">
-                        <div class="widget-wrapper">
-                        <h4>Credit Info:</h4>
+                <!--Sidebar-->
+                <div class="col-md-4">
+
+                    <div class="widget-wrapper">
+                        <h4>Categories:</h4>
                         <br>
-                        <form class="card" method="post" action="/payments/1/new">
-                            <div class="card-block">
-                                <p><strong>Add your card detail</strong></p>
-                                <div class="md-form">
-                                    <i class="fa fa-credit-card prefix"></i>
-                                    <input type="text" id="cardType" class="form-control" name="cardType" value="Credit" readonly="readonly" />
-                                    <label for="cardType">Card Type {Currently only credit card is supported}</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fa fa-credit-card prefix"></i>
-                                    <input type="text" id="cardNumber" class="form-control" name="cardNumber">
-                                    <label for="cardNumber">Card Number</label>
-                                </div>
-                                <div class="md-form">
-                                        <i class="fa fa-credit-card prefix"></i>
-                                        <input type="text" id="CVV" class="form-control" name="CVV">
-                                        <label for="CVV">CVV</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fa fa-credit-card prefix"></i>
-                                    <input type="text" id="ExpirtyDate" class="form-control" name="expiryDate">
-                                    <label for="ExpirtyDate">DD/MM/YYYY</label>
-                                </div>
-                                <div class="md-form clearfix">
-                                    <i class="fa fa-credit-card prefix"></i>
-                                    <input type="text" id="nameOnCard" class="form-control" name="nameOnCard">
-                                    <label for="nameOnCard">Name on your card</label>
-                                </div>
-                                <button class="btn btn-primary">Submit</button>
+                        <div class="list-group">
+                            <a href="/products/list/all" class="list-group-item">View Products</a>
+                            <a href="/suppliers/list/all" class="list-group-item ">View Supplier</a>
+                            <a href="/category/list/all" class="list-group-item active">View Category</a>
+                        </div>
+                    </div>
+                </div>
+                <!--/.Sidebar-->
+                      <!--Main layout-->
+        <div class="container">
+            <div class="row">
 
+                <!--Main column-->
+                <div class="col-md-8">
+
+                    <div class="row">
+
+                        <!--Heading-->
+                        <div class="Products">
+                            <h2 class="h2-responsive">Products</h2>
+                            <a href="/category/add"><button class="btn btn-primary">Add Category</button></a>
+                        </div>
+
+                        <!--First review-->
+                        <c:forEach var="category" items="${allCategory}">
+                            <div class="media">
+                                <a class="media-right" href="/category/${category.id}">
+                                    <button class="btn btn-primary" style=" width: 500px; text-align: left"> ${category.name}</button>
+                                </a>
                             </div>
-                        </form>
+
+                        </c:forEach>
                     </div>
-                    </div>
-                    <!--/.First row-->
+                    <!--/.Second row-->
+
                 </div>
                 <!--/.Main column-->
 
@@ -159,7 +157,14 @@
         </div>
         <!--/.Main layout-->
 
+            </div>
+        </div>
+          <!--/.Main layout-->
+
     </main>
+
+   
+
 
     <!-- SCRIPTS -->
 

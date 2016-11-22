@@ -1,5 +1,7 @@
 package com.grp11.Order;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -39,21 +41,24 @@ public class OrderCtrl {
 	}
 	
 	@RequestMapping(value = "/{UserId}/{ProductId}/new", method = RequestMethod.POST)
-	public String addConsumer(OrderDomain order, @PathVariable("UserId") long UserId, @PathVariable("ProductId") long ProductId) {
+	public String addConsumer(OrderDomain order, @PathVariable("UserId") long UserId, @PathVariable("ProductId") long ProductId, int quantity) {
 		UserDomain c = consumerService.getUser(UserId);
 		ProductDomain p = productService.getProduct(ProductId);
-		System.out.println("some one is not here");
-//		order.setProduct(p);
+		int finalprice = quantity * p.getUnitPrice();
+		order.setPrice(finalprice);
+		order.setProduct(p);
 		order.setConsumer(c);
 		orderService.createOrder(order);
 		return "redirect:/orders/";
 	}
 	
 	@RequestMapping(value = "/{UserId}/{ProductId}/{OrderId}", method = RequestMethod.POST)
-	public String updateConsumer(@RequestBody OrderDomain order, @PathVariable("UserId") long UserId, @PathVariable("UserId") long ProductId) {
+	public String updateConsumer(@RequestBody OrderDomain order, @PathVariable("UserId") long UserId, @PathVariable("UserId") long ProductId, int quantity) {
 		UserDomain c = consumerService.getUser(UserId);
 		ProductDomain p = productService.getProduct(ProductId);
-//		order.setProduct(p);
+		int finalprice = quantity * p.getUnitPrice();
+		order.setPrice(finalprice);
+		order.setProduct(p);
 		order.setConsumer(c);
 		orderService.updateOrder(order);
 		return "redirect:/orders/";
@@ -69,8 +74,14 @@ public class OrderCtrl {
 	@RequestMapping(value = "/{UserId}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String getAllOrdersForSpecificUser(@PathVariable("UserId") long UserId, Model model) {
-		model.addAttribute("allOrders", orderService.getAllOrderForUser(UserId));
-		return "home2";
+		List<OrderDomain> listOrder = orderService.getAllOrderForUser(UserId);
+		model.addAttribute("allOrders", listOrder);
+		int total = 0;
+		for(OrderDomain o : listOrder) {
+			total += o.getPrice();
+		}
+		model.addAttribute("total", total);
+		return "listAllOrdersForUser";
 	}
 
 }

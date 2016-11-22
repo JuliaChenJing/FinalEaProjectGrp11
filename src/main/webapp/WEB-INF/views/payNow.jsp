@@ -109,50 +109,53 @@
         <!--Main layout-->
         <div class="container">
             <div class="row">
-                <!--Main column-->
-                <div class="col-md-12">
 
-                    <!--First row-->
-                    <div class="row col-md-8 col-md-offset-4">
-                        <div class="widget-wrapper">
-                        <h4>Credit Info:</h4>
-                        <br>
+                <!--Main column-->
+                <div class="col-md-8">
+
+                    <div class="row">
+
+                        <!--Heading-->
+                        <div class="Products">
+                            <h2 class="h2-responsive">Order</h2>
+                            <c:forEach var="order" items="${allOrders}">
+                                <li>${order.product.name} : ${order.price}</li>
+                            </c:forEach>
+                            <p>Your total : ${total}</p>
+                        </div>
+
                         <form class="card" method="post" action="/payments/1/new">
                             <div class="card-block">
-                                <p><strong>Add your card detail</strong></p>
+                                <p><strong>Update your address</strong></p>
                                 <div class="md-form">
                                     <i class="fa fa-credit-card prefix"></i>
-                                    <input type="text" id="cardType" class="form-control" name="cardType" value="Credit" readonly="readonly" />
-                                    <label for="cardType">Card Type {Currently only credit card is supported}</label>
+                                    <input type="text" id="city" class="form-control" name="city" value="${user.city}" />
+                                    <label for="city">City</label>
                                 </div>
                                 <div class="md-form">
                                     <i class="fa fa-credit-card prefix"></i>
-                                    <input type="text" id="cardNumber" class="form-control" name="cardNumber">
-                                    <label for="cardNumber">Card Number</label>
+                                    <input type="text" id="street" class="form-control" name="street" value="${user.street}">
+                                    <label for="street">Street Address</label>
                                 </div>
                                 <div class="md-form">
                                         <i class="fa fa-credit-card prefix"></i>
-                                        <input type="text" id="CVV" class="form-control" name="CVV">
-                                        <label for="CVV">CVV</label>
+                                        <input type="text" id="Zip" class="form-control" name="zip" value="${user.zip}">
+                                        <label for="Zip">Zip</label>
                                 </div>
-                                <div class="md-form">
-                                    <i class="fa fa-credit-card prefix"></i>
-                                    <input type="text" id="ExpirtyDate" class="form-control" name="expiryDate">
-                                    <label for="ExpirtyDate">DD/MM/YYYY</label>
-                                </div>
-                                <div class="md-form clearfix">
-                                    <i class="fa fa-credit-card prefix"></i>
-                                    <input type="text" id="nameOnCard" class="form-control" name="nameOnCard">
-                                    <label for="nameOnCard">Name on your card</label>
-                                </div>
-                                <button class="btn btn-primary">Submit</button>
-
+                                <button type="button" id="updateAddress" class="btn btn-primary">Submit</button>
                             </div>
                         </form>
                     </div>
+                    <div class="row">
+                        <button class="btn btn-primary" id="makePay">Make Payment</button>
                     </div>
-                    <!--/.First row-->
+
+                    <div class="row">
+                        <a href="/payments/1"><button class="btn btn-primary">Update credit card</button></a>
+                    </div>
+                    <!--/.Second row-->
                 </div>
+
                 <!--/.Main column-->
 
             </div>
@@ -174,8 +177,46 @@
 
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="/js/mdb.min.js"></script>
+     <script type="text/javascript">
+        $( document ).ready(function() {
+            $("#updateAddress").click(function() {
+                
+                var updateBtn = confirm("Do you want to update your Address?");
+                if(updateBtn) {
+                    $.ajax({
+                        url: '/consumer/1/updateaddress',
+                        data: {
+                            "street": $("#street").val(),
+                            "city": $("#city").val(),
+                            "zip": $("#zip").val()
+                        },
+                        type: 'POST',
+                        success: function(result) {
+                            alert("update successful");
+                        }
+                    });
+                }
+            });
 
-
+            $("#makePay").click(function() {
+                
+                var updateBtn = confirm("Do you want to pay now?");
+                if(updateBtn) {
+                    $.ajax({
+                        url: '/payments/1/pay',
+                        type: 'POST',
+                        success: function(result) {
+                            alert("Your purchase will arrive within 30 minutes or its on us. Mean while go buy some more");
+                            window.location.href="/products/";
+                        },
+                        error: function() {
+                            alert("it seems you don't have enough credit on your account. Please use another card");
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

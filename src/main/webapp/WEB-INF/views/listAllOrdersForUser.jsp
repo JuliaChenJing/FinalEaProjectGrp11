@@ -109,50 +109,51 @@
         <!--Main layout-->
         <div class="container">
             <div class="row">
-                <!--Main column-->
-                <div class="col-md-12">
 
-                    <!--First row-->
-                    <div class="row col-md-8 col-md-offset-4">
-                        <div class="widget-wrapper">
-                        <h4>Credit Info:</h4>
-                        <br>
-                        <form class="card" method="post" action="/payments/1/new">
-                            <div class="card-block">
-                                <p><strong>Add your card detail</strong></p>
-                                <div class="md-form">
-                                    <i class="fa fa-credit-card prefix"></i>
-                                    <input type="text" id="cardType" class="form-control" name="cardType" value="Credit" readonly="readonly" />
-                                    <label for="cardType">Card Type {Currently only credit card is supported}</label>
+                <!--Main column-->
+                <div class="col-md-8">
+
+                    <div class="row">
+
+                        <!--Heading-->
+                        <div class="Products">
+                            <h2 class="h2-responsive">Order</h2>
+                            <p>Your total : ${total}</p>
+                        </div>
+
+                        <!--First review-->
+                        <c:forEach var="order" items="${allOrders}">
+                            <div class="media">
+                                <a class="media-left" href="/orders/1/${order.product.id}/${order.id}">
+                                    <img class="img-circle" src="/products/image/${order.product.id}" alt="Generic placeholder image" width="50px">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">${order.product.name}</h4>
+                                    <ul class="rating inline-ul">
+                                        <li><i class="fa fa-star amber-text"></i></li>
+                                        <li><i class="fa fa-star amber-text"></i></li>
+                                        <li><i class="fa fa-star amber-text"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                    </ul>
+                                    <p>Price: ${order.product.unitPrice}</p>
+                                    <p>Description: ${order.product.description}</p>
+                                    <p>Total: ${order.price}</p>
                                 </div>
-                                <div class="md-form">
-                                    <i class="fa fa-credit-card prefix"></i>
-                                    <input type="text" id="cardNumber" class="form-control" name="cardNumber">
-                                    <label for="cardNumber">Card Number</label>
-                                </div>
-                                <div class="md-form">
-                                        <i class="fa fa-credit-card prefix"></i>
-                                        <input type="text" id="CVV" class="form-control" name="CVV">
-                                        <label for="CVV">CVV</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fa fa-credit-card prefix"></i>
-                                    <input type="text" id="ExpirtyDate" class="form-control" name="expiryDate">
-                                    <label for="ExpirtyDate">DD/MM/YYYY</label>
-                                </div>
-                                <div class="md-form clearfix">
-                                    <i class="fa fa-credit-card prefix"></i>
-                                    <input type="text" id="nameOnCard" class="form-control" name="nameOnCard">
-                                    <label for="nameOnCard">Name on your card</label>
-                                </div>
-                                <button class="btn btn-primary">Submit</button>
+                                <a class="media-right" href="#">
+                                    <img class="img-circle" src="/suppliers/image/${order.product.supplier.id}" alt="Generic placeholder image" width="50px">
+                                </a>
 
                             </div>
-                        </form>
+
+                        </c:forEach>
                     </div>
+                    <div class="row">
+                        <a href="/payments/1/makepayment"><button class="btn btn-primary">Start Payment</button></a>
                     </div>
-                    <!--/.First row-->
+                    <!--/.Second row-->
                 </div>
+
                 <!--/.Main column-->
 
             </div>
@@ -174,7 +175,6 @@
 
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="/js/mdb.min.js"></script>
-
 
 </body>
 
