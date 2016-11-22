@@ -97,8 +97,9 @@ public class PaymentCtrl {
 	
 	@RequestMapping(value = "/{UserId}/pay", method = RequestMethod.POST)//Browser doesn't supprot put method
 	public void payNow(@PathVariable("UserId") long UserId, HttpServletResponse response) {
-		System.out.println("here");
-		PaymentDomain payment = paymentService.getPayment(UserId);
+		System.out.println("hereeeeee");
+		PaymentDomain payment = paymentService.getAllPaymentForUser(UserId).get(0);
+		System.out.println(payment.getCardNumber());
 		if(checkValidation(payment, PaymentServiceURL)) {
 			System.out.println("successful");
 			List<OrderDomain> listOrder = orderService.getAllOrderForUser(UserId);

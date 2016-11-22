@@ -93,7 +93,7 @@
                     </ul>
                     <!--Search form-->
                     <form class="form-inline">
-                        <input class="form-control" type="text" placeholder="Search">
+                        <a href="/logout"><button class="btn btn-danger">logout</button></a>
                     </form>
                 </div>
                 <!--/.Collapse content-->

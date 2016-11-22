@@ -1,11 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<sec:authorize var="loggedIn" access="isAuthenticated()" />
-<c:if test="${not empty pageContext.request.userPrincipal}">
-    User <c:out value="${pageContext.request.userPrincipal}" />
-</c:if>
-
 <html>
 <head>
 
@@ -98,7 +93,7 @@
                     </ul>
                     <!--Search form-->
                     <form class="form-inline">
-                        <input class="form-control" type="text" placeholder="Search">
+                        <a href="/logout"><button class="btn btn-danger">logout</button></a>
                     </form>
                 </div>
                 <!--/.Collapse content-->

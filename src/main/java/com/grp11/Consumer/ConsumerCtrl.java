@@ -43,7 +43,12 @@ public class ConsumerCtrl {
 		System.out.println("stupid app");
 		System.out.println(username);
 		UserDomain u = userService.getUserbyUserName(username);
-		req.getSession().setAttribute("userId", u.getId());
+		
+		if(u != null)
+			req.getSession().setAttribute("userId", u.getId());
+		if(u != null && u.getRole().equals("USER")) {
+			return "redirect:/products/";
+		}
 		return "welcome";
 	}
 	

@@ -38,10 +38,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.authorizeRequests()
 		.antMatchers("/signUp").permitAll()
 		.antMatchers("/consumer/signUp").permitAll()
+		.antMatchers("/consumer/welcome").permitAll()
 		.antMatchers("/login").permitAll()
 		.antMatchers("/loginchecker").authenticated()
-		.antMatchers("/suppliers/**").hasRole("ADMIN")
 		.antMatchers("/products/**").hasAuthority("USER")
+		.antMatchers("/payments/**").hasAuthority("USER")
+		.antMatchers("/orders/**").hasAuthority("USER")
+		.antMatchers("/**").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()
@@ -49,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.successForwardUrl("/consumer/welcome")
 		.permitAll()
 		.and()
-		.logout().logoutSuccessUrl("/").permitAll();
+		.logout().logoutSuccessUrl("/login").permitAll();
 	}
 	
 	@Autowired

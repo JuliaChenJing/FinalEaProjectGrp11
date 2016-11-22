@@ -49,7 +49,7 @@ public class OrderCtrl {
 		order.setProduct(p);
 		order.setConsumer(c);
 		orderService.createOrder(order);
-		return "redirect:/orders/";
+		return "redirect:/products/";
 	}
 	
 	@RequestMapping(value = "/{UserId}/{ProductId}/{OrderId}", method = RequestMethod.POST)
@@ -61,7 +61,7 @@ public class OrderCtrl {
 		order.setProduct(p);
 		order.setConsumer(c);
 		orderService.updateOrder(order);
-		return "redirect:/orders/";
+		return "redirect:/products/";
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.DELETE)
