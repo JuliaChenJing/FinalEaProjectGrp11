@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
 <html>
 <head>
 
@@ -81,7 +81,7 @@
                             <a class="nav-link" href="/products">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/orders/1">Shopping Cart</a>
+                            <a class="nav-link" href="/orders/${userId}">Shopping Cart</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Pricing</a>
@@ -117,7 +117,7 @@
                         <div class="widget-wrapper">
                         <h4>Credit Info:</h4>
                         <br>
-                        <form class="card" method="post" action="/payments/1/new">
+                        <form class="card" method="post" action="/payments/${userId}/new">
                             <div class="card-block">
                                 <p><strong>Add your card detail</strong></p>
                                 <div class="md-form">

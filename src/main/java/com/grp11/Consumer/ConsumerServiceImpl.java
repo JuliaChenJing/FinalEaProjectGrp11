@@ -48,13 +48,11 @@ public class ConsumerServiceImpl implements IConsumerService{
 		return listofConsumer;
 	}
 
-	/*@Override
+	@Override
 	public UserDomain getUserbyUserName(String username) {
-		// TODO Auto-generated method stub
 		return consumerDAO.findByUsername(username);
 		
 	}
-	*/
 	
 
 }

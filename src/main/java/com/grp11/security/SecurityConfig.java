@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.authorizeRequests()
 		.antMatchers("/signUp").permitAll()
 		.antMatchers("/consumer/signUp").permitAll()
+		.antMatchers("/login").permitAll()
 		.antMatchers("/loginchecker").authenticated()
 		.antMatchers("/suppliers/**").hasRole("ADMIN")
 		.antMatchers("/products/**").hasAuthority("USER")
@@ -64,9 +65,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                   	.roles("ADMIN");
 		auth.jdbcAuthentication().dataSource(dataSource)
 		.usersByUsernameQuery(
-				"select user_domain.id,user_domain.username,user_domain.password,1 from user_domain where user_domain.username=?")
+				"select user_domain.username,user_domain.password,1 from user_domain where user_domain.username=?")
 		.authoritiesByUsernameQuery(
-				"select user_domain.id,user_domain.username,user_domain.role from user_domain where user_domain.username=?");
+				"select user_domain.username,user_domain.role from user_domain where user_domain.username=?");
     }
 	
 	@Override

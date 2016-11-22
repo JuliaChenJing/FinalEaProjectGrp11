@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
 <html>
 <head>
 
@@ -81,7 +81,7 @@
                             <a class="nav-link" href="/products">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/orders/1">Shopping Cart</a>
+                            <a class="nav-link" href="/orders/${userId}">Shopping Cart</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Pricing</a>
@@ -124,7 +124,7 @@
                             <p>Your total : ${total}</p>
                         </div>
 
-                        <form class="card" method="post" action="/payments/1/new">
+                        <form class="card" method="post" action="/payments/${userId}/new">
                             <div class="card-block">
                                 <p><strong>Update your address</strong></p>
                                 <div class="md-form">
@@ -151,7 +151,7 @@
                     </div>
 
                     <div class="row">
-                        <a href="/payments/1"><button class="btn btn-primary">Update credit card</button></a>
+                        <a href="/payments/${userId}"><button class="btn btn-primary">Update credit card</button></a>
                     </div>
                     <!--/.Second row-->
                 </div>
@@ -184,7 +184,7 @@
                 var updateBtn = confirm("Do you want to update your Address?");
                 if(updateBtn) {
                     $.ajax({
-                        url: '/consumer/1/updateaddress',
+                        url: '/consumer/${userId}/updateaddress',
                         data: {
                             "street": $("#street").val(),
                             "city": $("#city").val(),
@@ -203,7 +203,7 @@
                 var updateBtn = confirm("Do you want to pay now?");
                 if(updateBtn) {
                     $.ajax({
-                        url: '/payments/1/pay',
+                        url: '/payments/${userId}/pay',
                         type: 'POST',
                         success: function(result) {
                             alert("Your purchase will arrive within 30 minutes or its on us. Mean while go buy some more");

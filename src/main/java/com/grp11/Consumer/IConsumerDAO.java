@@ -11,7 +11,7 @@ import com.grp11.Domain.UserDomain;
 
 public interface IConsumerDAO extends CrudRepository<UserDomain, Long>{
 
-	@Query("select u.username from UserDomain u where u.username= :username")
+	@Query("from UserDomain u where u.username= :username")
 	public UserDomain findByUsername(@Param("username") String username);
 
 
