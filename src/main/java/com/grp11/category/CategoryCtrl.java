@@ -38,7 +38,6 @@ public class CategoryCtrl {
 	}
 	
 	@RequestMapping(value = "/{categoryId}/update", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.OK)
 	public String updateCategory(CategoryDomain Category, @PathVariable("categoryId") long categoryId) {
 		Category.setId(categoryId);
 		CategoryService.updateCategory(Category);

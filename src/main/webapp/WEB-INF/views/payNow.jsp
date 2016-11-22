@@ -110,22 +110,6 @@
         <div class="container">
             <div class="row">
 
-                <!--Sidebar-->
-                <div class="col-md-4">
-
-                    <div class="widget-wrapper">
-                        <h4>Categories:</h4>
-                        <br>
-                        <div class="list-group">
-                            <c:forEach var="category" items="${categories}">
-                                <a href="/products/category/${category.id}" <c:if test="${requestedCategory == category.id}">class="list-group-item active"</c:if> <c:if test="${requestedCategory != category.id}">class="list-group-item"</c:if>>${category.name}</a>
-                            </c:forEach>
-                        </div>
-                    </div>
-
-                </div>
-                <!--/.Sidebar-->
-
                 <!--Main column-->
                 <div class="col-md-8">
 
@@ -133,37 +117,45 @@
 
                         <!--Heading-->
                         <div class="Products">
-                            <h2 class="h2-responsive">Products</h2>
+                            <h2 class="h2-responsive">Order</h2>
+                            <c:forEach var="order" items="${allOrders}">
+                                <li>${order.product.name} : ${order.price}</li>
+                            </c:forEach>
+                            <p>Your total : ${total}</p>
                         </div>
 
-                        <!--First review-->
-                        <c:forEach var="product" items="${allProducts}">
-                            <div class="media">
-                                <a class="media-left" href="/orders/1/${product.id}/new">
-                                    <img class="img-circle" src="/products/image/${product.id}" alt="Generic placeholder image" width="50px">
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">${product.name}</h4>
-                                    <ul class="rating inline-ul">
-                                        <li><i class="fa fa-star amber-text"></i></li>
-                                        <li><i class="fa fa-star amber-text"></i></li>
-                                        <li><i class="fa fa-star amber-text"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                    </ul>
-                                    <p>Price: ${product.unitPrice}</p>
-                                    <p>Description: ${product.description}</p>
+                        <form class="card" method="post" action="/payments/1/new">
+                            <div class="card-block">
+                                <p><strong>Update your address</strong></p>
+                                <div class="md-form">
+                                    <i class="fa fa-credit-card prefix"></i>
+                                    <input type="text" id="city" class="form-control" name="city" value="${user.city}" />
+                                    <label for="city">City</label>
                                 </div>
-                                <a class="media-right" href="#">
-                                    <img class="img-circle" src="/suppliers/image/${product.supplier.id}" alt="Generic placeholder image" width="50px">
-                                </a>
+                                <div class="md-form">
+                                    <i class="fa fa-credit-card prefix"></i>
+                                    <input type="text" id="street" class="form-control" name="street" value="${user.street}">
+                                    <label for="street">Street Address</label>
+                                </div>
+                                <div class="md-form">
+                                        <i class="fa fa-credit-card prefix"></i>
+                                        <input type="text" id="Zip" class="form-control" name="zip" value="${user.zip}">
+                                        <label for="Zip">Zip</label>
+                                </div>
+                                <button type="button" id="updateAddress" class="btn btn-primary">Submit</button>
                             </div>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-primary" id="makePay">Make Payment</button>
+                    </div>
 
-                        </c:forEach>
+                    <div class="row">
+                        <a href="/payments/1"><button class="btn btn-primary">Update credit card</button></a>
                     </div>
                     <!--/.Second row-->
-
                 </div>
+
                 <!--/.Main column-->
 
             </div>
@@ -175,20 +167,54 @@
     <!-- SCRIPTS -->
 
     <!-- JQuery -->
-    <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-2.2.3.min.js"></script>
 
     <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="js/tether.min.js"></script>
+    <script type="text/javascript" src="/js/tether.min.js"></script>
 
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
     <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="js/mdb.min.js"></script>
-
-    <script type="text/javascript">
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
+     <script type="text/javascript">
         $( document ).ready(function() {
-            
+            $("#updateAddress").click(function() {
+                
+                var updateBtn = confirm("Do you want to update your Address?");
+                if(updateBtn) {
+                    $.ajax({
+                        url: '/consumer/1/updateaddress',
+                        data: {
+                            "street": $("#street").val(),
+                            "city": $("#city").val(),
+                            "zip": $("#zip").val()
+                        },
+                        type: 'POST',
+                        success: function(result) {
+                            alert("update successful");
+                        }
+                    });
+                }
+            });
+
+            $("#makePay").click(function() {
+                
+                var updateBtn = confirm("Do you want to pay now?");
+                if(updateBtn) {
+                    $.ajax({
+                        url: '/payments/1/pay',
+                        type: 'POST',
+                        success: function(result) {
+                            alert("Your purchase will arrive within 30 minutes or its on us. Mean while go buy some more");
+                            window.location.href="/products/";
+                        },
+                        error: function() {
+                            alert("it seems you don't have enough credit on your account. Please use another card");
+                        }
+                    });
+                }
+            });
         });
     </script>
 </body>

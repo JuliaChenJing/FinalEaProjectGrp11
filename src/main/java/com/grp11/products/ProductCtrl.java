@@ -72,7 +72,6 @@ public class ProductCtrl {
 		return "addProduct";
 	}
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.CREATED)
 	public String addProduct(ProductDomain Product, BindingResult result, Long supplierId, Long categoryId, @RequestParam MultipartFile productImage) throws IOException {
 		if (productImage != null) {
 			Product.setProductImage(productImage.getBytes());
@@ -94,7 +93,6 @@ public class ProductCtrl {
 	}
 	
 	@RequestMapping(value = "/{ProductId}/update", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.OK)
 	public String updateProduct(ProductDomain Product, BindingResult result, @PathVariable("ProductId") long ProductId, Long supplierId, Long categoryId) {
 		Product.setCategory(categoryService.getCategory(categoryId));
 		Product.setSupplier(supplierService.getSupplier(supplierId));

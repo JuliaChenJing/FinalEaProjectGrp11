@@ -37,7 +37,6 @@ public class SupplierCtrl {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.CREATED)
 	public String addSupplier(SupplierDomain Supplier, BindingResult bindingResult, @RequestParam MultipartFile logo) throws IOException {
 		if (logo != null) {
 			Supplier.setLogo(logo.getBytes());
@@ -55,7 +54,6 @@ public class SupplierCtrl {
 	}
 	
 	@RequestMapping(value = "/{supplierId}/update", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.OK)
 	public String updateSupplier(SupplierDomain Supplier, @PathVariable("supplierId") long supplierId, @RequestParam MultipartFile logo) throws IOException {
 		if (logo != null) {
 			Supplier.setLogo(logo.getBytes());

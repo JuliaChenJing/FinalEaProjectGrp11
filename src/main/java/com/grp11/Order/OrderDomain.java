@@ -25,6 +25,14 @@ public class OrderDomain {
 	@Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", name="`updatedAt`")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedAt;
+	private boolean isPaid;
+	public boolean isPaid() {
+		return isPaid;
+	}
+
+	public void setPaid(boolean isPaid) {
+		this.isPaid = isPaid;
+	}
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="cust_id")

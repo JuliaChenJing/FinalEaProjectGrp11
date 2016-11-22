@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -45,7 +46,7 @@ public class PaymentDomain {
 	public long getId() {
 		return id;
 	}
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="cust_id")
 	public UserDomain consumer;
 	public UserDomain getConsumer() {

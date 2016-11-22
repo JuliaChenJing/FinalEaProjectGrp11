@@ -3,12 +3,14 @@ package com.grp11.Consumer;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.grp11.Domain.UserDomain;
@@ -55,6 +57,16 @@ public class ConsumerCtrl {
 	public void deleteCustomerProfile(@PathVariable("id") Long id){
 		userService.deleteUser(id);
 		
+	}
+	
+	@RequestMapping(value= "/{id}/updateaddress", method=RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public void updateCustomerAddress(@PathVariable("id") Long id, String street, String city, String zip){
+		UserDomain user = userService.getUser(id);
+		user.setCity(city);
+		user.setZip(zip);
+		user.setStreet(street);
+		userService.update(user);
 	}
 	
 	/*@RequestMapping(value={"","/showProduct"}, method = RequestMethod.GET)

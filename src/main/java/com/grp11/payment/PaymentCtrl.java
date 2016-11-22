@@ -1,5 +1,9 @@
 package com.grp11.payment;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -13,29 +17,35 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.grp11.Consumer.IConsumerService;
 import com.grp11.Domain.ConsumerDomain;
 import com.grp11.Domain.UserDomain;
+import com.grp11.Order.IOrderService;
+import com.grp11.Order.OrderDomain;
 import com.grp11.util.ResponseObj;
 @Controller
 @RequestMapping("/payments")
 public class PaymentCtrl {
 	private static final String ServiceURL = "http://localhost:3001/card_validation/isvalid?cardNumber=";
+	private static final String PaymentServiceURL = "http://localhost:3001/card_validation/hasbalance?cardNumber=";
 	@Autowired
 	private IPaymentService paymentService;
-
+	@Autowired
+	private IOrderService orderService;
+	@Autowired
+	private IConsumerService userService;
 	private RestTemplate restTemplate = new RestTemplate();
 	@Autowired
 	private IConsumerService consumerService;
-	private boolean checkValidation(PaymentDomain payment) {
-		String validationURL = ServiceURL + payment.getCardNumber();
+	private boolean checkValidation(PaymentDomain payment, String url) {
+		String validationURL = url + payment.getCardNumber();
 		ResponseObj r = restTemplate.getForObject(validationURL, ResponseObj.class);
 		System.out.println(r.toString());
 		return r.isSuccess() && r.isValid();
 	}
 	@RequestMapping(value = "/{UserId}/new", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.CREATED)
 	public String addPayment(PaymentDomain payment, @PathVariable("UserId") long UserId) {
-		if(checkValidation(payment)) {
+		if(checkValidation(payment, ServiceURL)) {
 			UserDomain c = consumerService.getUser(UserId);
 			payment.setConsumer(c);
+			System.out.println(c.getId());
 			paymentService.createPayment(payment);
 			return "redirect:/payments/" + UserId;
 		} else {
@@ -44,9 +54,8 @@ public class PaymentCtrl {
 	}
 	
 	@RequestMapping(value = "/{UserId}/{PaymentId}", method = RequestMethod.POST)//Browser doesn't supprot put method
-	@ResponseStatus(HttpStatus.CREATED)
 	public String updatePayment(PaymentDomain payment, @PathVariable("UserId") long UserId, @PathVariable("PaymentId") long PaymentId) {
-		if(checkValidation(payment)) {
+		if(checkValidation(payment, ServiceURL)) {
 			UserDomain c = consumerService.getUser(UserId);
 			payment.setConsumer(c);
 			payment.setId(PaymentId);
@@ -69,5 +78,38 @@ public class PaymentCtrl {
 		model.addAttribute("allPayments", paymentService.getAllPaymentForUser(UserId).get(0));
 		return "paymentFormEdit";
 	}
-
+	
+	@RequestMapping(value = {"/{UserId}/makepayment"}, method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public String makePayments(@PathVariable("UserId") long UserId, Model model) {
+		if(paymentService.getAllPaymentForUser(UserId).size()==0) return "paymentForm";
+		List<OrderDomain> listOrder = orderService.getAllOrderForUser(UserId);
+		model.addAttribute("allOrders", listOrder);
+		int total = 0;
+		for(OrderDomain o : listOrder) {
+			total += o.getPrice();
+		}
+		model.addAttribute("total", total);
+		model.addAttribute("user", userService.getUser(UserId));
+		model.addAttribute("allPayments", paymentService.getAllPaymentForUser(UserId).get(0));
+		return "payNow";
+	}
+	
+	@RequestMapping(value = "/{UserId}/pay", method = RequestMethod.POST)//Browser doesn't supprot put method
+	public void payNow(@PathVariable("UserId") long UserId, HttpServletResponse response) {
+		System.out.println("here");
+		PaymentDomain payment = paymentService.getPayment(UserId);
+		if(checkValidation(payment, PaymentServiceURL)) {
+			System.out.println("successful");
+			List<OrderDomain> listOrder = orderService.getAllOrderForUser(UserId);
+			for(OrderDomain o : listOrder) {
+				o.setPaid(true);
+				orderService.updateOrder(o);
+			}
+			
+		} else {
+			System.out.println("failure");
+			response.setStatus(403);
+		}
+	}
 }

@@ -110,22 +110,6 @@
         <div class="container">
             <div class="row">
 
-                <!--Sidebar-->
-                <div class="col-md-4">
-
-                    <div class="widget-wrapper">
-                        <h4>Categories:</h4>
-                        <br>
-                        <div class="list-group">
-                            <c:forEach var="category" items="${categories}">
-                                <a href="/products/category/${category.id}" <c:if test="${requestedCategory == category.id}">class="list-group-item active"</c:if> <c:if test="${requestedCategory != category.id}">class="list-group-item"</c:if>>${category.name}</a>
-                            </c:forEach>
-                        </div>
-                    </div>
-
-                </div>
-                <!--/.Sidebar-->
-
                 <!--Main column-->
                 <div class="col-md-8">
 
@@ -133,17 +117,18 @@
 
                         <!--Heading-->
                         <div class="Products">
-                            <h2 class="h2-responsive">Products</h2>
+                            <h2 class="h2-responsive">Order</h2>
+                            <p>Your total : ${total}</p>
                         </div>
 
                         <!--First review-->
-                        <c:forEach var="product" items="${allProducts}">
+                        <c:forEach var="order" items="${allOrders}">
                             <div class="media">
-                                <a class="media-left" href="/orders/1/${product.id}/new">
-                                    <img class="img-circle" src="/products/image/${product.id}" alt="Generic placeholder image" width="50px">
+                                <a class="media-left" href="/orders/1/${order.product.id}/${order.id}">
+                                    <img class="img-circle" src="/products/image/${order.product.id}" alt="Generic placeholder image" width="50px">
                                 </a>
                                 <div class="media-body">
-                                    <h4 class="media-heading">${product.name}</h4>
+                                    <h4 class="media-heading">${order.product.name}</h4>
                                     <ul class="rating inline-ul">
                                         <li><i class="fa fa-star amber-text"></i></li>
                                         <li><i class="fa fa-star amber-text"></i></li>
@@ -151,19 +136,24 @@
                                         <li><i class="fa fa-star"></i></li>
                                         <li><i class="fa fa-star"></i></li>
                                     </ul>
-                                    <p>Price: ${product.unitPrice}</p>
-                                    <p>Description: ${product.description}</p>
+                                    <p>Price: ${order.product.unitPrice}</p>
+                                    <p>Description: ${order.product.description}</p>
+                                    <p>Total: ${order.price}</p>
                                 </div>
                                 <a class="media-right" href="#">
-                                    <img class="img-circle" src="/suppliers/image/${product.supplier.id}" alt="Generic placeholder image" width="50px">
+                                    <img class="img-circle" src="/suppliers/image/${order.product.supplier.id}" alt="Generic placeholder image" width="50px">
                                 </a>
+
                             </div>
 
                         </c:forEach>
                     </div>
+                    <div class="row">
+                        <a href="/payments/1/makepayment"><button class="btn btn-primary">Start Payment</button></a>
+                    </div>
                     <!--/.Second row-->
-
                 </div>
+
                 <!--/.Main column-->
 
             </div>
@@ -175,22 +165,17 @@
     <!-- SCRIPTS -->
 
     <!-- JQuery -->
-    <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-2.2.3.min.js"></script>
 
     <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="js/tether.min.js"></script>
+    <script type="text/javascript" src="/js/tether.min.js"></script>
 
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
     <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
 
-    <script type="text/javascript">
-        $( document ).ready(function() {
-            
-        });
-    </script>
 </body>
 
 </html>
