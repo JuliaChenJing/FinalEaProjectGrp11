@@ -80,7 +80,7 @@
                             <a class="nav-link" href="/products">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/orders/1">Finish Ordering</a>
+                            <a class="nav-link" href="/orders/1">Shopping Cart</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Pricing</a>
