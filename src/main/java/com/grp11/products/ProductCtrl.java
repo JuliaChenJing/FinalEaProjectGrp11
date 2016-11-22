@@ -42,6 +42,13 @@ public class ProductCtrl {
 		return "displayProducts";
 	}
 	
+	@RequestMapping(value = "/list/all", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public String getProducts(Model model) throws UnsupportedEncodingException {
+		model.addAttribute("allProducts", productService.getAllProduct());
+		return "listProducts";
+	}
+	
 	@RequestMapping(value = "/category/{categoryId}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String getAllProductsForCategory(Model model, @PathVariable("categoryId") long categoryId) {

@@ -1,5 +1,7 @@
 package com.grp11.category;
 
+import java.io.UnsupportedEncodingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,12 @@ public class CategoryCtrl {
 	public String addCategory(@ModelAttribute CategoryDomain Category) {
 		CategoryService.createCategory(Category);
 		return "redirect:/orders/";
+	}
+	@RequestMapping(value = "/list/all", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public String getProducts(Model model) throws UnsupportedEncodingException {
+		model.addAttribute("allCategory", CategoryService.getAllCategory());
+		return "listCategories";
 	}
 	
 	@RequestMapping(value = "/{categoryId}", method = RequestMethod.GET)

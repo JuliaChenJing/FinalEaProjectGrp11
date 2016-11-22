@@ -79,8 +79,20 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/products">Home <span class="sr-only">(current)</span></a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/orders/1">Finish Ordering</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
                     </ul>
                     <!--Search form-->
+                    <form class="form-inline">
+                        <input class="form-control" type="text" placeholder="Search">
+                    </form>
                 </div>
                 <!--/.Collapse content-->
 
@@ -94,36 +106,49 @@
     <main>
 
         <!--Main layout-->
-                <!--Main column-->
-                <div class="col-md-8 offset-md-2">
+        <div class="container">
+            <div class="row">
 
-                    <!--Second row-->
+                <!--Sidebar-->
+                <div class="col-md-4">
+
+                    <div class="widget-wrapper">
+                        <h4>Categories:</h4>
+                        <br>
+                        <div class="list-group">
+                            <a href="/products/list/all" class="list-group-item">View Products</a>
+                            <a href="/suppliers/list/all" class="list-group-item ">View Supplier</a>
+                            <a href="/category/list/all" class="list-group-item active">View Category</a>
+                        </div>
+                    </div>
+                </div>
+                <!--/.Sidebar-->
+                      <!--Main layout-->
+        <div class="container">
+            <div class="row">
+
+                <!--Main column-->
+                <div class="col-md-8">
+
                     <div class="row">
 
                         <!--Heading-->
-                        <div class="reviews">
-                            <h2 class="h2-responsive">Login</h2>
+                        <div class="Products">
+                            <h2 class="h2-responsive">Products</h2>
+                            <a href="/category/add"><button class="btn btn-primary">Add Category</button></a>
                         </div>
 
-                        <br>
-                        <form class="card" action="/login" method="post">
-                            <div class="card-block">
-                                <p><strong>Add a Product</strong></p>
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <div class="md-form">
-                                    <i class="fa fa-credit-card prefix"></i>
-                                   <input type="text" id="username" name="username" id="username" required autofocus>
-                                    <label for="username">UserName</label>
-                                </div>
-                                <div class="md-form">
-                                        <i class="fa fa-credit-card prefix"></i>
-                                        <input type="password" id="password" name="password" id="password" required>
-                                        <label for="password">Password</label>
-                                </div>
-                                <button class="btn btn-primary">Submit</button>
-								<a href="/consumer/signUp">register now</a>
+                        <!--First review-->
+                        <c:forEach var="category" items="${allCategory}">
+                            <div class="media">
+                                <a class="media-right" href="/category/${category.id}">
+                                    <button class="btn btn-primary" style=" width: 500px; text-align: left"> ${category.name}</button>
+                                </a>
                             </div>
-                        </form>
+
+                        </c:forEach>
+                    </div>
+                    <!--/.Second row-->
 
                 </div>
                 <!--/.Main column-->
@@ -132,7 +157,13 @@
         </div>
         <!--/.Main layout-->
 
+            </div>
+        </div>
+          <!--/.Main layout-->
+
     </main>
+
+   
 
 
     <!-- SCRIPTS -->

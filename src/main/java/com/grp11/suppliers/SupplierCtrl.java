@@ -2,6 +2,7 @@ package com.grp11.suppliers;
 
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -45,7 +46,12 @@ public class SupplierCtrl {
 		SupplierService.createSupplier(Supplier);
 		return "redirect:/orders";
 	}
-	
+	@RequestMapping(value = "/list/all", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public String getProducts(Model model) throws UnsupportedEncodingException {
+		model.addAttribute("allSuppliers", SupplierService.getAllSupplier());
+		return "listSuppliers";
+	}
 	@RequestMapping(value = "/{supplierId}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String getSupplier(Model model, @PathVariable("supplierId") long supplierId) {
