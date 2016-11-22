@@ -120,7 +120,7 @@
                                         <label for="password">Password</label>
                                 </div>
                                 <button class="btn btn-primary">Submit</button>
-								<a href="/consumer/signUp">register now</a>
+								<a href="/signUp">register now</a>
                             </div>
                         </form>
 
