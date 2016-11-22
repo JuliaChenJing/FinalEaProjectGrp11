@@ -1,5 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<sec:authorize var="loggedIn" access="isAuthenticated()" />
+<c:if test="${not empty pageContext.request.userPrincipal}">
+    User <c:out value="${pageContext.request.userPrincipal}" />
+</c:if>
 <html>
 <head>
 

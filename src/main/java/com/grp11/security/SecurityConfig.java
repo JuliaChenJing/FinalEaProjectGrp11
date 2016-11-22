@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.successForwardUrl("/consumer/welcome")
 		.permitAll()
 		.and()
-		.logout().logoutSuccessUrl("/").permitAll();;
+		.logout().logoutSuccessUrl("/").permitAll();
 	}
 	
 	@Autowired
@@ -61,9 +61,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                   	.roles("ADMIN");
 		auth.jdbcAuthentication().dataSource(dataSource)
 		.usersByUsernameQuery(
-				"select user_domain.username,user_domain.password,1 from finalproject.user_domain where user_domain.username=?")
+				"select user_domain.id,user_domain.username,user_domain.password,1 from finalproject.user_domain where user_domain.username=?")
 		.authoritiesByUsernameQuery(
-				"select user_domain.username,user_domain.role from finalproject.user_domain where user_domain.username=?");
+				"select user_domain.id,user_domain.username,user_domain.role from finalproject.user_domain where user_domain.username=?");
 		
     }
     	
