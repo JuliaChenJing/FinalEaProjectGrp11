@@ -4,7 +4,7 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-import com.grp11.Domain.ConsumerDomain;
+
 
 import com.grp11.Domain.UserDomain;
 import com.grp11.products.ProductDomain;

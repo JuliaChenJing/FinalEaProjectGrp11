@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.grp11.Consumer.IConsumerService;
-import com.grp11.Domain.ConsumerDomain;
+
 import com.grp11.Domain.UserDomain;
 
 import com.grp11.products.IProductService;

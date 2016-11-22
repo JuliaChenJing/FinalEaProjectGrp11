@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,28 +20,32 @@
                 
                 
                 <tr>
-					<td>Name</td>
+                
+					<td>First Name</td>
+					<td>Last Name</td>
 					<td>Username</td>
 					<td>email</td>
-					<td>Country</td>
-					<td>State</td>
+					<td>Street</td>
 					<td>City</td>
 					<td>Zip</td>
-					<td>PhoneNumber</td>
+					<td>PhoneNumber</td> 
 				</tr>
                 
-                <c:forEach var="customer" items="${customers}">
+                <c:forEach var="users" items="${users}">
                 
                 <tr>
-                    <td>${customer.name}</td>
-                    <td>${customer.username}</td>
-                    <td>${customer.email}</td>
-                    <td>${customer.address.country}</td>
-                    <td>${customer.address.state}</td>
-                     <td>${customer.address.city}</td>
-                     <td>${customer.address.zip}</td>
-                     <td>${customer.phoneNumber}</td>
+                    <td>${users.firstName}</td>
+                   <td>${users.lastName}</td>
+                    <td>${users.username}</td>
+                    <td>${users.email}</td>
+                    <td>${users.street}</td>
+                     <td>${users.city}</td>
+                     <td>${users.zip}</td>
+                     <td>${users.phone}</td> 
+                      <td><a href="/consumer/updateConsumer/${users.id}">Edit</a></td>
+                     <td><a href="/consumer/deleteConsumer/${users.id}">Delete</a></td>
                 </tr>
+                
                 </c:forEach>
           </table>
 	</div>

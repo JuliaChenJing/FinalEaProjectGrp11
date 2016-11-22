@@ -31,6 +31,8 @@
 			<div style="float: left; padding: 8px 0px">
 				<button style="margin-left: 74px" type="submit">Sign in</button>
 			</div>
+			<br>
+			<a href="/signUp">Sign Up?</a>
 		</form>
 	</div>
 	<br />
