@@ -16,8 +16,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
-	/*@Autowired
-	DataSource dataSource;*/
+	@Autowired
+	DataSource dataSource;
 	
 	protected void configure(HttpSecurity http) throws Exception {
 		/*http 
@@ -35,14 +35,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http 
 		.csrf().disable()
 		.authorizeRequests()
-		.antMatchers("/**").hasRole("ADMIN")
-		.antMatchers("/consumer/signUp").hasRole("USER")
+		.antMatchers("/loginchecker").authenticated()
+		.antMatchers("/suppliers/**").hasRole("ADMIN")
+		.antMatchers("/products/**").hasAuthority("USER")
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()
 		.loginPage("/login")
 		.successForwardUrl("/consumer/welcome")
-		.permitAll();
+		.permitAll()
+		.and()
+		.logout().logoutSuccessUrl("/").permitAll();;
 	}
 	
 	@Autowired
@@ -56,16 +59,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                   .withUser("admin")
                   	.password("admin")
                   	.roles("ADMIN");
-		/*auth.jdbcAuthentication().dataSource(dataSource)
+		auth.jdbcAuthentication().dataSource(dataSource)
 		.usersByUsernameQuery(
 				"select user_domain.username,user_domain.password,1 from finalproject.user_domain where user_domain.username=?")
 		.authoritiesByUsernameQuery(
-				"select user_domain.username,user_domain.role from finalproject.user_domain where user_domain.username=?");*/
-		/*auth.jdbcAuthentication().dataSource(dataSource)
-		.usersByUsernameQuery(
-				"select user.name,user.password,1 from finalproject.user where user.name=?")
-		.authoritiesByUsernameQuery(
-				"select user.name,user.role from finalproject.user where user.name=? ");*/
+				"select user_domain.username,user_domain.role from finalproject.user_domain where user_domain.username=?");
+		
     }
     	
 

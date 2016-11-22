@@ -15,6 +15,7 @@ import com.grp11.Order.OrderDomain;
 import com.grp11.payment.PaymentDomain;
 
 @Entity
+
 public class UserDomain {
 	
 	@Id

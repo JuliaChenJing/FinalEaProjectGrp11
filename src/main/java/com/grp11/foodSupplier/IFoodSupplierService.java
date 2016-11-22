@@ -13,4 +13,5 @@ public interface IFoodSupplierService {
 	
 	public void addSupplier(SuppliersDomain supplier);
 	public List<SuppliersDomain> getAllSuppliers();
+	
 }

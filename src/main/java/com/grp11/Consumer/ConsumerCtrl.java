@@ -1,19 +1,26 @@
 package com.grp11.Consumer;
 
+import java.security.Principal;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.grp11.Domain.UserDomain;
+
+
 
 @Controller
 @RequestMapping("/consumer")
@@ -24,6 +31,7 @@ public class ConsumerCtrl {
 	
 	@RequestMapping(value="/welcome")
 	public String welcomePageDisplay(){
+		
 		return "welcome";
 	}
 	
@@ -33,12 +41,14 @@ public class ConsumerCtrl {
 		return "login";
 	}*/
 	
-	@RequestMapping(value= "/signUp", method = RequestMethod.GET)
+	
+	
+	/*@RequestMapping(value= "/signUp", method = RequestMethod.GET)
 	public String addConsumerForm(@ModelAttribute("newConsumer")UserDomain consumer){
 		
 		//System.out.println("Pramita");
 		return "addConsumerForm";
-	}
+	}*/
 	
 	@RequestMapping(value= "/signUp", method = RequestMethod.POST)
 	public String saveConsumerProfile(/*@Valid*/ @ModelAttribute("newConsumer")UserDomain consumer/*,BindingResult result*/){
@@ -53,10 +63,22 @@ public class ConsumerCtrl {
 		return "successAdd";
 	}
 	
-	@RequestMapping(value= "/deleteConsumer/{id}")
-	public void deleteCustomerProfile(@PathVariable("id") Long id){
+	@RequestMapping(value= "/deleteConsumer/{id}",method = RequestMethod.GET)
+	 public ModelAndView deleteConsumer(@PathVariable Long id){  
 		userService.deleteUser(id);
-		
+        return new ModelAndView("redirect:/consumer/showalluser");  
+    }  
+	
+	 @RequestMapping(value="/updateConsumer/{id}",method = RequestMethod.POST)  
+	    public ModelAndView editsave(@ModelAttribute("user") UserDomain consumer){  
+		 	userService.update(consumer); 
+	        return new ModelAndView("redirect:/showalluser");  
+	 }  
+	 
+	@RequestMapping(value={"/showalluser"}, method = RequestMethod.GET)
+	public String showAllUser(Model model){
+		model.addAttribute("users", userService.getAllUser());
+		return "customerList";
 	}
 	
 	@RequestMapping(value= "/{id}/updateaddress", method=RequestMethod.POST)
@@ -78,12 +100,7 @@ public class ConsumerCtrl {
 		return modelAndView;
 	}*/
 	
-	public ModelAndView showAllUser(){
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("users",userService.getAllUser());
-		modelAndView.setViewName("customerList");
-		return modelAndView;
-	}
+	
 	
 	
 

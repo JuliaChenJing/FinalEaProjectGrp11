@@ -56,6 +56,34 @@
 </head>
 
 <body>
+<<<<<<< HEAD
+	<div style="margin: 0 auto; width: 300px">
+		<br /> <br />
+		<h2>Login</h2>
+		<br /> <br />
+		<form action="/login" method="post">
+			<div style="float: left; padding: 8px 0px">
+				<label for="userName">User Name</label> <input type="text"
+					name="username" id="username" required autofocus>
+			</div>
+			<br />
+			<div style="float: left; padding: 8px 0px">
+				<label for="password">Password</label> <input type="password"
+					name="password" id="password" required>
+			</div>
+			<br />
+			<input type="hidden"       
+		name="${_csrf.parameterName}"
+		value="${_csrf.token}"/>
+			<div style="float: left; padding: 8px 0px">
+				<button style="margin-left: 74px" type="submit">Sign in</button>
+			</div>
+			<br>
+			<a href="/signUp">Sign Up?</a>
+		</form>
+	</div>
+	<br />
+=======
 
 
     <header>
@@ -149,6 +177,7 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="/js/mdb.min.js"></script>
 
+>>>>>>> 6f9b56950f71bb2dcbf32cb4faa5a3103020f818
 
 </body>
 

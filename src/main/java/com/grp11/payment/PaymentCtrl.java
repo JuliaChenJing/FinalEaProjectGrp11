@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.grp11.Consumer.IConsumerService;
-import com.grp11.Domain.ConsumerDomain;
+
 import com.grp11.Domain.UserDomain;
 import com.grp11.Order.IOrderService;
 import com.grp11.Order.OrderDomain;

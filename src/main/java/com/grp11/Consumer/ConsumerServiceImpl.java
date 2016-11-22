@@ -47,7 +47,14 @@ public class ConsumerServiceImpl implements IConsumerService{
 		List<UserDomain> listofConsumer = (List<UserDomain>) consumerDAO.findAll();
 		return listofConsumer;
 	}
-	
+
+	/*@Override
+	public UserDomain getUserbyUserName(String username) {
+		// TODO Auto-generated method stub
+		return consumerDAO.findByUsername(username);
+		
+	}
+	*/
 	
 
 }

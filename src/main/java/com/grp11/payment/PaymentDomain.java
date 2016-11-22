@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.grp11.Domain.ConsumerDomain;
+
 import com.grp11.Domain.UserDomain;
 @Entity
 public class PaymentDomain {
