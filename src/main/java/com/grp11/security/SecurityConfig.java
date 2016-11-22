@@ -7,6 +7,7 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -64,8 +65,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				"select user_domain.id,user_domain.username,user_domain.password,1 from finalproject.user_domain where user_domain.username=?")
 		.authoritiesByUsernameQuery(
 				"select user_domain.id,user_domain.username,user_domain.role from finalproject.user_domain where user_domain.username=?");
-		
     }
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+	  web.ignoring().antMatchers("/js/**");
+	  web.ignoring().antMatchers("/css/**");
+	}
     	
 
 }

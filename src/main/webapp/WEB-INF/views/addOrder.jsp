@@ -5,6 +5,7 @@
 <c:if test="${not empty pageContext.request.userPrincipal}">
     User <c:out value="${pageContext.request.userPrincipal}" />
 </c:if>
+
 <html>
 <head>
 
