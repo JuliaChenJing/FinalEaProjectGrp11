@@ -49,7 +49,7 @@ public class PaymentCtrl {
 			paymentService.createPayment(payment);
 			return "redirect:/payments/" + UserId;
 		} else {
-			return "redirect:/orders/";
+			return "redirect:/products/";
 		}
 	}
 	
@@ -61,7 +61,7 @@ public class PaymentCtrl {
 			payment.setId(PaymentId);
 			paymentService.updatePayment(payment);
 			return "redirect:/payments/"+UserId;
-		} else return "redirect:/orders";
+		} else return "redirect:/products";
 	}
 	
 	@RequestMapping(value = "/{paymentId}", method = RequestMethod.DELETE)

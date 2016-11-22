@@ -87,7 +87,7 @@ public class ProductCtrl {
 		Product.setSupplier(supplierService.getSupplier(supplierId));
 		productService.createProduct(Product);
 		System.out.println(Product.getProductImage());
-		return "redirect:/orders/";
+		return "redirect:/products/list/all";
 	}
 	
 	@RequestMapping(value = "/{productId}", method = RequestMethod.GET)
@@ -113,7 +113,7 @@ public class ProductCtrl {
 	public String deleteProduct(@PathVariable("ProductId") long ProductId) {
 		
 		productService.deleteProduct(ProductId);
-		return "redirect:/orders";
+		return "redirect:/products/list/all";
 	}
 
 }

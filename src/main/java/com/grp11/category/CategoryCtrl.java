@@ -29,7 +29,7 @@ public class CategoryCtrl {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String addCategory(@ModelAttribute CategoryDomain Category) {
 		CategoryService.createCategory(Category);
-		return "redirect:/orders/";
+		return "redirect:/category/list/all";
 	}
 	@RequestMapping(value = "/list/all", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
@@ -49,7 +49,7 @@ public class CategoryCtrl {
 	public String updateCategory(CategoryDomain Category, @PathVariable("categoryId") long categoryId) {
 		Category.setId(categoryId);
 		CategoryService.updateCategory(Category);
-		return "redirect:/orders";
+		return "redirect:/category/list/all";
 	}
 	
 	@RequestMapping(value = "/{categoryId}/delete", method = RequestMethod.DELETE)

@@ -44,7 +44,7 @@ public class SupplierCtrl {
         }
 		System.out.println("inside supplier add");
 		SupplierService.createSupplier(Supplier);
-		return "redirect:/orders";
+		return "redirect:/suppliers/list/all";
 	}
 	@RequestMapping(value = "/list/all", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
@@ -66,7 +66,7 @@ public class SupplierCtrl {
         }
 		Supplier.setId(supplierId);
 		SupplierService.updateSupplier(Supplier);
-		return "redirect:/orders";
+		return "redirect:/suppliers/list/all";
 	}
 	
 	@RequestMapping(value = "/image/{supplierId}", method = RequestMethod.GET)
