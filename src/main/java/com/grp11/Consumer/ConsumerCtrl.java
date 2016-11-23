@@ -90,7 +90,8 @@ public class ConsumerCtrl {
     }  
 	
 	 @RequestMapping(value="/updateConsumer/{id}",method = RequestMethod.POST)  
-	    public ModelAndView editsave(@ModelAttribute("user") UserDomain consumer){  
+	    public ModelAndView editsave(@ModelAttribute("user") UserDomain consumer, @PathVariable("id") Long id){  
+		 	consumer.setId(id);
 		 	userService.update(consumer); 
 	        return new ModelAndView("redirect:/showalluser");  
 	 }  

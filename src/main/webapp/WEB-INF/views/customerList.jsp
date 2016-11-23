@@ -43,7 +43,7 @@
                      <td>${users.city}</td>
                      <td>${users.zip}</td>
                      <td>${users.phone}</td> 
-                      <td><a href="/consumer/updateConsumer/${users.id}">Edit</a></td>
+                      <!-- <td><a href="/consumer/updateConsumer/${users.id}">Edit</a></td> -->
                      <td><a href="/consumer/deleteConsumer/${users.id}">Delete</a></td>
                 </tr>
                 
