@@ -12,7 +12,8 @@ public interface IConsumerService {
 	public UserDomain getUser(Long UserId);
 	public void deleteUser(Long id);
 	public List<UserDomain> getAllUser();
-	//public UserDomain getUserbyUserName(String Username);
+	public UserDomain getUserbyUserName(String Username);
+	public Long getUserIdByUserName(String Username);
 	
 	
 }

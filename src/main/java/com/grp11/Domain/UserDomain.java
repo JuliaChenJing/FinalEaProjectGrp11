@@ -13,6 +13,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.grp11.Order.OrderDomain;
 import com.grp11.payment.PaymentDomain;
+import com.grp11.validator.Username;
 
 @Entity
 
@@ -31,7 +32,8 @@ public class UserDomain {
 	private String lastName;
 	
 	/*@NotEmpty(message="Please enter Your Username")
-	@Size(min=2, max=30,message="Please enter name with length min 2 and max 30")	*/	
+	//@Size(min=2, max=30,message="Please enter name with length min 2 and max 30")	*/	
+	@Username(message="User already Exist")
 	private String username;
 	
 	/*@NotEmpty(message="Please enter Your Password")*/

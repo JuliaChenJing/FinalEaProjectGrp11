@@ -24,8 +24,8 @@
 	<spring:message code="message.lastname" text="Default Text" /> <form:input id="lastName" path="lastName" type="text" />
 	 <form:errors path="lastName" cssStyle="color : red;" />
 		<br>
-	<spring:message code="message.username" text="Default Text" /><form:input id="username" path="username" type="text" /><br>
-	 
+	<spring:message code="message.username" text="Default Text" /><form:input id="username" path="username" type="text" />
+	 <form:errors path="username" cssStyle="color : red;" /><br>
 	 <spring:message code="message.password" text="Default Text" /> <form:input id="password" path="password" type="password" />
 	 <form:errors path="password" cssStyle="color : red;" />
 		<br> 

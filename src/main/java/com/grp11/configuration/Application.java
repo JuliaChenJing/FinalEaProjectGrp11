@@ -6,18 +6,22 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
- 
+
+import com.grp11.aop.TraceAdvice;
+
 import java.util.Locale;
  
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
+@EnableAspectJAutoProxy
 public class Application extends WebMvcConfigurerAdapter {
  
     @Bean
@@ -45,6 +49,10 @@ public class Application extends WebMvcConfigurerAdapter {
 		messageSource.setBasename("messages");
         return messageSource;
 	}
+    @Bean
+    public TraceAdvice traceadvice() {
+        return new TraceAdvice();
+    }
     
 }
  

@@ -4,6 +4,8 @@ import java.security.Principal;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,7 @@ public class ConsumerCtrl {
 	@Autowired
 	private IConsumerService userService;
 	
+	
 	@RequestMapping(value="/welcome")
 	public String welcomePageDisplay(){
 		
@@ -51,10 +54,10 @@ public class ConsumerCtrl {
 	}*/
 	
 	@RequestMapping(value= "/signUp", method = RequestMethod.POST)
-	public String saveConsumerProfile(/*@Valid*/ @ModelAttribute("newConsumer")UserDomain consumer/*,BindingResult result*/){
-		/*if(result.hasErrors()){
+	public String saveConsumerProfile(@Valid @ModelAttribute("newConsumer")UserDomain consumer,BindingResult result){
+		if(result.hasErrors()){
 			return "addConsumerForm";
-		}*/
+		}
 		
 		System.out.println("Database Save");
 		System.out.println(consumer.getFirstName());
@@ -78,6 +81,7 @@ public class ConsumerCtrl {
 	@RequestMapping(value={"/showalluser"}, method = RequestMethod.GET)
 	public String showAllUser(Model model){
 		model.addAttribute("users", userService.getAllUser());
+		
 		return "customerList";
 	}
 	

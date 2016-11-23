@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
@@ -15,8 +16,9 @@ import com.grp11.Order.OrderDomain;
 @Configuration
 @EnableAspectJAutoProxy
 @SpringBootApplication
+@ComponentScan({"com.grp11"})
 public class FinalEaProjectGrp11Application {
-	@Autowired
+//	@Autowired
 //	private IOrder repository;
 	public static void main(String[] args) {
 		

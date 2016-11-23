@@ -1,4 +1,4 @@
-/*package com.grp11.validator;
+package com.grp11.validator;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.FIELD;
@@ -12,13 +12,12 @@ import javax.validation.Payload;
 
 @Target( { METHOD, FIELD, ANNOTATION_TYPE })
 @Retention(RUNTIME)
-@Constraint(validatedBy = UserNameIdValidator.class)
+@Constraint(validatedBy = UsernameValidator.class)
 @Documented
-public @interface UserId {
+public @interface Username {
 	   String message() default "Username already exist";
 
 	    Class<?>[] groups() default {};
 	    
 	    public abstract Class<? extends Payload>[] payload() default {};
 }
-*/
