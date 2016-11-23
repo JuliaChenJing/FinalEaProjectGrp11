@@ -23,6 +23,7 @@ public class AspectPayment {
 
 	@After("execution(* com.grp11.payment.PaymentCtrl.*Payment(..)) and args(Payment, ..)")
 	public void sendEmail(JoinPoint jp, PaymentDomain Payment) throws Throwable {
+//		e.send(Payment.getConsumer().getEmail());
 		e.send("lamasuman00114@gmail.com");
 		System.out.println("Let us imagine we are sending email here");
 	}
