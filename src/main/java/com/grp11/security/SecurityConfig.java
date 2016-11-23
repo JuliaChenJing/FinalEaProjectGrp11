@@ -3,6 +3,7 @@ package com.grp11.security;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -41,9 +42,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/consumer/welcome").permitAll()
 		.antMatchers("/login").permitAll()
 		.antMatchers("/loginchecker").authenticated()
-		.antMatchers("/products/**").hasAuthority("USER")
-		.antMatchers("/payments/**").hasAuthority("USER")
-		.antMatchers("/orders/**").hasAuthority("USER")
+		.antMatchers(HttpMethod.GET, "/products/**").authenticated()
+		.antMatchers("/payments/**").authenticated()
+		.antMatchers("/orders/**").authenticated()
 		.antMatchers("/**").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.and()

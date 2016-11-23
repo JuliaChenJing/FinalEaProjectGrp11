@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
 
@@ -109,25 +110,6 @@
         <div class="container">
             <div class="row">
 
-                <!--Sidebar-->
-                <div class="col-md-4">
-
-                    <div class="widget-wrapper">
-                        <h4>Categories:</h4>
-                        <br>
-                        <div class="list-group">
-                            <a href="/products/list/all" class="list-group-item active">View Products</a>
-                            <a href="/suppliers/list/all" class="list-group-item">View Supplier</a>
-                            <a href="/category/list/all" class="list-group-item">View Category</a>
-                            <a href="/orders/undelivered" class="list-group-item">View Orders</a>
-                        </div>
-                    </div>
-                </div>
-                <!--/.Sidebar-->
-                      <!--Main layout-->
-        <div class="container">
-            <div class="row">
-
                 <!--Main column-->
                 <div class="col-md-8">
 
@@ -135,18 +117,17 @@
 
                         <!--Heading-->
                         <div class="Products">
-                            <h2 class="h2-responsive">Products</h2>
-                            <a href="/products/add"><button class="btn btn-primary">Add Product</button></a>
+                            <h2 class="h2-responsive">Order</h2>
                         </div>
 
                         <!--First review-->
-                        <c:forEach var="product" items="${allProducts}">
+                        <c:forEach var="order" items="${allOrders}">
                             <div class="media">
-                                <a class="media-left" href="/products/${product.id}">
-                                    <img class="img-circle" src="/products/image/${product.id}" alt="Generic placeholder image" width="50px">
+                                <a class="media-left" href="/orders/${order.consumer.id}/${order.product.id}/${order.id}">
+                                    <img class="img-circle" src="/products/image/${order.product.id}" alt="Generic placeholder image" width="50px">
                                 </a>
                                 <div class="media-body">
-                                    <h4 class="media-heading">${product.name}</h4>
+                                    <h4 class="media-heading">${order.product.name}</h4>
                                     <ul class="rating inline-ul">
                                         <li><i class="fa fa-star amber-text"></i></li>
                                         <li><i class="fa fa-star amber-text"></i></li>
@@ -154,33 +135,28 @@
                                         <li><i class="fa fa-star"></i></li>
                                         <li><i class="fa fa-star"></i></li>
                                     </ul>
-                                    <p>Price: ${product.unitPrice}</p>
-                                    <p>Description: ${product.description}</p>
+                                    <p>Price: ${order.product.unitPrice}</p>
+                                    <p>Description: ${order.product.description}</p>
+                                    <p>Total: ${order.price}</p>
                                 </div>
                                 <a class="media-right" href="#">
-                                    <img class="img-circle" src="/suppliers/image/${product.supplier.id}" alt="Generic placeholder image" width="50px">
+                                    <img class="img-circle" src="/suppliers/image/${order.product.supplier.id}" alt="Generic placeholder image" width="50px">
                                 </a>
+
                             </div>
 
                         </c:forEach>
                     </div>
                     <!--/.Second row-->
-
                 </div>
+
                 <!--/.Main column-->
 
             </div>
         </div>
         <!--/.Main layout-->
 
-            </div>
-        </div>
-          <!--/.Main layout-->
-
     </main>
-
-   
-
 
     <!-- SCRIPTS -->
 
@@ -195,7 +171,6 @@
 
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="/js/mdb.min.js"></script>
-
 
 </body>
 

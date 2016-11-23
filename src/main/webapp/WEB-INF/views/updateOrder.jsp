@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <html>
 <head>
 
@@ -109,25 +111,6 @@
         <div class="container">
             <div class="row">
 
-                <!--Sidebar-->
-                <div class="col-md-4">
-
-                    <div class="widget-wrapper">
-                        <h4>Categories:</h4>
-                        <br>
-                        <div class="list-group">
-                            <a href="/products/list/all" class="list-group-item active">View Products</a>
-                            <a href="/suppliers/list/all" class="list-group-item">View Supplier</a>
-                            <a href="/category/list/all" class="list-group-item">View Category</a>
-                            <a href="/orders/undelivered" class="list-group-item">View Orders</a>
-                        </div>
-                    </div>
-                </div>
-                <!--/.Sidebar-->
-                      <!--Main layout-->
-        <div class="container">
-            <div class="row">
-
                 <!--Main column-->
                 <div class="col-md-8">
 
@@ -135,18 +118,16 @@
 
                         <!--Heading-->
                         <div class="Products">
-                            <h2 class="h2-responsive">Products</h2>
-                            <a href="/products/add"><button class="btn btn-primary">Add Product</button></a>
+                            <h2 class="h2-responsive">Order</h2>
                         </div>
 
                         <!--First review-->
-                        <c:forEach var="product" items="${allProducts}">
                             <div class="media">
-                                <a class="media-left" href="/products/${product.id}">
-                                    <img class="img-circle" src="/products/image/${product.id}" alt="Generic placeholder image" width="50px">
+                                <a class="media-left" href="#">
+                                    <img class="img-circle" src="/products/image/${order.product.id}" alt="Generic placeholder image" width="50px">
                                 </a>
                                 <div class="media-body">
-                                    <h4 class="media-heading">${product.name}</h4>
+                                    <h4 class="media-heading">${order.product.name}</h4>
                                     <ul class="rating inline-ul">
                                         <li><i class="fa fa-star amber-text"></i></li>
                                         <li><i class="fa fa-star amber-text"></i></li>
@@ -154,16 +135,35 @@
                                         <li><i class="fa fa-star"></i></li>
                                         <li><i class="fa fa-star"></i></li>
                                     </ul>
-                                    <p>Price: ${product.unitPrice}</p>
-                                    <p>Description: ${product.description}</p>
+                                    <p>Price: ${order.product.unitPrice}</p>
+                                    <p>Description: ${order.product.description}</p>
                                 </div>
                                 <a class="media-right" href="#">
-                                    <img class="img-circle" src="/suppliers/image/${product.supplier.id}" alt="Generic placeholder image" width="50px">
+                                    <img class="img-circle" src="/suppliers/image/${order.product.supplier.id}" alt="Generic placeholder image" width="50px">
                                 </a>
                             </div>
-
-                        </c:forEach>
-                    </div>
+                            <form class="card" method="post" action="/orders/${order.consumer.id}/${order.product.id}/${order.id}">
+                                <div class="card-block">
+                                    <p><strong>Update your order</strong></p>
+                                    <div class="md-form">
+                                        <i class="fa fa-credit-card prefix"></i>
+                                        <input type="number" id="quantity" class="form-control" name="quantity" value="${order.quantity}">
+                                        <label for="quantity">Quantity</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="fa fa-credit-card prefix"></i>
+                                        <input type="text" id="price" class="form-control" name="none" readonly>
+                                        <label for="price">Price</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <label for="isDelivered">Is Delivered?</label>
+                                        <input type="checkbox" name="isDelivered" id="isDelivered"/>
+                                    </div>
+                                    <button class="btn btn-primary">Submit</button>
+                                    <button type="button" id="deleteBtn" class="btn btn-primary">Delete</button>
+                                </div>
+                            </form>
+                        </div>
                     <!--/.Second row-->
 
                 </div>
@@ -173,14 +173,7 @@
         </div>
         <!--/.Main layout-->
 
-            </div>
-        </div>
-          <!--/.Main layout-->
-
     </main>
-
-   
-
 
     <!-- SCRIPTS -->
 
@@ -196,7 +189,19 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="/js/mdb.min.js"></script>
 
-
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            $('#quantity').change(function() {
+                console.log("changing");
+                var unitPrice = ${order.product.unitPrice};
+                var quantity = $('#quantity').val();
+                $("#price").val(unitPrice * quantity);
+                $("#price").addClass("active");
+                console.log($("#price").closest("i"));
+                $("#price").closest("i").addClass("active");
+            });
+        });
+    </script>
 </body>
 
 </html>

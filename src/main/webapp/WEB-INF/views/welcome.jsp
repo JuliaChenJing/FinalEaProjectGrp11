@@ -119,6 +119,7 @@
                             <a href="/products/list/all" class="list-group-item active">View Products</a>
                             <a href="/suppliers/list/all" class="list-group-item">View Supplier</a>
                             <a href="/category/list/all" class="list-group-item">View Category</a>
+                            <a href="/orders/undelivered" class="list-group-item">View Orders</a>
                         </div>
                     </div>
                 </div>
