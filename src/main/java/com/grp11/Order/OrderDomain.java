@@ -26,6 +26,15 @@ public class OrderDomain {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedAt;
 	private boolean isPaid;
+	private boolean isDelivered;
+	public boolean isDelivered() {
+		return isDelivered;
+	}
+
+	public void setDelivered(boolean isDelivered) {
+		this.isDelivered = isDelivered;
+	}
+
 	public boolean isPaid() {
 		return isPaid;
 	}

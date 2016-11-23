@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
-
-public class Email {
-	
-    private JavaMailSenderImpl javaMailSender =new JavaMailSenderImpl();
+import org.springframework.stereotype.Service;
+@Service
+public class Email implements IEmail {
+	@Autowired
+    private JavaMailSenderImpl javaMailSender;
 
 	public void send(String to) {
+		System.out.println("here");
         MimeMessage mail = javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mail, true);

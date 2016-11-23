@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
 <html>
 <head>
 
@@ -78,13 +78,13 @@
                     <!--Links-->
                     <ul class="nav navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/products">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/products/">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/orders/1">Shopping Cart</a>
+                            <a class="nav-link" href="/orders/${userId}">Shopping Cart</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
+                            <a class="nav-link" href="/payments/${userId}">Payment Info</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">About</a>
@@ -92,7 +92,7 @@
                     </ul>
                     <!--Search form-->
                     <form class="form-inline">
-                        <input class="form-control" type="text" placeholder="Search">
+                        <a href="/logout"><button class="btn btn-danger">logout</button></a>
                     </form>
                 </div>
                 <!--/.Collapse content-->
@@ -117,7 +117,7 @@
                         <div class="widget-wrapper">
                         <h4>Credit Info:</h4>
                         <br>
-                        <form class="card" method="post" action="/payments/1/new">
+                        <form class="card" method="post" action="/payments/${userId}/new">
                             <div class="card-block">
                                 <p><strong>Add your card detail</strong></p>
                                 <div class="md-form">

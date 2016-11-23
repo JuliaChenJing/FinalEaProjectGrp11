@@ -3,6 +3,7 @@ package com.grp11.security;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -38,10 +39,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.authorizeRequests()
 		.antMatchers("/signUp").permitAll()
 		.antMatchers("/consumer/signUp").permitAll()
+		.antMatchers("/consumer/welcome").permitAll()
+		.antMatchers("/login").permitAll()
 		.antMatchers("/loginchecker").authenticated()
-		.antMatchers("/suppliers/**").hasRole("ADMIN")
-		.antMatchers("/products/**").hasAuthority("USER")
-		/*.antMatchers("/products/**").hasAuthority("ADMIN")*/
+		.antMatchers(HttpMethod.GET, "/products/**").authenticated()
+		.antMatchers(HttpMethod.GET, "/suppliers/**").authenticated()
+		.antMatchers("/payments/**").authenticated()
+		.antMatchers("/orders/**").authenticated()
+		.antMatchers("/**").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()
@@ -49,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.successForwardUrl("/consumer/welcome")
 		.permitAll()
 		.and()
-		.logout().logoutSuccessUrl("/").permitAll();
+		.logout().logoutSuccessUrl("/login").permitAll();
 	}
 	
 	@Autowired

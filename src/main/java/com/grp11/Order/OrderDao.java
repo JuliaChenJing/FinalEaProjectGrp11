@@ -36,4 +36,9 @@ public class OrderDao implements IOrderDao {
 	public List<OrderDomain> getAllOrderForUser(long consumerId) {
 		return Order.getAllOrderForUser(consumerId);
 	}
+	@Override 
+	public List<OrderDomain> getAllUndeliveredOrder() {
+		return Order.getAllUndeliveredOrder();
+	}
+	
 }

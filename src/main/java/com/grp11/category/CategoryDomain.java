@@ -3,6 +3,8 @@ package com.grp11.category;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.grp11.products.ProductDomain;
 
@@ -51,6 +53,8 @@ public class CategoryDomain {
 	@Id
 	@GeneratedValue
 	private long id;
+	@NotNull
+    @Size(min=2, max=30)
 	private String name;
 	@OneToMany(mappedBy="category")
 	private List<ProductDomain> products;

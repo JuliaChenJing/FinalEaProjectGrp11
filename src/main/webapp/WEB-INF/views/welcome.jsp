@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 
@@ -81,7 +80,7 @@
                             <a class="nav-link" href="/products">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/orders/1">Shopping Cart</a>
+                            <a class="nav-link" href="/orders/${userId}">Shopping Cart</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Pricing</a>
@@ -92,7 +91,7 @@
                     </ul>
                     <!--Search form-->
                     <form class="form-inline">
-                        <input class="form-control" type="text" placeholder="Search">
+                        <a href="/logout"><button class="btn btn-danger">logout</button></a>
                     </form>
                 </div>
                 <!--/.Collapse content-->
@@ -120,6 +119,7 @@
                             <a href="/products/list/all" class="list-group-item active">View Products</a>
                             <a href="/suppliers/list/all" class="list-group-item">View Supplier</a>
                             <a href="/category/list/all" class="list-group-item">View Category</a>
+                            <a href="/orders/undelivered" class="list-group-item">View Orders</a>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
 <html>
 <head>
 
@@ -78,13 +78,13 @@
                     <!--Links-->
                     <ul class="nav navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/products">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/products/">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/orders/1">Shopping Cart</a>
+                            <a class="nav-link" href="/orders/${userId}">Shopping Cart</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
+                            <a class="nav-link" href="/payments/${userId}">Payment Info</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">About</a>
@@ -92,7 +92,7 @@
                     </ul>
                     <!--Search form-->
                     <form class="form-inline">
-                        <input class="form-control" type="text" placeholder="Search">
+                        <a href="/logout"><button class="btn btn-danger">logout</button></a>
                     </form>
                 </div>
                 <!--/.Collapse content-->
@@ -124,7 +124,7 @@
                         <!--First review-->
                         <c:forEach var="order" items="${allOrders}">
                             <div class="media">
-                                <a class="media-left" href="/orders/1/${order.product.id}/${order.id}">
+                                <a class="media-left" href="/orders/${userId}/${order.product.id}/${order.id}">
                                     <img class="img-circle" src="/products/image/${order.product.id}" alt="Generic placeholder image" width="50px">
                                 </a>
                                 <div class="media-body">
@@ -149,7 +149,7 @@
                         </c:forEach>
                     </div>
                     <div class="row">
-                        <a href="/payments/1/makepayment"><button class="btn btn-primary">Start Payment</button></a>
+                        <a href="/payments/${userId}/makepayment"><button class="btn btn-primary">Start Payment</button></a>
                     </div>
                     <!--/.Second row-->
                 </div>

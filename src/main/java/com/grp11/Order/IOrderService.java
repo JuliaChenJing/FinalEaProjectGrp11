@@ -9,4 +9,5 @@ public interface IOrderService {
 	public List<OrderDomain> getAllOrder();
 	public void deleteOrder(Long ordNum);
 	public List<OrderDomain> getAllOrderForUser(long consumerId);
+	public List<OrderDomain> getAllUndeliveredOrder();
 }

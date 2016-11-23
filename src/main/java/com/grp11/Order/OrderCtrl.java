@@ -32,6 +32,13 @@ public class OrderCtrl {
 		return "home2";
 	}
 	
+	@RequestMapping(value = {"/undelivered"}, method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public String getAllUndeliveredOrdersFromAllUser(Model model) {
+		model.addAttribute("allOrders", orderService.getAllUndeliveredOrder());
+		return "undeliveredOrders";
+	}
+	
 	@RequestMapping(value = {"/{UserId}/{productId}/new", "/{UserId}/{productId}/new/"}, method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String startOrdering(Model model, @PathVariable("productId") long productId, @PathVariable("UserId") long UserId) {
@@ -49,24 +56,31 @@ public class OrderCtrl {
 		order.setProduct(p);
 		order.setConsumer(c);
 		orderService.createOrder(order);
-		return "redirect:/orders/";
+		return "redirect:/products/";
 	}
 	
 	@RequestMapping(value = "/{UserId}/{ProductId}/{OrderId}", method = RequestMethod.POST)
-	public String updateConsumer(@RequestBody OrderDomain order, @PathVariable("UserId") long UserId, @PathVariable("UserId") long ProductId, int quantity) {
+	public String updateOrder(OrderDomain order, @PathVariable("UserId") long UserId, @PathVariable("OrderId") long OrderId, int quantity, boolean isDelivered) {
 		UserDomain c = consumerService.getUser(UserId);
-		ProductDomain p = productService.getProduct(ProductId);
-		int finalprice = quantity * p.getUnitPrice();
-		order.setPrice(finalprice);
-		order.setProduct(p);
-		order.setConsumer(c);
-		orderService.updateOrder(order);
-		return "redirect:/orders/";
+		OrderDomain p = orderService.getOrder(OrderId);
+		int finalprice = quantity * p.getProduct().getUnitPrice();
+		p.setPrice(finalprice);
+		p.setConsumer(c);
+		p.setId(OrderId);
+		p.setDelivered(isDelivered);
+		orderService.updateOrder(p);
+		return "redirect:/products/";
+	}
+	
+	@RequestMapping(value = "/{UserId}/{ProductId}/{OrderId}", method = RequestMethod.GET)
+	public String getOrder(@PathVariable("UserId") long UserId, @PathVariable("OrderId") long OrderId, Model model) {
+		model.addAttribute("order", orderService.getOrder(OrderId));
+		return "updateOrder";
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
-	public String deleteConsumer(@RequestBody OrderDomain order) {
+	public String deleteOrder(@RequestBody OrderDomain order) {
 		orderService.deleteOrder(order.getId());
 		return "redirect:/home2";
 	}

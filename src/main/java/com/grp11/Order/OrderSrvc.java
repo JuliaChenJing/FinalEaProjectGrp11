@@ -32,4 +32,8 @@ public class OrderSrvc implements IOrderService {
 	public List<OrderDomain> getAllOrderForUser(long consumerId){
 		return orderDao.getAllOrderForUser(consumerId);
 	}
+	@Override 
+	public List<OrderDomain> getAllUndeliveredOrder() {
+		return orderDao.getAllUndeliveredOrder();
+	}
 }

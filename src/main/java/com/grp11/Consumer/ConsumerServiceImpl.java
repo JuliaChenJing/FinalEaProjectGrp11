@@ -58,14 +58,6 @@ public class ConsumerServiceImpl implements IConsumerService{
 		UserDomain u = getUserbyUserName(Username);
 		return u.getId();
 	}
-
-	/*@Override
-	public UserDomain getUserbyUserName(String username) {
-		// TODO Auto-generated method stub
-		return consumerDAO.findByUsername(username);
-		
-	}
-	*/
 	
 
 }
