@@ -78,13 +78,13 @@
                     <!--Links-->
                     <ul class="nav navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/products">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/products/">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/orders/${userId}">Shopping Cart</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
+                            <a class="nav-link" href="/payments/${userId}">Payment Info</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">About</a>

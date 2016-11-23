@@ -13,7 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.grp11.Domain.UserDomain;
 @Entity
@@ -28,7 +29,11 @@ public class PaymentDomain {
 				+ ", nameOnCard=" + nameOnCard + ", expiryDate=" + expiryDate + "]";
 	}
 	private String cardNumber;
+	@NotNull
+    @Size(min=3, max=3)
 	private String CVV;
+	@NotNull
+    @Size(min=2, max=30)
 	private String nameOnCard;
 	
 	public String getCVV() {
