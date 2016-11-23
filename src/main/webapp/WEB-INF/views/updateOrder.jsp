@@ -137,6 +137,9 @@
                                     </ul>
                                     <p>Price: ${order.product.unitPrice}</p>
                                     <p>Description: ${order.product.description}</p>
+                                    <p><strong>User Info:</strong></p>
+                                    <p>Username: ${order.consumer.username}</p>
+                                    <p>Address: ${order.consumer.city} ${order.consumer.street} ${order.consumer.zip}</p>
                                 </div>
                                 <a class="media-right" href="#">
                                     <img class="img-circle" src="/suppliers/image/${order.product.supplier.id}" alt="Generic placeholder image" width="50px">
